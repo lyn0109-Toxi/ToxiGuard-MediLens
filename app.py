@@ -64,6 +64,18 @@ UI = {
         "risk_mid": "주의 필요",
         "risk_high": "피해야 할 항목 있음",
         "risk_urgent": "위험 신호 포함",
+        "overview_title": "한눈에 보는 안전 결과",
+        "overview_copy": "복용 전 체크, 피하거나 확인할 항목, 근거 연결 상태를 시각적으로 요약합니다.",
+        "risk_meter": "위험도 미터",
+        "precheck_count": "복용 전 체크",
+        "avoid_count": "피하기/확인",
+        "evidence_count": "근거 링크",
+        "context_match": "내 상황 관련",
+        "severity_distribution": "위험 신호 분포",
+        "source_coverage": "조언-근거 연결",
+        "context_none": "상황을 선택하면 관련 경고가 더 강하게 표시됩니다.",
+        "context_selected": "선택한 상황",
+        "items": "개",
     },
     "en": {
         "language": "Language",
@@ -110,6 +122,18 @@ UI = {
         "risk_mid": "Caution needed",
         "risk_high": "Avoidance item found",
         "risk_urgent": "Red flag included",
+        "overview_title": "Visual safety overview",
+        "overview_copy": "A quick visual summary of pre-dose checks, avoid/check items, and evidence coverage.",
+        "risk_meter": "Risk meter",
+        "precheck_count": "Pre-dose checks",
+        "avoid_count": "Avoid/check",
+        "evidence_count": "Evidence links",
+        "context_match": "Context-related",
+        "severity_distribution": "Signal distribution",
+        "source_coverage": "Advice-evidence links",
+        "context_none": "Choose your context to highlight relevant warnings.",
+        "context_selected": "Selected context",
+        "items": "items",
     },
 }
 
@@ -153,6 +177,20 @@ SEVERITY = {
     "caution": {"ko": "주의", "en": "Caution", "score": 2, "class": "caution"},
     "avoid": {"ko": "피하기", "en": "Avoid", "score": 3, "class": "avoid"},
     "urgent": {"ko": "위험 신호", "en": "Red flag", "score": 4, "class": "urgent"},
+}
+
+SEVERITY_ICONS = {
+    "info": ":material/info:",
+    "caution": ":material/report:",
+    "avoid": ":material/block:",
+    "urgent": ":material/emergency_home:",
+}
+
+SEVERITY_COLORS = {
+    "info": "blue",
+    "caution": "orange",
+    "avoid": "red",
+    "urgent": "red",
 }
 
 
@@ -642,14 +680,23 @@ def risk_label(lang: str, cards: list[dict[str, Any]]) -> tuple[str, str]:
     return "info", t(lang, "risk_low")
 
 
+def severity_counts(items: list[dict[str, Any]]) -> dict[str, int]:
+    counts = {key: 0 for key in ["urgent", "avoid", "caution", "info"]}
+    for item in items:
+        severity = item.get("severity", "info")
+        counts[severity if severity in counts else "info"] += 1
+    return counts
+
+
+def context_match_count(items: list[dict[str, Any]], contexts: set[str]) -> int:
+    if not contexts:
+        return 0
+    return sum(1 for item in items if set(item.get("context", [])) & contexts)
+
+
 def card(title: str, body: str, severity: str, lang: str, source: str | None = None, tags: list[str] | None = None) -> None:
     sev = SEVERITY[severity]
-    badge_color = {
-        "info": "blue",
-        "caution": "orange",
-        "avoid": "red",
-        "urgent": "red",
-    }.get(severity, "gray")
+    badge_color = SEVERITY_COLORS.get(severity, "gray")
 
     with st.container(border=True):
         text_col, badge_col = st.columns([0.78, 0.22], vertical_alignment="top")
@@ -661,22 +708,84 @@ def card(title: str, body: str, severity: str, lang: str, source: str | None = N
             if tags:
                 st.caption(" · ".join(tags))
         with badge_col:
-            st.badge(l(sev, lang), color=badge_color)
+            st.badge(l(sev, lang), icon=SEVERITY_ICONS.get(severity), color=badge_color)
+
+
+def render_visual_overview(
+    drug: dict[str, Any],
+    cards: list[dict[str, Any]],
+    risk_class: str,
+    risk_text: str,
+    contexts: set[str],
+    lang: str,
+) -> None:
+    avoid_items = list(drug.get("avoid", []))
+    evidence_items = list(drug.get("evidence", []))
+    counts = severity_counts(cards + avoid_items)
+    risk_ratio = SEVERITY[risk_class]["score"] / 4
+    context_hits = context_match_count(cards, contexts)
+    source_ratio = min(len(evidence_items) / max(len(cards), 1), 1.0)
+
+    with st.container(border=True):
+        head_col, badge_col = st.columns([0.72, 0.28], vertical_alignment="center")
+        with head_col:
+            st.badge(t(lang, "overview_title"), icon=":material/dashboard:", color="primary")
+            st.caption(t(lang, "overview_copy"))
+        with badge_col:
+            st.badge(risk_text, icon=SEVERITY_ICONS.get(risk_class), color=SEVERITY_COLORS.get(risk_class, "gray"))
+
+        meter_col, stats_col = st.columns([0.48, 0.52], gap="large", vertical_alignment="top")
+        with meter_col:
+            st.markdown(f"**{t(lang, 'risk_meter')}**")
+            st.progress(risk_ratio, text=risk_text)
+            st.caption(f"{t(lang, 'source_coverage')}: {len(evidence_items)} / {max(len(cards), 1)}")
+            st.progress(source_ratio)
+
+        with stats_col:
+            metric_cols = st.columns(4)
+            metric_data = [
+                (t(lang, "precheck_count"), len(cards), ":material/fact_check:", "blue"),
+                (t(lang, "avoid_count"), len(avoid_items), ":material/no_food:", "red"),
+                (t(lang, "evidence_count"), len(evidence_items), ":material/source:", "green"),
+                (t(lang, "context_match"), context_hits, ":material/person_check:", "orange" if context_hits else "gray"),
+            ]
+            for col, (label, value, icon, color) in zip(metric_cols, metric_data):
+                with col.container(border=True):
+                    st.badge(label, icon=icon, color=color)
+                    st.markdown(f"### {value}")
+
+        st.markdown(f"**{t(lang, 'severity_distribution')}**")
+        dist_cols = st.columns(4)
+        max_count = max(counts.values()) or 1
+        for col, severity in zip(dist_cols, ["urgent", "avoid", "caution", "info"]):
+            with col.container(border=True):
+                st.badge(
+                    l(SEVERITY[severity], lang),
+                    icon=SEVERITY_ICONS[severity],
+                    color=SEVERITY_COLORS.get(severity, "gray"),
+                )
+                st.progress(counts[severity] / max_count, text=f"{counts[severity]} {t(lang, 'items')}")
+
+        if contexts:
+            selected_labels = [l(context["label"], lang) for context in CONTEXTS if context["id"] in contexts]
+            st.caption(f"{t(lang, 'context_selected')}: " + " · ".join(selected_labels))
+        else:
+            st.caption(t(lang, "context_none"))
 
 
 def render_brand(lang: str) -> None:
     with st.sidebar.container(border=True):
         st.markdown("## ToxiGuard\n## MediLens")
         st.caption(t(lang, "top_copy"))
-        st.badge("FDA label", color="green")
-        st.badge("RxNorm concept", color="blue")
-        st.badge("SPL source", color="gray")
+        st.badge("FDA label", icon=":material/verified:", color="green")
+        st.badge("RxNorm concept", icon=":material/hub:", color="blue")
+        st.badge("SPL source", icon=":material/source:", color="gray")
 
 
 def render_drug_header(drug: dict[str, Any], lang: str) -> None:
     with st.container(border=True):
         status_col, date_col = st.columns([0.32, 0.68], vertical_alignment="center")
-        status_col.badge(l(drug.get("status"), lang), color="green")
+        status_col.badge(l(drug.get("status"), lang), icon=":material/verified_user:", color="green")
         date_col.caption(l(drug.get("label_date"), lang))
         st.markdown(f"# {drug['name']}")
         st.write(l(drug["summary"], lang))
@@ -989,7 +1098,7 @@ def main() -> None:
     st.sidebar.markdown(f"### {t(lang, 'try_openfda')}")
     st.sidebar.caption(t(lang, "source_lookup_caption"))
     refresh_label = t(lang, "refresh_official") if normalized_query else t(lang, "openfda_button")
-    if st.sidebar.button(refresh_label, type="primary", use_container_width=True):
+    if st.sidebar.button(refresh_label, type="primary", icon=":material/search:", use_container_width=True):
         lookup_source = query.strip() or selected["name"]
         lookup_key = normalize(query) or normalize(selected["name"])
         if not lookup_source:
@@ -1014,9 +1123,9 @@ def main() -> None:
             active_contexts.add(context["id"])
 
     st.sidebar.markdown(f"### {t(lang, 'sources')}")
-    st.sidebar.link_button("RxNorm", SOURCE_LINKS["rxnorm"], use_container_width=True)
-    st.sidebar.link_button("openFDA Drug Label", SOURCE_LINKS["openfda"], use_container_width=True)
-    st.sidebar.link_button("DailyMed SPL", SOURCE_LINKS["dailymed"], use_container_width=True)
+    st.sidebar.link_button("RxNorm", SOURCE_LINKS["rxnorm"], icon=":material/hub:", use_container_width=True)
+    st.sidebar.link_button("openFDA Drug Label", SOURCE_LINKS["openfda"], icon=":material/open_in_new:", use_container_width=True)
+    st.sidebar.link_button("DailyMed SPL", SOURCE_LINKS["dailymed"], icon=":material/source:", use_container_width=True)
     st.sidebar.caption(t(lang, "source_note"))
 
     with st.container(border=True):
@@ -1028,6 +1137,7 @@ def main() -> None:
 
     cards = ranked_prechecks(selected, active_contexts)
     risk_class, risk_text = risk_label(lang, cards)
+    render_visual_overview(selected, cards, risk_class, risk_text, active_contexts, lang)
 
     left, right = st.columns([1.08, 0.92], gap="large")
     with left:
@@ -1036,7 +1146,8 @@ def main() -> None:
             title_col.markdown(f"### {t(lang, 'precheck')}")
             risk_col.badge(
                 risk_text,
-                color={"info": "blue", "caution": "orange", "avoid": "red", "urgent": "red"}.get(risk_class, "gray"),
+                icon=SEVERITY_ICONS.get(risk_class),
+                color=SEVERITY_COLORS.get(risk_class, "gray"),
             )
         for item in cards:
             evidence = evidence_by_id(selected, item.get("source"))
@@ -1069,7 +1180,7 @@ def main() -> None:
             st.markdown(f"**{l(item['title'], lang)}**")
             st.write(l(item["quote"], lang))
             st.caption(f"{t(lang, 'source')}: {item['source']}")
-            st.link_button(t(lang, "view_source"), item["url"])
+            st.link_button(t(lang, "view_source"), item["url"], icon=":material/open_in_new:")
 
     st.info(t(lang, "disclaimer"))
 

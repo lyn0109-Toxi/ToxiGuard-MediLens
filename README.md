@@ -7,6 +7,7 @@ ToxiGuard-MediLens is a Streamlit prototype for turning long medication labels i
 - Search sample medications by brand, generic name, or Korean alias.
 - Automatically look up non-sample medications through the openFDA Drug Label API.
 - Show active ingredient, product form, and label provenance.
+- Show a visual safety overview with Material design icons, risk meters, and evidence counts.
 - Summarize pre-dose checks, side effects, foods/conditions to avoid, and source evidence.
 - Switch between Korean and English.
 - Link recommendations back to openFDA, DailyMed SPL, RxNorm, and FDA consumer sources where available.
