@@ -1,12 +1,12 @@
 from __future__ import annotations
 
-import html
 import json
+import ssl
 import urllib.parse
 import urllib.request
-from dataclasses import dataclass
 from typing import Any
 
+import certifi
 import streamlit as st
 
 
@@ -35,7 +35,7 @@ UI = {
         "precheck": "복용 전 확인",
         "evidence_flow": "근거 흐름",
         "side_effects": "부작용 비주얼",
-        "avoid": "피해야 할 음식/조건",
+        "avoid": "피하거나 확인할 음식/조건",
         "evidence": "근거",
         "advice": "조언",
         "source": "출처",
@@ -45,13 +45,20 @@ UI = {
         "view_source": "원문 보기",
         "based_on": "기준",
         "label_verified": "레이블 확인됨",
-        "try_openfda": "샘플에 없으면 openFDA에서 조회",
-        "openfda_button": "openFDA 조회",
-        "openfda_hint": "실시간 조회는 네트워크가 허용될 때 작동합니다.",
+        "search_results": "검색 결과",
+        "sample_result": "샘플 데이터",
+        "official_result": "공식 소스 조회 결과",
+        "try_openfda": "공식 레이블 조회",
+        "openfda_button": "공식 소스 조회",
+        "openfda_hint": "브랜드명/성분명/활성성분을 openFDA Drug Label에서 순차 검색합니다.",
+        "official_searching": "공식 소스에서 약 정보를 찾는 중입니다.",
+        "refresh_official": "공식 소스 다시 조회",
         "no_query": "검색어를 입력하세요.",
         "lookup_failed": "openFDA 조회에 실패했습니다. 샘플 약으로 먼저 확인해 주세요.",
-        "lookup_empty": "openFDA에서 결과를 찾지 못했습니다.",
-        "external_loaded": "openFDA 레이블을 불러왔습니다.",
+        "lookup_empty": "공식 레이블 결과를 찾지 못했습니다.",
+        "external_loaded": "공식 레이블 결과를 사용 중입니다.",
+        "search_not_found": "샘플과 공식 소스에서 결과를 찾지 못했습니다. 영문 성분명 또는 브랜드명으로 다시 검색해 주세요.",
+        "source_lookup_caption": "샘플에 없는 약은 FDA 레이블 기반 결과를 자동으로 시도합니다.",
         "disclaimer": "이 앱은 공식 레이블을 쉽게 읽도록 돕는 프로토타입이며, 진단/처방/응급 판단을 대신하지 않습니다.",
         "risk_low": "낮은 주의",
         "risk_mid": "주의 필요",
@@ -74,7 +81,7 @@ UI = {
         "precheck": "Before you take it",
         "evidence_flow": "Evidence flow",
         "side_effects": "Side-effect view",
-        "avoid": "Foods / conditions to avoid",
+        "avoid": "Foods / conditions to avoid or check",
         "evidence": "Evidence",
         "advice": "Advice",
         "source": "Source",
@@ -84,13 +91,20 @@ UI = {
         "view_source": "View source",
         "based_on": "based on",
         "label_verified": "Label verified",
-        "try_openfda": "If not in samples, search openFDA",
-        "openfda_button": "Search openFDA",
-        "openfda_hint": "Live lookup works when network access is available.",
+        "search_results": "Search results",
+        "sample_result": "Sample data",
+        "official_result": "Official source result",
+        "try_openfda": "Official label lookup",
+        "openfda_button": "Search official sources",
+        "openfda_hint": "Searches openFDA Drug Label by brand, generic, active ingredient, and product text.",
+        "official_searching": "Searching official sources for this medication.",
+        "refresh_official": "Refresh official source",
         "no_query": "Enter a search term.",
         "lookup_failed": "openFDA lookup failed. Try a sample medication first.",
-        "lookup_empty": "No openFDA result found.",
-        "external_loaded": "Loaded the openFDA label.",
+        "lookup_empty": "No official label result found.",
+        "external_loaded": "Using the official label result.",
+        "search_not_found": "No result found in samples or official sources. Try an English generic or brand name.",
+        "source_lookup_caption": "Medications outside the samples are automatically checked against FDA label data.",
         "disclaimer": "This prototype helps make official labels easier to read. It does not replace diagnosis, prescribing, or emergency judgment.",
         "risk_low": "Low attention",
         "risk_mid": "Caution needed",
@@ -149,6 +163,34 @@ SOURCE_LINKS = {
     "grapefruit": "https://www.fda.gov/consumers/consumer-updates/grapefruit-juice-and-some-drugs-dont-mix",
     "nsaid_pregnancy": "https://www.fda.gov/drugs/drug-safety-and-availability/fda-recommends-avoiding-use-nsaids-pregnancy-20-weeks-or-later-because-they-can-result-low-amniotic",
 }
+
+OPENFDA_SEARCH_FIELDS = [
+    "openfda.brand_name",
+    "openfda.generic_name",
+    "openfda.substance_name",
+    "active_ingredient",
+    "spl_product_data_elements",
+]
+
+HTTPS_CONTEXT = ssl.create_default_context(cafile=certifi.where())
+
+QUERY_ALIASES = {
+    "아스피린": "aspirin",
+    "타이레놀": "tylenol",
+    "아세트아미노펜": "acetaminophen",
+    "메트포르민": "metformin",
+    "메트포민": "metformin",
+    "심바스타틴": "simvastatin",
+    "와파린": "warfarin",
+    "알레그라": "allegra",
+    "펙소페나딘": "fexofenadine",
+    "이부프로펜": "ibuprofen",
+}
+
+
+def official_query(query: str) -> str:
+    cleaned = query.strip()
+    return QUERY_ALIASES.get(normalize(cleaned), cleaned)
 
 
 SAMPLE_DRUGS = [
@@ -495,7 +537,7 @@ SAMPLE_DRUGS = [
 
 
 def css() -> None:
-    st.markdown(
+    st.html(
         """
         <style>
           :root {
@@ -521,189 +563,15 @@ def css() -> None:
             background: linear-gradient(180deg, rgba(255,255,255,.98), rgba(247,251,249,.94));
             border-right: 1px solid var(--line);
           }
-          .brand-card, .top-card, .drug-card, .panel-card, .mini-card, .source-card {
-            border: 1px solid var(--line);
-            border-radius: 8px;
-            background: rgba(255,255,255,.94);
-            box-shadow: 0 16px 38px rgba(22,38,46,.08);
-          }
-          .brand-card {
-            padding: 16px;
-            margin-bottom: 14px;
-          }
-          .brand-title {
-            margin: 0;
-            font-size: 25px;
-            line-height: 1.1;
-            letter-spacing: 0;
-          }
-          .brand-sub {
-            margin: 5px 0 0;
-            color: var(--muted);
-            font-size: 13px;
-          }
-          .trust-strip {
-            display: grid;
-            grid-template-columns: repeat(3, minmax(0, 1fr));
-            gap: 6px;
-            margin-top: 14px;
-            padding: 8px;
-            border: 1px solid rgba(18,116,95,.14);
-            border-radius: 8px;
-            background: rgba(223,244,237,.62);
-          }
-          .trust-strip div {
-            padding: 7px 6px;
-            border-radius: 6px;
-            background: rgba(255,255,255,.76);
-            text-align: center;
-            font-size: 11px;
-            color: var(--muted);
-          }
-          .trust-strip strong {
-            display: block;
-            color: var(--ink);
-            font-size: 12px;
-          }
-          .top-card {
-            padding: 18px 20px;
-            margin-bottom: 18px;
-          }
-          .eyebrow {
-            color: var(--green);
-            font-size: 12px;
-            font-weight: 800;
-            letter-spacing: .04em;
-            text-transform: uppercase;
-          }
-          .top-title {
-            margin: 2px 0 4px;
-            font-size: 28px;
-            line-height: 1.15;
-          }
-          .top-copy, .muted {
-            color: var(--muted);
-          }
-          .drug-card {
-            position: relative;
-            overflow: hidden;
-            padding: 24px;
-            margin-bottom: 18px;
-            background: linear-gradient(135deg, rgba(255,255,255,.98), rgba(242,249,246,.94));
-          }
-          .drug-card:before {
-            content: "";
-            position: absolute;
-            inset: 0 auto 0 0;
-            width: 6px;
-            background: linear-gradient(180deg, var(--green), var(--blue));
-          }
-          .status-chip, .risk-chip, .tag {
-            display: inline-flex;
-            align-items: center;
-            min-height: 26px;
-            padding: 0 9px;
-            border-radius: 999px;
-            font-size: 12px;
-            font-weight: 800;
-          }
-          .status-chip {
-            background: var(--green-soft);
-            color: var(--green);
-          }
-          .drug-title {
-            margin: 10px 0 8px;
-            font-size: 44px;
-            line-height: 1;
-          }
-          .metric-label {
-            color: var(--muted);
-            font-size: 12px;
-            font-weight: 800;
-            text-transform: uppercase;
-            letter-spacing: .04em;
-          }
-          .metric-value {
-            margin-top: 6px;
-            font-weight: 800;
-            overflow-wrap: anywhere;
-          }
-          .mini-card {
-            padding: 14px;
-            min-height: 90px;
-          }
-          .panel-card {
-            padding: 18px;
-            margin-bottom: 18px;
-          }
-          .card-row {
-            position: relative;
-            overflow: hidden;
-            padding: 14px 14px 14px 18px;
-            margin: 10px 0;
-            border: 1px solid var(--line);
-            border-radius: 8px;
-            background: #fff;
-          }
-          .card-row:before {
-            content: "";
-            position: absolute;
-            inset: 0 auto 0 0;
-            width: 4px;
-            background: var(--blue);
-          }
-          .card-row.caution:before { background: var(--amber); }
-          .card-row.avoid:before, .card-row.urgent:before { background: var(--red); }
-          .risk-chip.info { background: var(--blue-soft); color: var(--blue); }
-          .risk-chip.caution { background: var(--amber-soft); color: var(--amber); }
-          .risk-chip.avoid, .risk-chip.urgent { background: var(--red-soft); color: var(--red); }
-          .card-title {
-            margin: 0 0 4px;
-            font-size: 16px;
-            font-weight: 850;
-          }
-          .card-body {
-            margin: 0;
-            color: var(--muted);
-            line-height: 1.48;
-          }
-          .tag {
-            min-height: 22px;
-            margin: 8px 5px 0 0;
-            background: #f2f7f6;
-            color: var(--muted);
-            font-size: 11px;
-          }
-          .flow {
-            display: grid;
-            gap: 10px;
-          }
-          .flow-node {
-            padding: 13px;
-            border: 1px solid var(--line);
-            border-radius: 8px;
-            background: linear-gradient(180deg, white, #fbfdfc);
-          }
-          .flow-node strong {
-            display: block;
-            margin-bottom: 5px;
-          }
-          .source-card {
-            padding: 14px;
-            margin: 10px 0;
-            box-shadow: 0 8px 24px rgba(22,38,46,.06);
-          }
-          .source-card a {
-            color: var(--blue);
-            font-weight: 800;
-            text-decoration: none;
+          div[data-testid="stVerticalBlockBorderWrapper"] {
+            border-color: var(--line);
+            box-shadow: 0 10px 26px rgba(22,38,46,.05);
           }
           div[data-testid="stMetricValue"] {
             font-size: 18px;
           }
         </style>
-        """,
-        unsafe_allow_html=True,
+        """
     )
 
 
@@ -715,10 +583,6 @@ def l(value: Any, lang: str) -> str:
     if isinstance(value, dict):
         return str(value.get(lang) or value.get("en") or value.get("ko") or "")
     return str(value)
-
-
-def esc(value: Any) -> str:
-    return html.escape(str(value), quote=True)
 
 
 def normalize(value: str) -> str:
@@ -780,55 +644,43 @@ def risk_label(lang: str, cards: list[dict[str, Any]]) -> tuple[str, str]:
 
 def card(title: str, body: str, severity: str, lang: str, source: str | None = None, tags: list[str] | None = None) -> None:
     sev = SEVERITY[severity]
-    tag_html = "".join(f'<span class="tag">{esc(tag)}</span>' for tag in tags or [])
-    source_html = f'<p class="muted" style="margin:8px 0 0;font-size:12px;">{esc(source)} {esc(t(lang, "based_on"))}</p>' if source else ""
-    st.markdown(
-        f"""
-        <div class="card-row {esc(sev["class"])}">
-          <div style="display:flex;justify-content:space-between;gap:12px;align-items:flex-start;">
-            <div>
-              <p class="card-title">{esc(title)}</p>
-              <p class="card-body">{esc(body)}</p>
-              {source_html}
-              {tag_html}
-            </div>
-            <span class="risk-chip {esc(sev["class"])}">{esc(l(sev, lang))}</span>
-          </div>
-        </div>
-        """,
-        unsafe_allow_html=True,
-    )
+    badge_color = {
+        "info": "blue",
+        "caution": "orange",
+        "avoid": "red",
+        "urgent": "red",
+    }.get(severity, "gray")
+
+    with st.container(border=True):
+        text_col, badge_col = st.columns([0.78, 0.22], vertical_alignment="top")
+        with text_col:
+            st.markdown(f"**{title}**")
+            st.write(body)
+            if source:
+                st.caption(f"{t(lang, 'source')}: {source}")
+            if tags:
+                st.caption(" · ".join(tags))
+        with badge_col:
+            st.badge(l(sev, lang), color=badge_color)
 
 
 def render_brand(lang: str) -> None:
-    st.sidebar.markdown(
-        f"""
-        <div class="brand-card">
-          <h1 class="brand-title">ToxiGuard<br>MediLens</h1>
-          <p class="brand-sub">{esc(t(lang, "top_copy"))}</p>
-          <div class="trust-strip">
-            <div><strong>FDA</strong>label</div>
-            <div><strong>RxNorm</strong>concept</div>
-            <div><strong>SPL</strong>source</div>
-          </div>
-        </div>
-        """,
-        unsafe_allow_html=True,
-    )
+    with st.sidebar.container(border=True):
+        st.markdown("## ToxiGuard\n## MediLens")
+        st.caption(t(lang, "top_copy"))
+        st.badge("FDA label", color="green")
+        st.badge("RxNorm concept", color="blue")
+        st.badge("SPL source", color="gray")
 
 
 def render_drug_header(drug: dict[str, Any], lang: str) -> None:
-    st.markdown(
-        f"""
-        <div class="drug-card">
-          <span class="status-chip">{esc(l(drug.get("status"), lang))}</span>
-          <span class="muted" style="margin-left:8px;">{esc(l(drug.get("label_date"), lang))}</span>
-          <h2 class="drug-title">{esc(drug["name"])}</h2>
-          <p class="top-copy">{esc(l(drug["summary"], lang))}</p>
-        </div>
-        """,
-        unsafe_allow_html=True,
-    )
+    with st.container(border=True):
+        status_col, date_col = st.columns([0.32, 0.68], vertical_alignment="center")
+        status_col.badge(l(drug.get("status"), lang), color="green")
+        date_col.caption(l(drug.get("label_date"), lang))
+        st.markdown(f"# {drug['name']}")
+        st.write(l(drug["summary"], lang))
+
     c1, c2, c3 = st.columns(3)
     metrics = [
         (c1, t(lang, "active_ingredient"), drug["active"]),
@@ -836,48 +688,44 @@ def render_drug_header(drug: dict[str, Any], lang: str) -> None:
         (c3, t(lang, "product"), drug["product"]),
     ]
     for col, label, value in metrics:
-        col.markdown(
-            f"""
-            <div class="mini-card">
-              <div class="metric-label">{esc(label)}</div>
-              <div class="metric-value">{esc(value)}</div>
-            </div>
-            """,
-            unsafe_allow_html=True,
-        )
+        with col.container(border=True):
+            st.caption(label)
+            st.markdown(f"**{value}**")
 
 
 def render_evidence_flow(drug: dict[str, Any], cards: list[dict[str, Any]], lang: str) -> None:
     first = cards[0] if cards else {}
     evidence = evidence_by_id(drug, first.get("source"))
-    st.markdown(
-        f"""
-        <div class="panel-card">
-          <h3 style="margin-top:0;">{esc(t(lang, "evidence_flow"))}</h3>
-          <div class="flow">
-            <div class="flow-node"><strong>{esc(t(lang, "advice"))}</strong><span class="muted">{esc(l(first.get("title", ""), lang))}</span></div>
-            <div class="flow-node"><strong>{esc(t(lang, "evidence"))}</strong><span class="muted">{esc(l(evidence.get("quote", ""), lang))}</span></div>
-            <div class="flow-node"><strong>{esc(t(lang, "source"))}</strong><span class="muted">{esc(evidence.get("source", "openFDA / DailyMed / RxNorm"))}</span></div>
-          </div>
-        </div>
-        """,
-        unsafe_allow_html=True,
-    )
+    with st.container(border=True):
+        st.markdown(f"### {t(lang, 'evidence_flow')}")
+        for label, value in [
+            (t(lang, "advice"), l(first.get("title", ""), lang)),
+            (t(lang, "evidence"), l(evidence.get("quote", ""), lang)),
+            (t(lang, "source"), evidence.get("source", "openFDA / DailyMed / RxNorm")),
+        ]:
+            with st.container(border=True):
+                st.markdown(f"**{label}**")
+                st.caption(value)
 
 
+@st.cache_data(ttl=60 * 60 * 12, show_spinner=False)
 def fetch_openfda(query: str) -> dict[str, Any] | None:
-    encoded = urllib.parse.quote(f'"{query}"')
-    fields = ["openfda.brand_name", "openfda.generic_name", "openfda.substance_name"]
-    for field in fields:
-        url = f"https://api.fda.gov/drug/label.json?search={field}:{encoded}&limit=1"
+    cleaned = query.strip().replace('"', "")
+    if not cleaned:
+        return None
+
+    for field in OPENFDA_SEARCH_FIELDS:
+        search = f'{field}:"{cleaned}"'
+        url = f"https://api.fda.gov/drug/label.json?search={urllib.parse.quote(search)}&limit=1"
         try:
-            with urllib.request.urlopen(url, timeout=8) as response:
+            request = urllib.request.Request(url, headers={"User-Agent": "ToxiGuard-MediLens/0.1"})
+            with urllib.request.urlopen(request, timeout=10, context=HTTPS_CONTEXT) as response:
                 payload = json.loads(response.read().decode("utf-8"))
         except Exception:
             continue
         results = payload.get("results") or []
         if results:
-            return build_external_drug(results[0], query)
+            return build_external_drug(results[0], query, source_url=url)
     return None
 
 
@@ -887,21 +735,105 @@ def first(value: Any) -> str:
     return str(value or "")
 
 
-def build_external_drug(label: dict[str, Any], query: str) -> dict[str, Any]:
+def text_from_fields(label: dict[str, Any], fields: list[str]) -> str:
+    chunks = []
+    for field in fields:
+        value = label.get(field)
+        if isinstance(value, list):
+            chunks.extend(str(item) for item in value if item)
+        elif value:
+            chunks.append(str(value))
+    return " ".join(" ".join(chunk.split()) for chunk in chunks)
+
+
+def sentences(value: str, limit: int = 3) -> list[str]:
+    clean = " ".join(value.split())
+    if not clean:
+        return []
+    pieces = []
+    for chunk in clean.replace("? ", ". ").replace("! ", ". ").split(". "):
+        item = chunk.strip(" .")
+        if 28 <= len(item) <= 220:
+            pieces.append(item + ".")
+        if len(pieces) >= limit:
+            break
+    return pieces
+
+
+def daily_med_url(label: dict[str, Any], openfda: dict[str, Any]) -> str:
+    set_id = first(openfda.get("spl_set_id")) or str(label.get("set_id") or "")
+    if set_id:
+        return f"https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid={urllib.parse.quote(set_id)}"
+    return SOURCE_LINKS["dailymed"]
+
+
+def rxnorm_url(openfda: dict[str, Any]) -> str:
+    rxcui = first(openfda.get("rxcui"))
+    if rxcui:
+        return f"https://mor.nlm.nih.gov/RxNav/search?searchBy=RXCUI&searchTerm={urllib.parse.quote(rxcui)}"
+    return SOURCE_LINKS["rxnorm"]
+
+
+def build_external_drug(label: dict[str, Any], query: str, source_url: str) -> dict[str, Any]:
     openfda = label.get("openfda", {})
     name = first(openfda.get("brand_name")) or first(openfda.get("generic_name")) or query
-    active = first(openfda.get("substance_name")) or first(openfda.get("generic_name")) or "Needs review"
+    active = first(openfda.get("substance_name")) or first(openfda.get("generic_name")) or first(label.get("active_ingredient")) or "Needs review"
     product = ", ".join(part for part in [first(openfda.get("dosage_form")), first(openfda.get("route"))] if part) or "Needs review"
-    warning_text = " ".join(first(label.get(field)) for field in ["warnings", "warnings_and_cautions", "drug_interactions", "adverse_reactions", "stop_use"]).lower()
+    indication_text = text_from_fields(label, ["indications_and_usage", "purpose"])
+    warning_text_source = text_from_fields(
+        label,
+        [
+            "warnings",
+            "warnings_and_cautions",
+            "drug_interactions",
+            "adverse_reactions",
+            "contraindications",
+            "stop_use",
+            "do_not_use",
+            "when_using",
+            "ask_doctor_or_pharmacist",
+        ],
+    )
+    adverse_text_source = text_from_fields(label, ["adverse_reactions"])
+    urgent_text_source = text_from_fields(label, ["stop_use", "do_not_use", "contraindications"])
+    warning_text = warning_text_source.lower()
+    official_summary = " ".join(sentences(indication_text, 2))
+    if not official_summary:
+        official_summary = " ".join(sentences(warning_text_source, 1))
+    dailymed = daily_med_url(label, openfda)
+    rxnav = rxnorm_url(openfda)
 
     evidence = [
         {
             "id": "external-label",
             "title": {"ko": "openFDA 레이블 원문", "en": "Original openFDA label"},
-            "quote": {"ko": "FDA 제출 레이블 섹션을 JSON으로 가져와 요약했습니다.", "en": "FDA-submitted label sections were retrieved as JSON and summarized."},
+            "quote": {
+                "ko": f"검색어 '{query}'로 openFDA Drug Label API에서 FDA 제출 레이블을 가져왔습니다.",
+                "en": f"The FDA-submitted label was retrieved from openFDA Drug Label API for '{query}'.",
+            },
             "source": "openFDA Drug Label API",
-            "url": SOURCE_LINKS["openfda"],
-        }
+            "url": source_url,
+        },
+        {
+            "id": "external-dailymed",
+            "title": {"ko": "DailyMed SPL 레이블", "en": "DailyMed SPL label"},
+            "quote": {
+                "ko": "openFDA 레코드의 SPL set_id를 기반으로 DailyMed 원문 레이블 링크를 연결했습니다.",
+                "en": "The DailyMed source-label link is derived from the SPL set_id in the openFDA record.",
+            },
+            "source": "DailyMed Structured Product Labeling",
+            "url": dailymed,
+        },
+        {
+            "id": "external-rxnorm",
+            "title": {"ko": "RxNorm 표준 개념", "en": "RxNorm standard concept"},
+            "quote": {
+                "ko": "가능한 경우 openFDA 레코드의 RxCUI를 이용해 표준 약물 개념으로 연결합니다.",
+                "en": "When available, the RxCUI in the openFDA record links this result to a standard medication concept.",
+            },
+            "source": "RxNorm / RxNav",
+            "url": rxnav,
+        },
     ]
     prechecks: list[dict[str, Any]] = []
     avoid: list[dict[str, Any]] = []
@@ -914,7 +846,7 @@ def build_external_drug(label: dict[str, Any], query: str) -> dict[str, Any]:
                 "title": {"ko": ko_title, "en": en_title},
                 "quote": {"ko": ko_body, "en": en_body},
                 "source": "openFDA label section",
-                "url": SOURCE_LINKS["openfda"],
+                "url": source_url,
             }
         )
         item = {
@@ -929,19 +861,31 @@ def build_external_drug(label: dict[str, Any], query: str) -> dict[str, Any]:
             avoid.append({**item, "tags": tags})
 
     if "grapefruit" in warning_text:
-        add("grapefruit", "자몽 관련 경고 확인", "Grapefruit warning found", "레이블에서 grapefruit 관련 문구가 발견되었습니다.", "The label includes grapefruit-related wording.", "avoid", [], ["food", "grapefruit"])
+        add("grapefruit", "자몽 상호작용 주의", "Grapefruit interaction warning", "레이블에서 자몽 관련 문구가 확인되었습니다. 복용 전 원문과 약사 상담을 확인하세요.", "The label includes grapefruit-related wording. Review the source label and check with a pharmacist before use.", "avoid", [], ["food", "grapefruit"])
     if "alcohol" in warning_text:
-        add("alcohol", "음주 관련 경고 확인", "Alcohol warning found", "레이블에서 alcohol 관련 주의 문구가 발견되었습니다.", "The label includes alcohol-related caution wording.", "caution", ["alcohol"], ["condition", "alcohol"])
+        add("alcohol", "음주 관련 주의", "Alcohol caution in label", "레이블에서 알코올 관련 주의 문구가 확인되었습니다.", "The label includes alcohol-related caution wording.", "caution", ["alcohol"], ["condition", "alcohol"])
     if any(word in warning_text for word in ["drowsiness", "dizzy", "driving", "machinery"]):
-        add("driving", "운전/기계 조작 전 개인 반응 확인", "Check your response before driving or operating machinery", "졸림, 어지러움, 운전 관련 문구가 발견되었습니다.", "The label includes wording about drowsiness, dizziness, or driving.", "caution", ["driving"], ["condition", "driving"])
+        add("driving", "운전/기계 조작 전 개인 반응 확인", "Check your response before driving or operating machinery", "졸림, 어지러움, 운전 관련 문구가 확인되었습니다.", "The label includes wording about drowsiness, dizziness, or driving.", "caution", ["driving"], ["condition", "driving"])
     if any(word in warning_text for word in ["sunlight", "photosensitivity", "tanning"]):
-        add("sun", "햇빛 노출 주의", "Sun exposure caution", "광과민성 또는 햇빛 노출 관련 문구가 발견되었습니다.", "The label includes wording about photosensitivity or sun exposure.", "caution", ["sun"], ["environment", "sun"])
+        add("sun", "햇빛 노출 주의", "Sun exposure caution", "광과민성 또는 햇빛 노출 관련 문구가 확인되었습니다.", "The label includes wording about photosensitivity or sun exposure.", "caution", ["sun"], ["environment", "sun"])
     if any(word in warning_text for word in ["calcium", "iron", "magnesium", "antacid", "dairy", "milk"]):
-        add("minerals", "미네랄/제산제 간격 확인", "Check spacing from minerals or antacids", "미네랄, 제산제, 유제품 관련 문구가 발견되었습니다.", "The label includes wording about minerals, antacids, or dairy products.", "caution", ["supplements"], ["supplement", "absorption"])
+        add("minerals", "미네랄/제산제 간격 확인", "Check spacing from minerals or antacids", "미네랄, 제산제, 유제품 관련 문구가 확인되었습니다.", "The label includes wording about minerals, antacids, or dairy products.", "caution", ["supplements"], ["supplement", "absorption"])
     if any(word in warning_text for word in ["pregnancy", "pregnant", "breastfeeding", "lactation"]):
-        add("pregnancy", "임신/수유 관련 레이블 확인", "Pregnancy / breastfeeding wording found", "임신, 수유 또는 특정 인구집단 관련 문구가 발견되었습니다.", "The label includes wording about pregnancy, breastfeeding, or specific populations.", "caution", ["pregnancy"], ["condition", "pregnancy"])
+        add("pregnancy", "임신/수유 관련 레이블 확인", "Pregnancy / breastfeeding label caution", "임신, 수유 또는 특정 인구집단 관련 문구가 확인되었습니다.", "The label includes wording about pregnancy, breastfeeding, or specific populations.", "caution", ["pregnancy"], ["condition", "pregnancy"])
     if not prechecks:
-        add("review", "특정 제한은 자동 추출되지 않음", "No specific restriction was automatically extracted", "원문 레이블을 확인하세요.", "Review the source label.", "info", [], ["review"])
+        add("review", "원문 레이블 확인 필요", "Review source label", "자동 추출된 특정 음식/환경 제한은 없습니다. 원문 레이블의 warnings, interactions 섹션을 확인하세요.", "No specific food or environment restriction was automatically extracted. Review the warnings and interactions sections in the source label.", "info", [], ["review"])
+
+    def section_cards(text: str, ko_title: str, en_title: str, ko_fallback: str, en_fallback: str, limit: int = 2) -> list[tuple[dict[str, str], dict[str, str]]]:
+        extracted = sentences(text, limit)
+        if not extracted:
+            return [({"ko": ko_title, "en": en_title}, {"ko": ko_fallback, "en": en_fallback})]
+        return [
+            (
+                {"ko": ko_title, "en": en_title},
+                {"ko": f"레이블 원문: {sentence}", "en": sentence},
+            )
+            for sentence in extracted
+        ]
 
     return {
         "id": f"external-{normalize(name).replace(' ', '-')}",
@@ -953,15 +897,34 @@ def build_external_drug(label: dict[str, Any], query: str) -> dict[str, Any]:
         "status": {"ko": "openFDA 조회", "en": "openFDA lookup"},
         "label_date": {"ko": f"effective_time {label.get('effective_time', 'unknown')}", "en": f"effective_time {label.get('effective_time', 'unknown')}"},
         "summary": {
-            "ko": "openFDA 레이블에서 기본 정보를 가져왔습니다. 세부 원문은 근거 링크에서 확인할 수 있습니다.",
-            "en": "Basic information was loaded from the openFDA label. Detailed source text is available through the evidence links.",
+            "ko": f"openFDA 레이블에서 기본 정보를 가져왔습니다. {official_summary or '세부 원문은 근거 링크에서 확인할 수 있습니다.'}",
+            "en": official_summary or "Basic information was loaded from the openFDA label. Detailed source text is available through the evidence links.",
         },
         "prechecks": prechecks,
         "avoid": avoid,
         "side_effects": {
-            "common": [({"ko": "부작용 원문 확인 필요", "en": "Original side-effect text needs review"}, {"ko": "adverse reactions 섹션을 원문에서 확인하세요.", "en": "Check the adverse reactions section in the source label."})],
-            "caution": [({"ko": "주의 문구 원문 확인", "en": "Review original caution wording"}, {"ko": "warnings 또는 precautions 섹션을 확인하세요.", "en": "Check the warnings or precautions section."})],
-            "urgent": [({"ko": "심한 알레르기 반응", "en": "Severe allergic reaction"}, {"ko": "호흡곤란 또는 얼굴 부종은 즉시 도움", "en": "Trouble breathing or face swelling needs immediate help"})],
+            "common": section_cards(
+                adverse_text_source,
+                "부작용 섹션 요약",
+                "Adverse reactions section",
+                "adverse reactions 섹션이 구조화되어 있지 않습니다. 원문 레이블을 확인하세요.",
+                "The adverse reactions section is not structured in this label. Review the source label.",
+            ),
+            "caution": section_cards(
+                warning_text_source,
+                "주의 문구 요약",
+                "Warnings section",
+                "warnings 또는 precautions 섹션을 원문에서 확인하세요.",
+                "Check the warnings or precautions section in the source label.",
+            ),
+            "urgent": section_cards(
+                urgent_text_source,
+                "즉시 확인할 문구",
+                "Stop-use / contraindication section",
+                "호흡곤란, 얼굴 부종, 심한 알레르기 반응은 즉시 도움을 받아야 합니다.",
+                "Trouble breathing, face swelling, or severe allergic reaction needs immediate help.",
+                limit=1,
+            ),
         },
         "evidence": evidence,
     }
@@ -971,6 +934,10 @@ def main() -> None:
     css()
     if "external_drug" not in st.session_state:
         st.session_state.external_drug = None
+    if "external_query" not in st.session_state:
+        st.session_state.external_query = ""
+    if "external_miss_query" not in st.session_state:
+        st.session_state.external_miss_query = ""
 
     lang = st.sidebar.segmented_control(
         "Language",
@@ -981,31 +948,63 @@ def main() -> None:
     render_brand(lang)
 
     query = st.sidebar.text_input(t(lang, "search"), value="", help=t(lang, "search_help"))
+    normalized_query = normalize(query)
     matches = match_drugs(query)
-    options = matches or SAMPLE_DRUGS
-    selected_name = st.sidebar.selectbox(
-        t(lang, "label_verified"),
-        options=[drug["name"] for drug in options],
-        index=0,
+    external_matches_query = (
+        bool(normalized_query)
+        and st.session_state.external_drug
+        and st.session_state.external_query == normalized_query
     )
-    selected = next(drug for drug in options if drug["name"] == selected_name)
 
-    with st.sidebar.expander(t(lang, "try_openfda"), expanded=not matches and bool(query)):
-        st.caption(t(lang, "openfda_hint"))
-        if st.button(t(lang, "openfda_button"), use_container_width=True):
-            if not query.strip():
-                st.warning(t(lang, "no_query"))
-            else:
-                with st.spinner(t(lang, "openfda_button")):
-                    found = fetch_openfda(query.strip())
-                if found:
-                    st.session_state.external_drug = found
-                    st.success(t(lang, "external_loaded"))
-                else:
-                    st.error(t(lang, "lookup_empty"))
-
-    if st.session_state.external_drug and query and normalize(query) in " ".join(st.session_state.external_drug.get("aliases", [])):
+    if external_matches_query:
         selected = st.session_state.external_drug
+        st.sidebar.success(t(lang, "external_loaded"))
+        st.sidebar.caption(t(lang, "official_result"))
+    elif matches:
+        selected_name = st.sidebar.selectbox(
+            t(lang, "search_results"),
+            options=[drug["name"] for drug in matches],
+            index=0,
+            help=t(lang, "sample_result"),
+        )
+        selected = next(drug for drug in matches if drug["name"] == selected_name)
+    elif normalized_query and st.session_state.external_miss_query != normalized_query:
+        with st.spinner(t(lang, "official_searching")):
+            found = fetch_openfda(official_query(query))
+        if found:
+            st.session_state.external_drug = found
+            st.session_state.external_query = normalized_query
+            st.session_state.external_miss_query = ""
+            st.rerun()
+        st.session_state.external_miss_query = normalized_query
+        selected = SAMPLE_DRUGS[0]
+        st.sidebar.warning(t(lang, "search_not_found"))
+    else:
+        selected = SAMPLE_DRUGS[0]
+        if normalized_query:
+            st.sidebar.warning(t(lang, "search_not_found"))
+        else:
+            st.sidebar.caption(t(lang, "sample_result"))
+
+    st.sidebar.markdown(f"### {t(lang, 'try_openfda')}")
+    st.sidebar.caption(t(lang, "source_lookup_caption"))
+    refresh_label = t(lang, "refresh_official") if normalized_query else t(lang, "openfda_button")
+    if st.sidebar.button(refresh_label, type="primary", use_container_width=True):
+        lookup_source = query.strip() or selected["name"]
+        lookup_key = normalize(query) or normalize(selected["name"])
+        if not lookup_source:
+            st.sidebar.warning(t(lang, "no_query"))
+        else:
+            with st.spinner(t(lang, "official_searching")):
+                found = fetch_openfda(official_query(lookup_source))
+            if found:
+                st.session_state.external_drug = found
+                st.session_state.external_query = lookup_key
+                st.session_state.external_miss_query = ""
+                st.rerun()
+            else:
+                st.session_state.external_miss_query = lookup_key
+                st.sidebar.error(t(lang, "lookup_empty"))
 
     st.sidebar.markdown(f"### {t(lang, 'context')}")
     active_contexts: set[str] = set()
@@ -1020,16 +1019,10 @@ def main() -> None:
     st.sidebar.link_button("DailyMed SPL", SOURCE_LINKS["dailymed"], use_container_width=True)
     st.sidebar.caption(t(lang, "source_note"))
 
-    st.markdown(
-        f"""
-        <div class="top-card">
-          <span class="eyebrow">{esc(t(lang, "top_eyebrow"))}</span>
-          <h2 class="top-title">{esc(t(lang, "top_title"))}</h2>
-          <p class="top-copy">{esc(t(lang, "top_copy"))}</p>
-        </div>
-        """,
-        unsafe_allow_html=True,
-    )
+    with st.container(border=True):
+        st.caption(t(lang, "top_eyebrow"))
+        st.markdown(f"## {t(lang, 'top_title')}")
+        st.write(t(lang, "top_copy"))
 
     render_drug_header(selected, lang)
 
@@ -1038,17 +1031,13 @@ def main() -> None:
 
     left, right = st.columns([1.08, 0.92], gap="large")
     with left:
-        st.markdown(
-            f"""
-            <div class="panel-card">
-              <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;">
-                <h3 style="margin:0;">{esc(t(lang, "precheck"))}</h3>
-                <span class="risk-chip {esc(risk_class)}">{esc(risk_text)}</span>
-              </div>
-            </div>
-            """,
-            unsafe_allow_html=True,
-        )
+        with st.container(border=True):
+            title_col, risk_col = st.columns([0.72, 0.28], vertical_alignment="center")
+            title_col.markdown(f"### {t(lang, 'precheck')}")
+            risk_col.badge(
+                risk_text,
+                color={"info": "blue", "caution": "orange", "avoid": "red", "urgent": "red"}.get(risk_class, "gray"),
+            )
         for item in cards:
             evidence = evidence_by_id(selected, item.get("source"))
             card(l(item["title"], lang), l(item["body"], lang), item["severity"], lang, evidence.get("source"))
@@ -1076,17 +1065,11 @@ def main() -> None:
 
     st.markdown(f"### {t(lang, 'evidence')}")
     for item in selected.get("evidence", []):
-        st.markdown(
-            f"""
-            <div class="source-card">
-              <strong>{esc(l(item["title"], lang))}</strong>
-              <p class="muted" style="margin:6px 0;">{esc(l(item["quote"], lang))}</p>
-              <p class="muted" style="margin:0 0 8px;">{esc(t(lang, "source"))}: {esc(item["source"])}</p>
-              <a href="{esc(item["url"])}" target="_blank">{esc(t(lang, "view_source"))}</a>
-            </div>
-            """,
-            unsafe_allow_html=True,
-        )
+        with st.container(border=True):
+            st.markdown(f"**{l(item['title'], lang)}**")
+            st.write(l(item["quote"], lang))
+            st.caption(f"{t(lang, 'source')}: {item['source']}")
+            st.link_button(t(lang, "view_source"), item["url"])
 
     st.info(t(lang, "disclaimer"))
 
