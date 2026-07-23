@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 120" role="img" aria-label="Grapefruit">
+  <rect width="160" height="120" rx="18" fill="#fff4ef"/>
+  <circle cx="74" cy="61" r="34" fill="#ff7b68"/>
+  <circle cx="74" cy="61" r="27" fill="#ffd2c8"/>
+  <g fill="#ff7b68">
+    <path d="M74 35l5 26-5 26-5-26z"/>
+    <path d="M48 61l26-5 26 5-26 5z"/>
+    <path d="M56 43l21 16 15 20-21-16z"/>
+    <path d="M92 43L77 63 56 79l15-20z"/>
+  </g>
+  <path d="M102 34c14-10 28-4 34 10-17 2-27-1-34-10z" fill="#3fa77a"/>
+  <path d="M102 34c-5 9-13 16-24 19" fill="none" stroke="#2c7b5e" stroke-width="4" stroke-linecap="round"/>
+  <circle cx="74" cy="61" r="34" fill="none" stroke="#24343b" stroke-width="4"/>
+</svg>

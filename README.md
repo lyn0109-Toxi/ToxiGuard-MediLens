@@ -9,6 +9,7 @@ ToxiGuard-MediLens is a Streamlit prototype for turning long medication labels i
 - Show active ingredient, product form, and label provenance.
 - Show a visual safety overview with Material design icons, risk meters, and evidence counts.
 - Summarize pre-dose checks, side effects, foods/conditions to avoid, and source evidence.
+- Display illustrated image cards for foods and conditions to avoid or check.
 - Switch between Korean and English.
 - Link recommendations back to openFDA, DailyMed SPL, RxNorm, and FDA consumer sources where available.
 

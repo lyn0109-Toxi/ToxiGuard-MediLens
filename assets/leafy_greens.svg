@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 120" role="img" aria-label="Leafy greens">
+  <rect width="160" height="120" rx="18" fill="#eef9f1"/>
+  <path d="M78 95c-4-25-7-45-5-67" stroke="#2a7a4f" stroke-width="5" stroke-linecap="round"/>
+  <path d="M75 72c-29-2-43-19-42-43 26 0 42 15 42 43z" fill="#51b36d" stroke="#24343b" stroke-width="4" stroke-linejoin="round"/>
+  <path d="M80 74c31-5 48-23 46-51-30 2-47 20-46 51z" fill="#2f9d63" stroke="#24343b" stroke-width="4" stroke-linejoin="round"/>
+  <path d="M78 88c-20 3-34-6-40-24 20-4 35 5 40 24z" fill="#8bd18d" stroke="#24343b" stroke-width="4" stroke-linejoin="round"/>
+  <circle cx="118" cy="87" r="16" fill="#2c67b0"/>
+  <text x="118" y="93" text-anchor="middle" font-family="Arial, sans-serif" font-size="18" font-weight="700" fill="#fff">K</text>
+</svg>

@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 120" role="img" aria-label="Stomach bleeding caution">
+  <rect width="160" height="120" rx="18" fill="#fff0f0"/>
+  <path d="M83 24c-18 4-22 20-13 33 5 7 4 13-2 20-8 9-4 20 8 20h21c22 0 33-23 19-40-8-10-8-18-1-28-12-5-22-4-32-5z" fill="#ffd7cd" stroke="#24343b" stroke-width="4" stroke-linejoin="round"/>
+  <path d="M92 54c13 0 21 7 21 18 0 12-9 19-22 19" fill="none" stroke="#ff8f7f" stroke-width="6" stroke-linecap="round"/>
+  <path d="M52 39c0 13-14 16-14 28a14 14 0 0 0 28 0c0-12-14-15-14-28z" fill="#c84c3e"/>
+  <path d="M44 64c4 5 10 6 16 2" fill="none" stroke="#fff" stroke-width="4" stroke-linecap="round"/>
+</svg>

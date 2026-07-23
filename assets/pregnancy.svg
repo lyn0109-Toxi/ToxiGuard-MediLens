@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 120" role="img" aria-label="Pregnancy and breastfeeding caution">
+  <rect width="160" height="120" rx="18" fill="#f7efff"/>
+  <circle cx="76" cy="33" r="15" fill="#8c6dd7" stroke="#24343b" stroke-width="4"/>
+  <path d="M62 52c12-10 29-7 36 7 8 17 0 38-20 38-18 0-30-17-25-33 1-5 4-9 9-12z" fill="#d8c8ff" stroke="#24343b" stroke-width="4" stroke-linejoin="round"/>
+  <circle cx="88" cy="74" r="17" fill="#ffffff" stroke="#8c6dd7" stroke-width="4"/>
+  <path d="M45 76c-8-12-5-27 8-34M118 42c13 7 16 22 8 34" fill="none" stroke="#8c6dd7" stroke-width="5" stroke-linecap="round"/>
+  <circle cx="88" cy="74" r="4" fill="#8c6dd7"/>
+</svg>

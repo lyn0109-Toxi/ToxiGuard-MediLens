@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 120" role="img" aria-label="Antacid and minerals">
+  <rect width="160" height="120" rx="18" fill="#eef5ff"/>
+  <rect x="43" y="32" width="74" height="56" rx="14" fill="#ffffff" stroke="#24343b" stroke-width="4"/>
+  <path d="M80 32v56" stroke="#24343b" stroke-width="4"/>
+  <path d="M53 60h54" stroke="#dce4e9" stroke-width="4"/>
+  <circle cx="50" cy="90" r="12" fill="#2c67b0"/>
+  <circle cx="80" cy="95" r="12" fill="#b96712"/>
+  <circle cx="110" cy="90" r="12" fill="#12745f"/>
+  <text x="50" y="95" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" font-weight="700" fill="#fff">Ca</text>
+  <text x="80" y="100" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" font-weight="700" fill="#fff">Mg</text>
+  <text x="110" y="95" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" font-weight="700" fill="#fff">Fe</text>
+</svg>

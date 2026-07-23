@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 120" role="img" aria-label="Sun exposure caution">
+  <rect width="160" height="120" rx="18" fill="#fff9df"/>
+  <circle cx="80" cy="58" r="24" fill="#f5b73b" stroke="#24343b" stroke-width="4"/>
+  <g stroke="#f5b73b" stroke-width="6" stroke-linecap="round">
+    <path d="M80 16v14M80 86v14M38 58H24M136 58h-14M51 29l-10-10M119 97l-10-10M109 29l10-10M41 97l10-10"/>
+  </g>
+  <path d="M55 78c15 12 35 12 50 0" fill="none" stroke="#24343b" stroke-width="4" stroke-linecap="round"/>
+  <path d="M116 76l18 18" stroke="#c84c3e" stroke-width="5" stroke-linecap="round"/>
+</svg>

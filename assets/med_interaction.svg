@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 120" role="img" aria-label="Medicine interaction">
+  <rect width="160" height="120" rx="18" fill="#f4f6f8"/>
+  <rect x="35" y="48" width="54" height="24" rx="12" transform="rotate(-28 62 60)" fill="#ffffff" stroke="#24343b" stroke-width="4"/>
+  <path d="M59 43l12 22" stroke="#c84c3e" stroke-width="4"/>
+  <rect x="76" y="49" width="54" height="24" rx="12" transform="rotate(28 103 61)" fill="#ffffff" stroke="#24343b" stroke-width="4"/>
+  <path d="M101 44L90 66" stroke="#2c67b0" stroke-width="4"/>
+  <circle cx="80" cy="60" r="19" fill="#f9e1dd" stroke="#c84c3e" stroke-width="4"/>
+  <path d="M70 50l20 20M90 50L70 70" stroke="#c84c3e" stroke-width="5" stroke-linecap="round"/>
+</svg>

@@ -4,10 +4,14 @@ import json
 import ssl
 import urllib.parse
 import urllib.request
+from pathlib import Path
 from typing import Any
 
 import certifi
 import streamlit as st
+
+
+ASSET_DIR = Path(__file__).parent / "assets"
 
 
 st.set_page_config(
@@ -192,6 +196,19 @@ SEVERITY_COLORS = {
     "avoid": "red",
     "urgent": "red",
 }
+
+AVOID_IMAGE_RULES = [
+    (("transporters", "orange", "apple"), "fruit_juice.svg"),
+    (("grapefruit", "cyp3a4", "자몽"), "grapefruit.svg"),
+    (("vitamin k", "leafy", "greens", "kale", "spinach", "케일", "시금치"), "leafy_greens.svg"),
+    (("alcohol", "liver", "음주", "술"), "alcohol.svg"),
+    (("antacid", "magnesium", "calcium", "iron", "mineral", "absorption", "제산제", "미네랄"), "antacid.svg"),
+    (("nsaid", "duplicate", "drug", "medicine", "병용", "약"), "med_interaction.svg"),
+    (("gi bleeding", "bleeding", "stomach", "출혈", "위장"), "stomach_bleeding.svg"),
+    (("driving", "machinery", "운전", "기계"), "driving.svg"),
+    (("sun", "sunlight", "photosensitivity", "햇빛", "광과민"), "sun.svg"),
+    (("pregnancy", "breastfeeding", "lactation", "임신", "수유"), "pregnancy.svg"),
+]
 
 
 SOURCE_LINKS = {
@@ -694,6 +711,25 @@ def context_match_count(items: list[dict[str, Any]], contexts: set[str]) -> int:
     return sum(1 for item in items if set(item.get("context", [])) & contexts)
 
 
+def avoid_image_path(item: dict[str, Any]) -> Path:
+    search_text = normalize(
+        " ".join(
+            [
+                l(item.get("title", ""), "ko"),
+                l(item.get("title", ""), "en"),
+                l(item.get("body", ""), "ko"),
+                l(item.get("body", ""), "en"),
+                " ".join(item.get("tags", [])),
+                " ".join(item.get("context", [])),
+            ]
+        )
+    )
+    for keywords, filename in AVOID_IMAGE_RULES:
+        if any(keyword in search_text for keyword in keywords):
+            return ASSET_DIR / filename
+    return ASSET_DIR / "review.svg"
+
+
 def card(title: str, body: str, severity: str, lang: str, source: str | None = None, tags: list[str] | None = None) -> None:
     sev = SEVERITY[severity]
     badge_color = SEVERITY_COLORS.get(severity, "gray")
@@ -709,6 +745,27 @@ def card(title: str, body: str, severity: str, lang: str, source: str | None = N
                 st.caption(" · ".join(tags))
         with badge_col:
             st.badge(l(sev, lang), icon=SEVERITY_ICONS.get(severity), color=badge_color)
+
+
+def avoid_card(item: dict[str, Any], lang: str) -> None:
+    severity = item.get("severity", "info")
+    sev = SEVERITY[severity]
+    tags = item.get("tags", [])
+    image_path = avoid_image_path(item)
+
+    with st.container(border=True):
+        image_col, text_col = st.columns([0.32, 0.68], gap="medium", vertical_alignment="center")
+        with image_col:
+            if image_path.exists():
+                st.image(str(image_path), width="stretch")
+            else:
+                st.badge(l(sev, lang), icon=SEVERITY_ICONS.get(severity), color=SEVERITY_COLORS.get(severity, "gray"))
+        with text_col:
+            st.badge(l(sev, lang), icon=SEVERITY_ICONS.get(severity), color=SEVERITY_COLORS.get(severity, "gray"))
+            st.markdown(f"**{l(item['title'], lang)}**")
+            st.write(l(item["body"], lang))
+            if tags:
+                st.caption(" · ".join(tags))
 
 
 def render_visual_overview(
@@ -1172,7 +1229,7 @@ def main() -> None:
     with avoid_col:
         st.markdown(f"### {t(lang, 'avoid')}")
         for item in selected.get("avoid", []):
-            card(l(item["title"], lang), l(item["body"], lang), item["severity"], lang, tags=item.get("tags", []))
+            avoid_card(item, lang)
 
     st.markdown(f"### {t(lang, 'evidence')}")
     for item in selected.get("evidence", []):
