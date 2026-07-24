@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 230" role="img" aria-labelledby="title desc">
+  <title id="title">Coffee and caffeine caution card</title>
+  <desc id="desc">Medicine bottle with a coffee cup and caution badge.</desc>
+  <rect width="320" height="230" rx="22" fill="#fffdf9"/>
+  <rect x="16" y="16" width="288" height="198" rx="20" fill="#ffffff" stroke="#b9b2a9" stroke-width="3"/>
+  <path d="M51 184c44 12 143 15 219 2" fill="none" stroke="#ffe8c9" stroke-width="21" stroke-linecap="round"/>
+  <rect x="54" y="69" width="61" height="87" rx="13" fill="#ffe0a8" stroke="#5d5348" stroke-width="5"/>
+  <rect x="66" y="48" width="38" height="24" rx="6" fill="#e4edf7" stroke="#5d5348" stroke-width="5"/>
+  <path d="M84 99v18M75 108h18" stroke="#65ad74" stroke-width="6" stroke-linecap="round"/>
+  <rect x="154" y="91" width="82" height="65" rx="16" fill="#f2d2ad" stroke="#5d5348" stroke-width="6"/>
+  <path d="M235 107h23c13 0 23 10 23 23s-10 23-23 23h-23" fill="none" stroke="#5d5348" stroke-width="6"/>
+  <path d="M168 111h52" stroke="#8a5a37" stroke-width="9" stroke-linecap="round"/>
+  <path d="M163 171h77" stroke="#5d5348" stroke-width="6" stroke-linecap="round"/>
+  <path d="M172 64c-14-17 14-20 0-38M201 64c-14-17 14-20 0-38M230 64c-14-17 14-20 0-38" fill="none" stroke="#b9b2a9" stroke-width="7" stroke-linecap="round"/>
+  <path d="M236 42h49l-25 43-24-43Z" fill="#ffe49a" stroke="#5d5348" stroke-width="5" stroke-linejoin="round"/>
+  <path d="M260 54v14" stroke="#5d5348" stroke-width="6" stroke-linecap="round"/><circle cx="260" cy="76" r="4" fill="#5d5348"/>
+</svg>

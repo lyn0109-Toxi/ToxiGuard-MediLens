@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 230" role="img" aria-labelledby="title desc">
+  <title id="title">Bleeding and bruising warning card</title>
+  <desc id="desc">Medicine, bruising skin mark, blood drops, and urgent warning badge.</desc>
+  <rect width="320" height="230" rx="22" fill="#fffdf9"/>
+  <rect x="16" y="16" width="288" height="198" rx="20" fill="#ffffff" stroke="#b9b2a9" stroke-width="3"/>
+  <path d="M51 184c44 12 143 15 219 2" fill="none" stroke="#ffd9cd" stroke-width="21" stroke-linecap="round"/>
+  <rect x="47" y="65" width="55" height="81" rx="12" fill="#ffe0a8" stroke="#5d5348" stroke-width="5"/>
+  <rect x="58" y="45" width="34" height="23" rx="6" fill="#e4edf7" stroke="#5d5348" stroke-width="5"/>
+  <path d="M74 94v17M66 103h17" stroke="#65ad74" stroke-width="6" stroke-linecap="round"/>
+  <rect x="126" y="77" width="92" height="88" rx="34" fill="#ffd9b7" stroke="#5d5348" stroke-width="6"/>
+  <circle cx="163" cy="115" r="19" fill="#8d65b7" opacity=".9"/>
+  <circle cx="186" cy="132" r="13" fill="#b788d9" opacity=".95"/>
+  <path d="M238 74c15 18 24 32 24 46 0 15-12 27-27 27s-27-12-27-27c0-14 13-31 30-46Z" fill="#e55b49" stroke="#5d5348" stroke-width="5" stroke-linejoin="round"/>
+  <path d="M104 165c12 15 18 25 18 35 0 11-9 20-20 20s-20-9-20-20c0-10 8-22 22-35Z" fill="#e55b49" stroke="#5d5348" stroke-width="5" stroke-linejoin="round"/>
+  <path d="M231 34h49l-25 43-24-43Z" fill="#ffe3e6" stroke="#e55b49" stroke-width="6" stroke-linejoin="round"/>
+  <path d="M255 46v14" stroke="#e55b49" stroke-width="6" stroke-linecap="round"/><circle cx="255" cy="68" r="4" fill="#e55b49"/>
+</svg>

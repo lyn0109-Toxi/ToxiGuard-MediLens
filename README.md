@@ -11,6 +11,7 @@ ToxiGuard-MediLens is a Streamlit prototype for turning long medication labels i
 - Summarize pre-dose checks, side effects, foods/conditions to avoid, and source evidence.
 - Display image-first cards and an illustrated check map for foods, conditions, and warning signals.
 - Use richer medication-counseling illustration cards with medicine + food/context pairings, warning marks, and short supporting text.
+- Prioritize specific organ, symptom, and food images when a label mentions liver risk, muscle symptoms, bleeding, grapefruit, milk, cheese, coffee, juice, or leafy greens.
 - Switch between Korean and English.
 - Link recommendations back to openFDA, DailyMed SPL, RxNorm, and FDA consumer sources where available.
 

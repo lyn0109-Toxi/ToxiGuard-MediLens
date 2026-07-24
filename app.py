@@ -202,22 +202,26 @@ SEVERITY_COLORS = {
 }
 
 VISUAL_IMAGE_RULES = [
-    (("transporters", "orange", "apple"), "fruit_juice.svg"),
+    (("fruit juice", "juice", "transporters", "orange", "apple", "과일주스", "오렌지", "사과"), "fruit_juice.svg"),
     (("grapefruit", "cyp3a4", "자몽"), "grapefruit.svg"),
-    (("vitamin k", "leafy", "greens", "kale", "spinach", "케일", "시금치"), "leafy_greens.svg"),
+    (("vitamin k", "leafy", "greens", "kale", "spinach", "케일", "시금치", "녹색 잎채소"), "leafy_greens.svg"),
+    (("tyramine", "cheese", "aged cheese", "치즈", "티라민"), "cheese.svg"),
+    (("milk", "dairy", "우유", "유제품"), "milk.svg"),
+    (("coffee", "caffeine", "카페인", "커피"), "coffee.svg"),
     (("alcohol", "음주", "술"), "alcohol.svg"),
     (("antacid", "magnesium", "calcium", "iron", "mineral", "absorption", "제산제", "미네랄"), "antacid.svg"),
     (("pregnancy", "breastfeeding", "lactation", "임신", "수유"), "pregnancy.svg"),
-    (("nsaid", "duplicate", "drug", "medicine", "ibuprofen", "aspirin", "병용", "약"), "med_interaction.svg"),
-    (("gi bleeding", "bleeding", "stomach", "출혈", "위장"), "stomach_bleeding.svg"),
-    (("muscle", "myopathy", "rhabdomyolysis", "근육", "힘 빠짐"), "muscle.svg"),
-    (("liver", "jaundice", "dark urine", "황달", "진한 소변"), "liver.svg"),
-    (("abdominal", "nausea", "constipation", "복부", "메스꺼움", "변비"), "digestive.svg"),
-    (("headache", "두통"), "headache.svg"),
-    (("blood pressure", "hypertension", "혈압", "부종"), "blood_pressure.svg"),
-    (("allergy", "allergic", "breathing", "face", "lip", "호흡곤란", "얼굴", "입술", "알레르기"), "allergy.svg"),
-    (("driving", "machinery", "운전", "기계"), "driving.svg"),
+    (("driving", "machinery", "dizziness", "drowsiness", "dizzy", "운전", "기계", "어지러움", "졸림"), "driving.svg"),
     (("sun", "sunlight", "photosensitivity", "햇빛", "광과민"), "sun.svg"),
+    (("liver", "jaundice", "dark urine", "황달", "진한 소변"), "liver.svg"),
+    (("muscle", "myopathy", "rhabdomyolysis", "근육", "힘 빠짐"), "muscle.svg"),
+    (("allergy", "allergic", "breathing", "face", "lip", "호흡곤란", "얼굴", "입술", "알레르기"), "allergy.svg"),
+    (("blood pressure", "hypertension", "swelling", "edema", "혈압", "부종"), "blood_pressure.svg"),
+    (("headache", "두통"), "headache.svg"),
+    (("black stools", "vomiting blood", "gi bleeding", "stomach bleeding", "severe abdominal pain", "검은변", "토혈", "위장 출혈", "심한 복통"), "stomach_bleeding.svg"),
+    (("bleeding", "bruising", "bruise", "nosebleeds", "gum bleeding", "blood in urine", "출혈", "멍", "코피", "잇몸 출혈", "피 섞인 소변", "inr"), "bleeding.svg"),
+    (("heartburn", "stomach discomfort", "abdominal", "nausea", "constipation", "속쓰림", "위 불편감", "복부", "메스꺼움", "변비"), "digestive.svg"),
+    (("nsaid", "duplicate", "interaction", "interacting", "ibuprofen", "aspirin", "other medicines", "병용", "중복", "상호작용", "다른 약"), "med_interaction.svg"),
 ]
 
 
@@ -728,6 +732,12 @@ def context_match_count(items: list[dict[str, Any]], contexts: set[str]) -> int:
 
 
 def visual_image_path(item: dict[str, Any]) -> Path:
+    explicit_image = item.get("image")
+    if explicit_image:
+        explicit_path = ASSET_DIR / str(explicit_image)
+        if explicit_path.exists():
+            return explicit_path
+
     search_text = normalize(
         " ".join(
             [
@@ -746,14 +756,35 @@ def visual_image_path(item: dict[str, Any]) -> Path:
     return ASSET_DIR / "review.svg"
 
 
+def visual_image_name(item: dict[str, Any]) -> str:
+    return visual_image_path(item).name
+
+
+def side_effect_entry(entry: Any) -> tuple[Any, Any, str | None, list[str]]:
+    if isinstance(entry, dict):
+        return entry.get("title", ""), entry.get("body", ""), entry.get("image"), entry.get("tags", [])
+    if isinstance(entry, tuple) and len(entry) >= 3:
+        return entry[0], entry[1], entry[2], []
+    title_image = visual_image_name({"title": entry[0], "body": ""})
+    return entry[0], entry[1], None if title_image == "review.svg" else title_image, []
+
+
 def avoid_image_path(item: dict[str, Any]) -> Path:
     return visual_image_path(item)
 
 
-def card(title: str, body: str, severity: str, lang: str, source: str | None = None, tags: list[str] | None = None) -> None:
+def card(
+    title: str,
+    body: str,
+    severity: str,
+    lang: str,
+    source: str | None = None,
+    tags: list[str] | None = None,
+    image: str | None = None,
+) -> None:
     sev = SEVERITY[severity]
     badge_color = SEVERITY_COLORS.get(severity, "gray")
-    image_path = visual_image_path({"title": title, "body": body, "severity": severity, "tags": tags or []})
+    image_path = visual_image_path({"title": title, "body": body, "severity": severity, "tags": tags or [], "image": image})
 
     with st.container(border=True):
         image_col, text_col = st.columns([0.44, 0.56], gap="medium", vertical_alignment="center")
@@ -1062,6 +1093,14 @@ def build_external_drug(label: dict[str, Any], query: str, source_url: str) -> d
 
     def add(item_id: str, ko_title: str, en_title: str, ko_body: str, en_body: str, severity: str, contexts: list[str], tags: list[str]) -> None:
         evidence_id = f"external-{item_id}"
+        image_name = visual_image_name(
+            {
+                "title": {"ko": ko_title, "en": en_title},
+                "body": {"ko": ko_body, "en": en_body},
+                "tags": tags,
+                "context": contexts,
+            }
+        )
         evidence.append(
             {
                 "id": evidence_id,
@@ -1077,6 +1116,7 @@ def build_external_drug(label: dict[str, Any], query: str, source_url: str) -> d
             "severity": severity,
             "context": contexts,
             "source": evidence_id,
+            "image": image_name,
         }
         prechecks.append(item)
         if severity in {"avoid", "caution"}:
@@ -1090,22 +1130,34 @@ def build_external_drug(label: dict[str, Any], query: str, source_url: str) -> d
         add("driving", "운전/기계 조작 전 개인 반응 확인", "Check your response before driving or operating machinery", "졸림, 어지러움, 운전 관련 문구가 확인되었습니다.", "The label includes wording about drowsiness, dizziness, or driving.", "caution", ["driving"], ["condition", "driving"])
     if any(word in warning_text for word in ["sunlight", "photosensitivity", "tanning"]):
         add("sun", "햇빛 노출 주의", "Sun exposure caution", "광과민성 또는 햇빛 노출 관련 문구가 확인되었습니다.", "The label includes wording about photosensitivity or sun exposure.", "caution", ["sun"], ["environment", "sun"])
-    if any(word in warning_text for word in ["calcium", "iron", "magnesium", "antacid", "dairy", "milk"]):
-        add("minerals", "미네랄/제산제 간격 확인", "Check spacing from minerals or antacids", "미네랄, 제산제, 유제품 관련 문구가 확인되었습니다.", "The label includes wording about minerals, antacids, or dairy products.", "caution", ["supplements"], ["supplement", "absorption"])
+    if any(word in warning_text for word in ["tyramine", "cheese"]):
+        add("cheese", "치즈/티라민 음식 확인", "Check cheese or tyramine-rich foods", "레이블에서 치즈 또는 티라민 음식 관련 문구가 확인되었습니다.", "The label includes wording about cheese or tyramine-rich foods.", "avoid", [], ["food", "cheese", "tyramine"])
+    if any(word in warning_text for word in ["milk", "dairy"]):
+        add("milk", "우유/유제품 간격 확인", "Check spacing from milk or dairy", "레이블에서 우유 또는 유제품 관련 문구가 확인되었습니다.", "The label includes wording about milk or dairy products.", "caution", ["supplements"], ["food", "milk", "dairy"])
+    if any(word in warning_text for word in ["caffeine", "coffee"]):
+        add("coffee", "커피/카페인 섭취 확인", "Check coffee or caffeine intake", "레이블에서 커피 또는 카페인 관련 문구가 확인되었습니다.", "The label includes wording about coffee or caffeine.", "caution", [], ["food", "coffee", "caffeine"])
+    if any(word in warning_text for word in ["calcium", "iron", "magnesium", "antacid"]):
+        add("minerals", "미네랄/제산제 간격 확인", "Check spacing from minerals or antacids", "미네랄 또는 제산제 관련 문구가 확인되었습니다.", "The label includes wording about minerals or antacids.", "caution", ["supplements"], ["supplement", "antacid", "absorption"])
     if any(word in warning_text for word in ["pregnancy", "pregnant", "breastfeeding", "lactation"]):
         add("pregnancy", "임신/수유 관련 레이블 확인", "Pregnancy / breastfeeding label caution", "임신, 수유 또는 특정 인구집단 관련 문구가 확인되었습니다.", "The label includes wording about pregnancy, breastfeeding, or specific populations.", "caution", ["pregnancy"], ["condition", "pregnancy"])
     if not prechecks:
         add("review", "원문 레이블 확인 필요", "Review source label", "자동 추출된 특정 음식/환경 제한은 없습니다. 원문 레이블의 warnings, interactions 섹션을 확인하세요.", "No specific food or environment restriction was automatically extracted. Review the warnings and interactions sections in the source label.", "info", [], ["review"])
 
-    def section_cards(text: str, ko_title: str, en_title: str, ko_fallback: str, en_fallback: str, limit: int = 2) -> list[tuple[dict[str, str], dict[str, str]]]:
+    def section_card(ko_title: str, en_title: str, ko_body: str, en_body: str) -> dict[str, Any]:
+        title = {"ko": ko_title, "en": en_title}
+        body = {"ko": ko_body, "en": en_body}
+        return {
+            "title": title,
+            "body": body,
+            "image": visual_image_name({"title": title, "body": body}),
+        }
+
+    def section_cards(text: str, ko_title: str, en_title: str, ko_fallback: str, en_fallback: str, limit: int = 2) -> list[dict[str, Any]]:
         extracted = sentences(text, limit)
         if not extracted:
-            return [({"ko": ko_title, "en": en_title}, {"ko": ko_fallback, "en": en_fallback})]
+            return [section_card(ko_title, en_title, ko_fallback, en_fallback)]
         return [
-            (
-                {"ko": ko_title, "en": en_title},
-                {"ko": f"레이블 원문: {sentence}", "en": sentence},
-            )
+            section_card(ko_title, en_title, f"레이블 원문: {sentence}", sentence)
             for sentence in extracted
         ]
 
@@ -1265,7 +1317,7 @@ def main() -> None:
             )
         for item in cards:
             evidence = evidence_by_id(selected, item.get("source"))
-            card(l(item["title"], lang), l(item["body"], lang), item["severity"], lang, evidence.get("source"))
+            card(l(item["title"], lang), l(item["body"], lang), item["severity"], lang, evidence.get("source"), image=item.get("image"))
 
     with right:
         render_evidence_flow(selected, cards, lang)
@@ -1280,8 +1332,9 @@ def main() -> None:
             (tab_urgent, "urgent", "urgent"),
         ]:
             with tab:
-                for title, body in selected.get("side_effects", {}).get(key, []):
-                    card(l(title, lang), l(body, lang), severity, lang)
+                for entry in selected.get("side_effects", {}).get(key, []):
+                    title, body, image_name, tags = side_effect_entry(entry)
+                    card(l(title, lang), l(body, lang), severity, lang, tags=tags, image=image_name)
 
     with avoid_col:
         st.markdown(f"### {t(lang, 'avoid')}")
