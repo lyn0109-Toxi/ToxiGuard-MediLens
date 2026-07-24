@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 120" role="img" aria-label="Blood pressure caution">
+  <rect width="160" height="120" rx="18" fill="#fff7e8"/>
+  <rect x="36" y="36" width="88" height="52" rx="14" fill="#ffffff" stroke="#24343b" stroke-width="4"/>
+  <path d="M54 70c8-18 13-18 21 0s13 18 21 0 13-18 21 0" fill="none" stroke="#c84c3e" stroke-width="5" stroke-linecap="round"/>
+  <path d="M80 28V14M80 14l-10 10M80 14l10 10" stroke="#b96712" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+  <circle cx="48" cy="94" r="10" fill="#b96712"/>
+  <circle cx="112" cy="94" r="10" fill="#b96712"/>
+  <path d="M44 94h72" stroke="#b96712" stroke-width="4" stroke-linecap="round"/>
+</svg>

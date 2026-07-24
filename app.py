@@ -80,6 +80,8 @@ UI = {
         "context_none": "상황을 선택하면 관련 경고가 더 강하게 표시됩니다.",
         "context_selected": "선택한 상황",
         "items": "개",
+        "image_map": "이미지 체크맵",
+        "image_map_copy": "그림을 먼저 보고, 필요한 항목만 빠르게 확인하세요.",
     },
     "en": {
         "language": "Language",
@@ -138,6 +140,8 @@ UI = {
         "context_none": "Choose your context to highlight relevant warnings.",
         "context_selected": "Selected context",
         "items": "items",
+        "image_map": "Image-first check map",
+        "image_map_copy": "Scan the pictures first, then read only the items that matter.",
     },
 }
 
@@ -197,17 +201,23 @@ SEVERITY_COLORS = {
     "urgent": "red",
 }
 
-AVOID_IMAGE_RULES = [
+VISUAL_IMAGE_RULES = [
     (("transporters", "orange", "apple"), "fruit_juice.svg"),
     (("grapefruit", "cyp3a4", "자몽"), "grapefruit.svg"),
     (("vitamin k", "leafy", "greens", "kale", "spinach", "케일", "시금치"), "leafy_greens.svg"),
-    (("alcohol", "liver", "음주", "술"), "alcohol.svg"),
+    (("alcohol", "음주", "술"), "alcohol.svg"),
     (("antacid", "magnesium", "calcium", "iron", "mineral", "absorption", "제산제", "미네랄"), "antacid.svg"),
-    (("nsaid", "duplicate", "drug", "medicine", "병용", "약"), "med_interaction.svg"),
+    (("pregnancy", "breastfeeding", "lactation", "임신", "수유"), "pregnancy.svg"),
+    (("nsaid", "duplicate", "drug", "medicine", "ibuprofen", "aspirin", "병용", "약"), "med_interaction.svg"),
     (("gi bleeding", "bleeding", "stomach", "출혈", "위장"), "stomach_bleeding.svg"),
+    (("muscle", "myopathy", "rhabdomyolysis", "근육", "힘 빠짐"), "muscle.svg"),
+    (("liver", "jaundice", "dark urine", "황달", "진한 소변"), "liver.svg"),
+    (("abdominal", "nausea", "constipation", "복부", "메스꺼움", "변비"), "digestive.svg"),
+    (("headache", "두통"), "headache.svg"),
+    (("blood pressure", "hypertension", "혈압", "부종"), "blood_pressure.svg"),
+    (("allergy", "allergic", "breathing", "face", "lip", "호흡곤란", "얼굴", "입술", "알레르기"), "allergy.svg"),
     (("driving", "machinery", "운전", "기계"), "driving.svg"),
     (("sun", "sunlight", "photosensitivity", "햇빛", "광과민"), "sun.svg"),
-    (("pregnancy", "breastfeeding", "lactation", "임신", "수유"), "pregnancy.svg"),
 ]
 
 
@@ -622,6 +632,11 @@ def css() -> None:
             border-color: var(--line);
             box-shadow: 0 10px 26px rgba(22,38,46,.05);
           }
+          div[data-testid="stImage"] img {
+            border-radius: 8px;
+            border: 1px solid var(--line);
+            background: #fff;
+          }
           div[data-testid="stMetricValue"] {
             font-size: 18px;
           }
@@ -711,7 +726,7 @@ def context_match_count(items: list[dict[str, Any]], contexts: set[str]) -> int:
     return sum(1 for item in items if set(item.get("context", [])) & contexts)
 
 
-def avoid_image_path(item: dict[str, Any]) -> Path:
+def visual_image_path(item: dict[str, Any]) -> Path:
     search_text = normalize(
         " ".join(
             [
@@ -724,27 +739,36 @@ def avoid_image_path(item: dict[str, Any]) -> Path:
             ]
         )
     )
-    for keywords, filename in AVOID_IMAGE_RULES:
+    for keywords, filename in VISUAL_IMAGE_RULES:
         if any(keyword in search_text for keyword in keywords):
             return ASSET_DIR / filename
     return ASSET_DIR / "review.svg"
 
 
+def avoid_image_path(item: dict[str, Any]) -> Path:
+    return visual_image_path(item)
+
+
 def card(title: str, body: str, severity: str, lang: str, source: str | None = None, tags: list[str] | None = None) -> None:
     sev = SEVERITY[severity]
     badge_color = SEVERITY_COLORS.get(severity, "gray")
+    image_path = visual_image_path({"title": title, "body": body, "severity": severity, "tags": tags or []})
 
     with st.container(border=True):
-        text_col, badge_col = st.columns([0.78, 0.22], vertical_alignment="top")
+        image_col, text_col = st.columns([0.28, 0.72], gap="medium", vertical_alignment="center")
+        with image_col:
+            if image_path.exists():
+                st.image(str(image_path), width="stretch")
+            else:
+                st.badge(l(sev, lang), icon=SEVERITY_ICONS.get(severity), color=badge_color)
         with text_col:
+            st.badge(l(sev, lang), icon=SEVERITY_ICONS.get(severity), color=badge_color)
             st.markdown(f"**{title}**")
             st.write(body)
             if source:
                 st.caption(f"{t(lang, 'source')}: {source}")
             if tags:
                 st.caption(" · ".join(tags))
-        with badge_col:
-            st.badge(l(sev, lang), icon=SEVERITY_ICONS.get(severity), color=badge_color)
 
 
 def avoid_card(item: dict[str, Any], lang: str) -> None:
@@ -754,18 +778,47 @@ def avoid_card(item: dict[str, Any], lang: str) -> None:
     image_path = avoid_image_path(item)
 
     with st.container(border=True):
-        image_col, text_col = st.columns([0.32, 0.68], gap="medium", vertical_alignment="center")
-        with image_col:
-            if image_path.exists():
-                st.image(str(image_path), width="stretch")
-            else:
-                st.badge(l(sev, lang), icon=SEVERITY_ICONS.get(severity), color=SEVERITY_COLORS.get(severity, "gray"))
-        with text_col:
-            st.badge(l(sev, lang), icon=SEVERITY_ICONS.get(severity), color=SEVERITY_COLORS.get(severity, "gray"))
-            st.markdown(f"**{l(item['title'], lang)}**")
-            st.write(l(item["body"], lang))
-            if tags:
-                st.caption(" · ".join(tags))
+        if image_path.exists():
+            st.image(str(image_path), width="stretch")
+        st.badge(l(sev, lang), icon=SEVERITY_ICONS.get(severity), color=SEVERITY_COLORS.get(severity, "gray"))
+        st.markdown(f"**{l(item['title'], lang)}**")
+        st.caption(l(item["body"], lang))
+        if tags:
+            st.caption(" · ".join(tags))
+
+
+def render_image_check_map(drug: dict[str, Any], cards: list[dict[str, Any]], lang: str) -> None:
+    visual_items: list[dict[str, Any]] = []
+    seen: set[str] = set()
+    for item in [*cards, *drug.get("avoid", [])]:
+        title = l(item.get("title", ""), lang)
+        key = normalize(title)
+        if key and key not in seen:
+            visual_items.append(item)
+            seen.add(key)
+        if len(visual_items) >= 6:
+            break
+
+    if not visual_items:
+        return
+
+    with st.container(border=True):
+        st.badge(t(lang, "image_map"), icon=":material/image:", color="primary")
+        st.caption(t(lang, "image_map_copy"))
+        for start in range(0, len(visual_items), 3):
+            cols = st.columns(3, gap="medium")
+            for col, item in zip(cols, visual_items[start : start + 3]):
+                severity = item.get("severity", "info")
+                with col.container(border=True):
+                    image_path = visual_image_path(item)
+                    if image_path.exists():
+                        st.image(str(image_path), width="stretch")
+                    st.badge(
+                        l(SEVERITY[severity], lang),
+                        icon=SEVERITY_ICONS.get(severity),
+                        color=SEVERITY_COLORS.get(severity, "gray"),
+                    )
+                    st.markdown(f"**{l(item.get('title', ''), lang)}**")
 
 
 def render_visual_overview(
@@ -1195,6 +1248,7 @@ def main() -> None:
     cards = ranked_prechecks(selected, active_contexts)
     risk_class, risk_text = risk_label(lang, cards)
     render_visual_overview(selected, cards, risk_class, risk_text, active_contexts, lang)
+    render_image_check_map(selected, cards, lang)
 
     left, right = st.columns([1.08, 0.92], gap="large")
     with left:

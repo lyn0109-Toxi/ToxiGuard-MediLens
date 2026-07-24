@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 120" role="img" aria-label="Digestive discomfort">
+  <rect width="160" height="120" rx="18" fill="#fff8ec"/>
+  <path d="M80 28c-18 0-32 12-32 28 0 12 7 21 19 26 3 1 5 5 4 9l-2 9h21l-2-9c-1-4 1-8 4-9 12-5 19-14 19-26 0-16-13-28-31-28z" fill="#ffdca8" stroke="#24343b" stroke-width="4" stroke-linejoin="round"/>
+  <path d="M62 58c9-7 27-7 36 0M64 72c8 6 24 6 32 0" fill="none" stroke="#b96712" stroke-width="5" stroke-linecap="round"/>
+  <circle cx="55" cy="42" r="8" fill="#faebd8" stroke="#b96712" stroke-width="4"/>
+  <circle cx="108" cy="82" r="8" fill="#faebd8" stroke="#b96712" stroke-width="4"/>
+  <path d="M42 81c-7-8-8-18-2-29M119 38c7 8 8 18 2 29" fill="none" stroke="#b96712" stroke-width="5" stroke-linecap="round"/>
+</svg>

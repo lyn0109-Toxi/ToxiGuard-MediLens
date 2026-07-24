@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 120" role="img" aria-label="Muscle pain warning">
+  <rect width="160" height="120" rx="18" fill="#fff1ed"/>
+  <path d="M45 72c11-30 29-40 54-31 9 3 16 0 21-7 10 15 6 34-10 43-20 11-42 9-65-5z" fill="#ffb09f" stroke="#24343b" stroke-width="4" stroke-linejoin="round"/>
+  <path d="M54 68c15-12 33-15 54-8" fill="none" stroke="#c84c3e" stroke-width="5" stroke-linecap="round"/>
+  <path d="M32 54l13 10M128 52l-13 10M78 22v16" stroke="#c84c3e" stroke-width="5" stroke-linecap="round"/>
+  <circle cx="112" cy="35" r="14" fill="#f9e1dd" stroke="#c84c3e" stroke-width="4"/>
+  <path d="M105 35h14" stroke="#c84c3e" stroke-width="4" stroke-linecap="round"/>
+</svg>
