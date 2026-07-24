@@ -1,7 +1,12 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 120" role="img" aria-label="Stomach bleeding caution">
-  <rect width="160" height="120" rx="18" fill="#fff0f0"/>
-  <path d="M83 24c-18 4-22 20-13 33 5 7 4 13-2 20-8 9-4 20 8 20h21c22 0 33-23 19-40-8-10-8-18-1-28-12-5-22-4-32-5z" fill="#ffd7cd" stroke="#24343b" stroke-width="4" stroke-linejoin="round"/>
-  <path d="M92 54c13 0 21 7 21 18 0 12-9 19-22 19" fill="none" stroke="#ff8f7f" stroke-width="6" stroke-linecap="round"/>
-  <path d="M52 39c0 13-14 16-14 28a14 14 0 0 0 28 0c0-12-14-15-14-28z" fill="#c84c3e"/>
-  <path d="M44 64c4 5 10 6 16 2" fill="none" stroke="#fff" stroke-width="4" stroke-linecap="round"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 220 160" role="img" aria-labelledby="title desc">
+  <title id="title">Stomach bleeding warning</title>
+  <desc id="desc">A stomach with a red blood drop and urgent warning mark.</desc>
+  <rect width="220" height="160" rx="18" fill="#fff8f5"/>
+  <rect x="14" y="14" width="192" height="132" rx="16" fill="#ffffff" stroke="#d8e2e7" stroke-width="2"/>
+  <path d="M101 33c0 24-17 30-17 51 0 27 21 49 51 49 28 0 48-17 48-42 0-27-23-43-51-36-5-8-9-15-9-22" fill="#ffe0bf" stroke="#1f2b32" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M114 80c12-6 30-4 40 5" fill="none" stroke="#d9821f" stroke-width="6" stroke-linecap="round"/>
+  <path d="M67 70c13 16 21 28 21 40 0 13-11 24-24 24s-24-11-24-24c0-12 11-26 27-40Z" fill="#d94435" stroke="#1f2b32" stroke-width="5" stroke-linejoin="round"/>
+  <path d="M158 33h46l-23 40-23-40Z" fill="#fde5e0" stroke="#d94435" stroke-width="5" stroke-linejoin="round"/>
+  <path d="M181 43v13" stroke="#d94435" stroke-width="5" stroke-linecap="round"/>
+  <circle cx="181" cy="63" r="3.5" fill="#d94435"/>
 </svg>

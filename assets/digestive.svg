@@ -1,8 +1,14 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 120" role="img" aria-label="Digestive discomfort">
-  <rect width="160" height="120" rx="18" fill="#fff8ec"/>
-  <path d="M80 28c-18 0-32 12-32 28 0 12 7 21 19 26 3 1 5 5 4 9l-2 9h21l-2-9c-1-4 1-8 4-9 12-5 19-14 19-26 0-16-13-28-31-28z" fill="#ffdca8" stroke="#24343b" stroke-width="4" stroke-linejoin="round"/>
-  <path d="M62 58c9-7 27-7 36 0M64 72c8 6 24 6 32 0" fill="none" stroke="#b96712" stroke-width="5" stroke-linecap="round"/>
-  <circle cx="55" cy="42" r="8" fill="#faebd8" stroke="#b96712" stroke-width="4"/>
-  <circle cx="108" cy="82" r="8" fill="#faebd8" stroke="#b96712" stroke-width="4"/>
-  <path d="M42 81c-7-8-8-18-2-29M119 38c7 8 8 18 2 29" fill="none" stroke="#b96712" stroke-width="5" stroke-linecap="round"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 220 160" role="img" aria-labelledby="title desc">
+  <title id="title">Digestive discomfort</title>
+  <desc id="desc">A stomach pictogram with nausea bubbles and a mild information marker.</desc>
+  <rect width="220" height="160" rx="18" fill="#f4f9fd"/>
+  <rect x="14" y="14" width="192" height="132" rx="16" fill="#ffffff" stroke="#d8e2e7" stroke-width="2"/>
+  <path d="M97 35c0 22-15 28-15 47 0 25 20 45 48 45 25 0 43-16 43-38 0-24-20-39-46-34-5-7-9-14-9-20" fill="#ffe0bf" stroke="#1f2b32" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M111 77c11-5 26-4 36 4" fill="none" stroke="#d9821f" stroke-width="6" stroke-linecap="round"/>
+  <circle cx="64" cy="58" r="9" fill="#dff4ed" stroke="#1f2b32" stroke-width="4"/>
+  <circle cx="48" cy="84" r="6" fill="#dff4ed" stroke="#1f2b32" stroke-width="4"/>
+  <circle cx="67" cy="105" r="5" fill="#dff4ed" stroke="#1f2b32" stroke-width="4"/>
+  <circle cx="181" cy="38" r="16" fill="#e7f0fa" stroke="#2d6cb3" stroke-width="5"/>
+  <path d="M181 34v18" stroke="#2d6cb3" stroke-width="5" stroke-linecap="round"/>
+  <circle cx="181" cy="27" r="3" fill="#2d6cb3"/>
 </svg>

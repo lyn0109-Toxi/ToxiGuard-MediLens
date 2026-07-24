@@ -1,10 +1,15 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 120" role="img" aria-label="Driving caution">
-  <rect width="160" height="120" rx="18" fill="#eef5ff"/>
-  <path d="M39 63l10-24h62l10 24z" fill="#ffffff" stroke="#24343b" stroke-width="4" stroke-linejoin="round"/>
-  <rect x="33" y="61" width="94" height="28" rx="10" fill="#2c67b0" stroke="#24343b" stroke-width="4"/>
-  <circle cx="55" cy="91" r="10" fill="#24343b"/>
-  <circle cx="105" cy="91" r="10" fill="#24343b"/>
-  <path d="M58 43h44" stroke="#8ec0f4" stroke-width="8" stroke-linecap="round"/>
-  <circle cx="126" cy="31" r="16" fill="#faebd8" stroke="#b96712" stroke-width="4"/>
-  <path d="M118 31h16M126 23v16" stroke="#b96712" stroke-width="4" stroke-linecap="round"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 220 160" role="img" aria-labelledby="title desc">
+  <title id="title">Driving and machinery caution</title>
+  <desc id="desc">A car and steering wheel with a yellow caution triangle.</desc>
+  <rect width="220" height="160" rx="18" fill="#fff8ed"/>
+  <rect x="14" y="14" width="192" height="132" rx="16" fill="#ffffff" stroke="#d8e2e7" stroke-width="2"/>
+  <path d="M45 86l17-31h82l21 31v30H45V86Z" fill="#75b7da" stroke="#1f2b32" stroke-width="6" stroke-linejoin="round"/>
+  <path d="M72 63h61l12 22H61l11-22Z" fill="#ffffff" stroke="#1f2b32" stroke-width="5" stroke-linejoin="round"/>
+  <circle cx="72" cy="116" r="13" fill="#1f2b32"/>
+  <circle cx="139" cy="116" r="13" fill="#1f2b32"/>
+  <circle cx="104" cy="97" r="23" fill="none" stroke="#1f2b32" stroke-width="6"/>
+  <path d="M104 98v19M88 90l16 8 16-8" fill="none" stroke="#1f2b32" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M152 34h44l-22 38-22-38Z" fill="#fff2d7" stroke="#d9821f" stroke-width="5" stroke-linejoin="round"/>
+  <path d="M174 44v12" stroke="#d9821f" stroke-width="5" stroke-linecap="round"/>
+  <circle cx="174" cy="62" r="3.5" fill="#d9821f"/>
 </svg>

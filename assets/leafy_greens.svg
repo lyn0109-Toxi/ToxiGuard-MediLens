@@ -1,9 +1,13 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 120" role="img" aria-label="Leafy greens">
-  <rect width="160" height="120" rx="18" fill="#eef9f1"/>
-  <path d="M78 95c-4-25-7-45-5-67" stroke="#2a7a4f" stroke-width="5" stroke-linecap="round"/>
-  <path d="M75 72c-29-2-43-19-42-43 26 0 42 15 42 43z" fill="#51b36d" stroke="#24343b" stroke-width="4" stroke-linejoin="round"/>
-  <path d="M80 74c31-5 48-23 46-51-30 2-47 20-46 51z" fill="#2f9d63" stroke="#24343b" stroke-width="4" stroke-linejoin="round"/>
-  <path d="M78 88c-20 3-34-6-40-24 20-4 35 5 40 24z" fill="#8bd18d" stroke="#24343b" stroke-width="4" stroke-linejoin="round"/>
-  <circle cx="118" cy="87" r="16" fill="#2c67b0"/>
-  <text x="118" y="93" text-anchor="middle" font-family="Arial, sans-serif" font-size="18" font-weight="700" fill="#fff">K</text>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 220 160" role="img" aria-labelledby="title desc">
+  <title id="title">Keep vitamin K intake consistent</title>
+  <desc id="desc">Leafy greens with a vitamin K badge and steady arrows.</desc>
+  <rect width="220" height="160" rx="18" fill="#f2fbf6"/>
+  <rect x="14" y="14" width="192" height="132" rx="16" fill="#ffffff" stroke="#d8e2e7" stroke-width="2"/>
+  <path d="M75 124c-22-30-16-68 22-92 14 37 8 72-22 92Z" fill="#62b572" stroke="#1f2b32" stroke-width="5" stroke-linejoin="round"/>
+  <path d="M111 126c-28-25-29-67 4-96 20 33 22 70-4 96Z" fill="#2e8f65" stroke="#1f2b32" stroke-width="5" stroke-linejoin="round"/>
+  <path d="M144 124c-12-34-1-67 33-87 11 37-1 69-33 87Z" fill="#8dca72" stroke="#1f2b32" stroke-width="5" stroke-linejoin="round"/>
+  <path d="M75 124c19-25 26-55 22-92M111 126c9-32 10-64 4-96M144 124c18-25 28-53 33-87" fill="none" stroke="#ffffff" stroke-width="4" stroke-linecap="round"/>
+  <circle cx="53" cy="52" r="25" fill="#dff4ed" stroke="#207a5a" stroke-width="6"/>
+  <text x="53" y="60" text-anchor="middle" font-family="Arial, sans-serif" font-size="26" font-weight="800" fill="#207a5a">K</text>
+  <path d="M44 123h42M76 114l12 9-12 9M176 123h-42M144 114l-12 9 12 9" fill="none" stroke="#2d6cb3" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
 </svg>

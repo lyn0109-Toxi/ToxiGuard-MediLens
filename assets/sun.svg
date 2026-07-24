@@ -1,9 +1,13 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 120" role="img" aria-label="Sun exposure caution">
-  <rect width="160" height="120" rx="18" fill="#fff9df"/>
-  <circle cx="80" cy="58" r="24" fill="#f5b73b" stroke="#24343b" stroke-width="4"/>
-  <g stroke="#f5b73b" stroke-width="6" stroke-linecap="round">
-    <path d="M80 16v14M80 86v14M38 58H24M136 58h-14M51 29l-10-10M119 97l-10-10M109 29l10-10M41 97l10-10"/>
-  </g>
-  <path d="M55 78c15 12 35 12 50 0" fill="none" stroke="#24343b" stroke-width="4" stroke-linecap="round"/>
-  <path d="M116 76l18 18" stroke="#c84c3e" stroke-width="5" stroke-linecap="round"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 220 160" role="img" aria-labelledby="title desc">
+  <title id="title">Sun exposure caution</title>
+  <desc id="desc">A bright sun, shield, and caution mark for photosensitivity.</desc>
+  <rect width="220" height="160" rx="18" fill="#fff8ed"/>
+  <rect x="14" y="14" width="192" height="132" rx="16" fill="#ffffff" stroke="#d8e2e7" stroke-width="2"/>
+  <circle cx="76" cy="68" r="28" fill="#f7c15e" stroke="#1f2b32" stroke-width="6"/>
+  <path d="M76 24v17M76 95v18M32 68h17M103 68h18M45 37l12 12M95 88l12 12M107 37 95 49M57 88l-12 12" stroke="#f7c15e" stroke-width="8" stroke-linecap="round"/>
+  <path d="M134 46l43 15v30c0 25-18 41-43 50-25-9-43-25-43-50V61l43-15Z" fill="#e7f0fa" stroke="#1f2b32" stroke-width="6" stroke-linejoin="round"/>
+  <path d="M116 91l13 13 27-31" fill="none" stroke="#207a5a" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M154 29h42l-21 36-21-36Z" fill="#fff2d7" stroke="#d9821f" stroke-width="5" stroke-linejoin="round"/>
+  <path d="M175 39v11" stroke="#d9821f" stroke-width="5" stroke-linecap="round"/>
+  <circle cx="175" cy="56" r="3.5" fill="#d9821f"/>
 </svg>

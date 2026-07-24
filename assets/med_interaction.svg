@@ -1,9 +1,18 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 120" role="img" aria-label="Medicine interaction">
-  <rect width="160" height="120" rx="18" fill="#f4f6f8"/>
-  <rect x="35" y="48" width="54" height="24" rx="12" transform="rotate(-28 62 60)" fill="#ffffff" stroke="#24343b" stroke-width="4"/>
-  <path d="M59 43l12 22" stroke="#c84c3e" stroke-width="4"/>
-  <rect x="76" y="49" width="54" height="24" rx="12" transform="rotate(28 103 61)" fill="#ffffff" stroke="#24343b" stroke-width="4"/>
-  <path d="M101 44L90 66" stroke="#2c67b0" stroke-width="4"/>
-  <circle cx="80" cy="60" r="19" fill="#f9e1dd" stroke="#c84c3e" stroke-width="4"/>
-  <path d="M70 50l20 20M90 50L70 70" stroke="#c84c3e" stroke-width="5" stroke-linecap="round"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 220 160" role="img" aria-labelledby="title desc">
+  <title id="title">Medicine interaction review</title>
+  <desc id="desc">Two medicines and pills with a bold interaction warning.</desc>
+  <rect width="220" height="160" rx="18" fill="#f4f9fd"/>
+  <rect x="14" y="14" width="192" height="132" rx="16" fill="#ffffff" stroke="#d8e2e7" stroke-width="2"/>
+  <rect x="37" y="48" width="48" height="80" rx="12" fill="#e7f0fa" stroke="#1f2b32" stroke-width="5"/>
+  <rect x="45" y="35" width="32" height="18" rx="5" fill="#2d6cb3" stroke="#1f2b32" stroke-width="4"/>
+  <path d="M48 79h26" stroke="#ffffff" stroke-width="7" stroke-linecap="round"/>
+  <rect x="135" y="49" width="48" height="79" rx="12" fill="#dff4ed" stroke="#1f2b32" stroke-width="5"/>
+  <rect x="143" y="36" width="32" height="18" rx="5" fill="#207a5a" stroke="#1f2b32" stroke-width="4"/>
+  <path d="M146 79h26" stroke="#ffffff" stroke-width="7" stroke-linecap="round"/>
+  <path d="M98 70h24M110 58v24" stroke="#1f2b32" stroke-width="8" stroke-linecap="round"/>
+  <rect x="83" y="104" width="55" height="24" rx="12" fill="#f7c15e" stroke="#1f2b32" stroke-width="5"/>
+  <path d="M110 104v24" stroke="#1f2b32" stroke-width="4"/>
+  <path d="M142 23h48l-24 42-24-42Z" fill="#fde5e0" stroke="#d94435" stroke-width="5" stroke-linejoin="round"/>
+  <path d="M166 34v13" stroke="#d94435" stroke-width="5" stroke-linecap="round"/>
+  <circle cx="166" cy="54" r="3.5" fill="#d94435"/>
 </svg>

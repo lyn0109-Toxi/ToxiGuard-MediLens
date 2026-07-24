@@ -1,9 +1,15 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 120" role="img" aria-label="Liver caution">
-  <rect width="160" height="120" rx="18" fill="#fff3ec"/>
-  <path d="M39 63c0-24 21-36 46-25 10 5 22 2 35-5 6 19 0 39-18 49-18 11-42 8-63-19z" fill="#d76b55" stroke="#24343b" stroke-width="4" stroke-linejoin="round"/>
-  <path d="M85 38c-2 21-12 34-31 39" fill="none" stroke="#943d31" stroke-width="5" stroke-linecap="round"/>
-  <circle cx="113" cy="37" r="15" fill="#faebd8" stroke="#b96712" stroke-width="4"/>
-  <path d="M113 28v13" stroke="#b96712" stroke-width="4" stroke-linecap="round"/>
-  <circle cx="113" cy="48" r="2.5" fill="#b96712"/>
-  <path d="M104 86h22" stroke="#943d31" stroke-width="5" stroke-linecap="round"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 220 160" role="img" aria-labelledby="title desc">
+  <title id="title">Liver warning signs</title>
+  <desc id="desc">A liver pictogram with jaundice and dark urine warning cues.</desc>
+  <rect width="220" height="160" rx="18" fill="#fff8ed"/>
+  <rect x="14" y="14" width="192" height="132" rx="16" fill="#ffffff" stroke="#d8e2e7" stroke-width="2"/>
+  <path d="M42 74c20-29 65-35 114-25 18 4 29 18 25 35-5 20-27 27-53 21-23-5-44 1-63 14-17 12-39 2-40-18 0-9 6-18 17-27Z" fill="#c95b4c" stroke="#1f2b32" stroke-width="6" stroke-linejoin="round"/>
+  <path d="M112 49c2 19-2 34-13 45" fill="none" stroke="#7b2d2a" stroke-width="6" stroke-linecap="round"/>
+  <path d="M70 58c25-8 56-9 91-2" fill="none" stroke="#f0a59d" stroke-width="5" stroke-linecap="round"/>
+  <path d="M170 102c11 14 17 23 17 32 0 10-8 18-18 18s-18-8-18-18c0-9 8-20 19-32Z" fill="#8a4b2a" stroke="#1f2b32" stroke-width="5" stroke-linejoin="round"/>
+  <circle cx="56" cy="46" r="16" fill="#f7c15e" stroke="#1f2b32" stroke-width="4"/>
+  <path d="M46 46h20" stroke="#ffffff" stroke-width="4" stroke-linecap="round"/>
+  <path d="M154 33h42l-21 36-21-36Z" fill="#fff2d7" stroke="#d9821f" stroke-width="5" stroke-linejoin="round"/>
+  <path d="M175 43v11" stroke="#d9821f" stroke-width="5" stroke-linecap="round"/>
+  <circle cx="175" cy="60" r="3.5" fill="#d9821f"/>
 </svg>

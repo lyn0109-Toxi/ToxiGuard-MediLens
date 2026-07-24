@@ -634,8 +634,9 @@ def css() -> None:
           }
           div[data-testid="stImage"] img {
             border-radius: 8px;
-            border: 1px solid var(--line);
+            border: 2px solid #cbd8df;
             background: #fff;
+            box-shadow: 0 10px 20px rgba(22,38,46,.06);
           }
           div[data-testid="stMetricValue"] {
             font-size: 18px;
@@ -755,7 +756,7 @@ def card(title: str, body: str, severity: str, lang: str, source: str | None = N
     image_path = visual_image_path({"title": title, "body": body, "severity": severity, "tags": tags or []})
 
     with st.container(border=True):
-        image_col, text_col = st.columns([0.28, 0.72], gap="medium", vertical_alignment="center")
+        image_col, text_col = st.columns([0.36, 0.64], gap="medium", vertical_alignment="center")
         with image_col:
             if image_path.exists():
                 st.image(str(image_path), width="stretch")

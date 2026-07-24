@@ -1,8 +1,13 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 120" role="img" aria-label="Review source label">
-  <rect width="160" height="120" rx="18" fill="#f5f8f7"/>
-  <rect x="48" y="22" width="54" height="74" rx="8" fill="#ffffff" stroke="#24343b" stroke-width="4"/>
-  <path d="M60 42h30M60 56h30M60 70h18" stroke="#61707c" stroke-width="4" stroke-linecap="round"/>
-  <circle cx="104" cy="76" r="18" fill="#e3eef9" stroke="#2c67b0" stroke-width="4"/>
-  <path d="M117 89l15 15" stroke="#2c67b0" stroke-width="6" stroke-linecap="round"/>
-  <path d="M97 76l5 5 10-12" fill="none" stroke="#12745f" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 220 160" role="img" aria-labelledby="title desc">
+  <title id="title">Review the source label</title>
+  <desc id="desc">A medicine label document under a magnifying glass.</desc>
+  <rect width="220" height="160" rx="18" fill="#f4f9fd"/>
+  <rect x="14" y="14" width="192" height="132" rx="16" fill="#ffffff" stroke="#d8e2e7" stroke-width="2"/>
+  <path d="M58 31h78l26 26v70H58V31Z" fill="#ffffff" stroke="#1f2b32" stroke-width="6" stroke-linejoin="round"/>
+  <path d="M136 31v28h26" fill="#e7f0fa" stroke="#1f2b32" stroke-width="6" stroke-linejoin="round"/>
+  <rect x="75" y="56" width="44" height="18" rx="9" fill="#dff4ed" stroke="#1f2b32" stroke-width="4"/>
+  <path d="M78 91h60M78 108h47" stroke="#61707c" stroke-width="6" stroke-linecap="round"/>
+  <circle cx="145" cy="104" r="25" fill="none" stroke="#2d6cb3" stroke-width="8"/>
+  <path d="M163 122l25 25" stroke="#2d6cb3" stroke-width="8" stroke-linecap="round"/>
+  <path d="M147 92v25M134 104h26" stroke="#d94435" stroke-width="6" stroke-linecap="round"/>
 </svg>

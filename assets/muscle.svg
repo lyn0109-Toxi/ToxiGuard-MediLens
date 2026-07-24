@@ -1,8 +1,14 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 120" role="img" aria-label="Muscle pain warning">
-  <rect width="160" height="120" rx="18" fill="#fff1ed"/>
-  <path d="M45 72c11-30 29-40 54-31 9 3 16 0 21-7 10 15 6 34-10 43-20 11-42 9-65-5z" fill="#ffb09f" stroke="#24343b" stroke-width="4" stroke-linejoin="round"/>
-  <path d="M54 68c15-12 33-15 54-8" fill="none" stroke="#c84c3e" stroke-width="5" stroke-linecap="round"/>
-  <path d="M32 54l13 10M128 52l-13 10M78 22v16" stroke="#c84c3e" stroke-width="5" stroke-linecap="round"/>
-  <circle cx="112" cy="35" r="14" fill="#f9e1dd" stroke="#c84c3e" stroke-width="4"/>
-  <path d="M105 35h14" stroke="#c84c3e" stroke-width="4" stroke-linecap="round"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 220 160" role="img" aria-labelledby="title desc">
+  <title id="title">Severe muscle pain red flag</title>
+  <desc id="desc">A flexed arm with sharp pain bolts and an emergency marker.</desc>
+  <rect width="220" height="160" rx="18" fill="#fff8f5"/>
+  <rect x="14" y="14" width="192" height="132" rx="16" fill="#ffffff" stroke="#d8e2e7" stroke-width="2"/>
+  <path d="M55 106c24-1 36-12 43-30 5-14 17-25 33-25 18 0 33 13 33 31 0 14-9 25-22 30l-27 10c-25 9-48 6-60-16Z" fill="#ffe0bf" stroke="#1f2b32" stroke-width="6" stroke-linejoin="round"/>
+  <path d="M92 78c19 2 36 12 44 34" fill="none" stroke="#d9821f" stroke-width="7" stroke-linecap="round"/>
+  <rect x="36" y="89" width="42" height="34" rx="12" fill="#ffe0bf" stroke="#1f2b32" stroke-width="6"/>
+  <path d="M142 34l-18 28h17l-24 36" fill="none" stroke="#d94435" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M170 51l-13 20h13l-18 27" fill="none" stroke="#d94435" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
+  <circle cx="176" cy="116" r="21" fill="#fde5e0" stroke="#d94435" stroke-width="6"/>
+  <path d="M176 105v15" stroke="#d94435" stroke-width="6" stroke-linecap="round"/>
+  <circle cx="176" cy="128" r="4" fill="#d94435"/>
 </svg>

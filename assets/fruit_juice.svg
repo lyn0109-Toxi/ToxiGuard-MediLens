@@ -1,8 +1,15 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 120" role="img" aria-label="Fruit juice">
-  <rect width="160" height="120" rx="18" fill="#fff2e6"/>
-  <path d="M56 31h48l-6 66H62z" fill="#fff" stroke="#24343b" stroke-width="4" stroke-linejoin="round"/>
-  <path d="M61 58h38l-4 35H65z" fill="#ff9d3a"/>
-  <path d="M86 31l17-17" stroke="#24343b" stroke-width="4" stroke-linecap="round"/>
-  <circle cx="111" cy="24" r="12" fill="#ff7b68" stroke="#24343b" stroke-width="4"/>
-  <path d="M43 76c18-12 32-12 48 0-15 15-33 15-48 0z" fill="#3fa77a" stroke="#24343b" stroke-width="4" stroke-linejoin="round"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 220 160" role="img" aria-labelledby="title desc">
+  <title id="title">Avoid fruit juice with this medicine</title>
+  <desc id="desc">A large glass of juice with citrus and apple symbols crossed out.</desc>
+  <rect width="220" height="160" rx="18" fill="#fff8ed"/>
+  <rect x="14" y="14" width="192" height="132" rx="16" fill="#ffffff" stroke="#d8e2e7" stroke-width="2"/>
+  <path d="M79 46h70l-11 88H90L79 46Z" fill="#f7c15e" stroke="#1f2b32" stroke-width="6" stroke-linejoin="round"/>
+  <path d="M86 73h55" stroke="#ffffff" stroke-width="8" stroke-linecap="round"/>
+  <path d="M132 40l17-22" stroke="#1f2b32" stroke-width="6" stroke-linecap="round"/>
+  <circle cx="63" cy="106" r="20" fill="#f6a74b" stroke="#1f2b32" stroke-width="5"/>
+  <path d="M63 90v32M47 106h32" stroke="#ffffff" stroke-width="4" stroke-linecap="round"/>
+  <circle cx="154" cy="108" r="19" fill="#d94435" stroke="#1f2b32" stroke-width="5"/>
+  <path d="M154 88c6 4 12 4 18-2" fill="none" stroke="#207a5a" stroke-width="5" stroke-linecap="round"/>
+  <circle cx="111" cy="82" r="61" fill="none" stroke="#d94435" stroke-width="12"/>
+  <path d="M68 38 156 126" stroke="#d94435" stroke-width="13" stroke-linecap="round"/>
 </svg>

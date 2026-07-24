@@ -1,9 +1,15 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 120" role="img" aria-label="Blood pressure caution">
-  <rect width="160" height="120" rx="18" fill="#fff7e8"/>
-  <rect x="36" y="36" width="88" height="52" rx="14" fill="#ffffff" stroke="#24343b" stroke-width="4"/>
-  <path d="M54 70c8-18 13-18 21 0s13 18 21 0 13-18 21 0" fill="none" stroke="#c84c3e" stroke-width="5" stroke-linecap="round"/>
-  <path d="M80 28V14M80 14l-10 10M80 14l10 10" stroke="#b96712" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
-  <circle cx="48" cy="94" r="10" fill="#b96712"/>
-  <circle cx="112" cy="94" r="10" fill="#b96712"/>
-  <path d="M44 94h72" stroke="#b96712" stroke-width="4" stroke-linecap="round"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 220 160" role="img" aria-labelledby="title desc">
+  <title id="title">Blood pressure caution</title>
+  <desc id="desc">A blood pressure cuff and gauge with a warning mark.</desc>
+  <rect width="220" height="160" rx="18" fill="#f4f9fd"/>
+  <rect x="14" y="14" width="192" height="132" rx="16" fill="#ffffff" stroke="#d8e2e7" stroke-width="2"/>
+  <rect x="38" y="57" width="66" height="58" rx="14" fill="#2d6cb3" stroke="#1f2b32" stroke-width="5"/>
+  <path d="M104 86h24c13 0 20-8 20-18" fill="none" stroke="#1f2b32" stroke-width="7" stroke-linecap="round"/>
+  <circle cx="152" cy="66" r="29" fill="#ffffff" stroke="#1f2b32" stroke-width="5"/>
+  <path d="M152 66l15-12" stroke="#d94435" stroke-width="6" stroke-linecap="round"/>
+  <path d="M137 73h30" stroke="#d8e2e7" stroke-width="4" stroke-linecap="round"/>
+  <path d="M70 70v31" stroke="#ffffff" stroke-width="7" stroke-linecap="round"/>
+  <path d="M154 98h42l-21 36-21-36Z" fill="#fff2d7" stroke="#d9821f" stroke-width="5" stroke-linejoin="round"/>
+  <path d="M175 108v11" stroke="#d9821f" stroke-width="5" stroke-linecap="round"/>
+  <circle cx="175" cy="126" r="3.5" fill="#d9821f"/>
 </svg>

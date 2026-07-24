@@ -1,9 +1,13 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 120" role="img" aria-label="Alcohol caution">
-  <rect width="160" height="120" rx="18" fill="#fff7e8"/>
-  <path d="M59 30h42l-7 28c-2 9-7 16-14 16s-12-7-14-16z" fill="#ffffff" stroke="#24343b" stroke-width="4" stroke-linejoin="round"/>
-  <path d="M67 51h26l-2 9c-2 6-5 10-11 10s-9-4-11-10z" fill="#d89b37"/>
-  <path d="M80 74v22" stroke="#24343b" stroke-width="4" stroke-linecap="round"/>
-  <path d="M62 96h36" stroke="#24343b" stroke-width="4" stroke-linecap="round"/>
-  <circle cx="112" cy="33" r="16" fill="#f15f4b"/>
-  <path d="M104 25l16 16M120 25l-16 16" stroke="#fff" stroke-width="4" stroke-linecap="round"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 220 160" role="img" aria-labelledby="title desc">
+  <title id="title">Avoid alcohol</title>
+  <desc id="desc">A large bottle and glass crossed out with a red prohibition mark.</desc>
+  <rect width="220" height="160" rx="18" fill="#fff8f5"/>
+  <rect x="14" y="14" width="192" height="132" rx="16" fill="#ffffff" stroke="#d8e2e7" stroke-width="2"/>
+  <path d="M72 31h32v25c0 9 10 12 10 27v42c0 8-6 14-14 14H76c-8 0-14-6-14-14V83c0-15 10-18 10-27V31Z" fill="#75b7da" stroke="#1f2b32" stroke-width="5" stroke-linejoin="round"/>
+  <rect x="76" y="19" width="24" height="18" rx="4" fill="#2d6cb3" stroke="#1f2b32" stroke-width="4"/>
+  <rect x="74" y="77" width="28" height="34" rx="5" fill="#ffffff" stroke="#1f2b32" stroke-width="4"/>
+  <path d="M134 65h39l-8 67h-23l-8-67Z" fill="#f6c36c" stroke="#1f2b32" stroke-width="5" stroke-linejoin="round"/>
+  <path d="M141 84h25" stroke="#ffffff" stroke-width="7" stroke-linecap="round"/>
+  <circle cx="112" cy="82" r="61" fill="none" stroke="#d94435" stroke-width="12"/>
+  <path d="M68 38 156 126" stroke="#d94435" stroke-width="13" stroke-linecap="round"/>
 </svg>

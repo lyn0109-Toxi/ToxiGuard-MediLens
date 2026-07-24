@@ -1,10 +1,13 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 120" role="img" aria-label="Allergic reaction warning">
-  <rect width="160" height="120" rx="18" fill="#fff6f7"/>
-  <circle cx="80" cy="57" r="34" fill="#ffd7df" stroke="#24343b" stroke-width="4"/>
-  <path d="M64 54h1M95 54h1" stroke="#24343b" stroke-width="7" stroke-linecap="round"/>
-  <path d="M67 75c8 6 18 6 26 0" fill="none" stroke="#24343b" stroke-width="4" stroke-linecap="round"/>
-  <path d="M39 39l16 16M121 39l-16 16" stroke="#c84c3e" stroke-width="5" stroke-linecap="round"/>
-  <path d="M46 87c-7-5-10-12-8-21M114 87c7-5 10-12 8-21" fill="none" stroke="#c84c3e" stroke-width="5" stroke-linecap="round"/>
-  <circle cx="109" cy="77" r="9" fill="#f15f4b"/>
-  <circle cx="51" cy="77" r="9" fill="#f15f4b"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 220 160" role="img" aria-labelledby="title desc">
+  <title id="title">Severe allergy warning</title>
+  <desc id="desc">A face with swelling and breathing warning marks.</desc>
+  <rect width="220" height="160" rx="18" fill="#f4f9fd"/>
+  <rect x="14" y="14" width="192" height="132" rx="16" fill="#ffffff" stroke="#d8e2e7" stroke-width="2"/>
+  <circle cx="94" cy="78" r="43" fill="#ffe0bf" stroke="#1f2b32" stroke-width="5"/>
+  <path d="M68 64c7-6 15-6 22 0M99 64c7-6 15-6 22 0" fill="none" stroke="#1f2b32" stroke-width="5" stroke-linecap="round"/>
+  <ellipse cx="97" cy="96" rx="23" ry="10" fill="#d94435" stroke="#1f2b32" stroke-width="4"/>
+  <path d="M154 48c20 21 21 43 0 64M171 36c30 31 31 63 0 94" fill="none" stroke="#2d6cb3" stroke-width="7" stroke-linecap="round"/>
+  <path d="M154 111h38l-19 32-19-32Z" fill="#fde5e0" stroke="#d94435" stroke-width="5" stroke-linejoin="round"/>
+  <path d="M173 120v9" stroke="#d94435" stroke-width="5" stroke-linecap="round"/>
+  <circle cx="173" cy="135" r="3.5" fill="#d94435"/>
 </svg>
