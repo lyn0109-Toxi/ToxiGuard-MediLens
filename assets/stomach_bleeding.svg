@@ -1,12 +1,15 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 220 160" role="img" aria-labelledby="title desc">
-  <title id="title">Stomach bleeding warning</title>
-  <desc id="desc">A stomach with a red blood drop and urgent warning mark.</desc>
-  <rect width="220" height="160" rx="18" fill="#fff8f5"/>
-  <rect x="14" y="14" width="192" height="132" rx="16" fill="#ffffff" stroke="#d8e2e7" stroke-width="2"/>
-  <path d="M101 33c0 24-17 30-17 51 0 27 21 49 51 49 28 0 48-17 48-42 0-27-23-43-51-36-5-8-9-15-9-22" fill="#ffe0bf" stroke="#1f2b32" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
-  <path d="M114 80c12-6 30-4 40 5" fill="none" stroke="#d9821f" stroke-width="6" stroke-linecap="round"/>
-  <path d="M67 70c13 16 21 28 21 40 0 13-11 24-24 24s-24-11-24-24c0-12 11-26 27-40Z" fill="#d94435" stroke="#1f2b32" stroke-width="5" stroke-linejoin="round"/>
-  <path d="M158 33h46l-23 40-23-40Z" fill="#fde5e0" stroke="#d94435" stroke-width="5" stroke-linejoin="round"/>
-  <path d="M181 43v13" stroke="#d94435" stroke-width="5" stroke-linecap="round"/>
-  <circle cx="181" cy="63" r="3.5" fill="#d94435"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 230" role="img" aria-labelledby="title desc">
+  <title id="title">Stomach bleeding warning card</title>
+  <desc id="desc">A stomach, blood drop, and urgent warning mark in a medication safety card.</desc>
+  <rect width="320" height="230" rx="22" fill="#fffdf9"/>
+  <rect x="16" y="16" width="288" height="198" rx="20" fill="#ffffff" stroke="#b9b2a9" stroke-width="3"/>
+  <path d="M51 184c44 12 144 15 220 2" fill="none" stroke="#ffd9cd" stroke-width="21" stroke-linecap="round"/>
+  <rect x="48" y="63" width="58" height="84" rx="13" fill="#ffc27a" stroke="#5d5348" stroke-width="5"/>
+  <rect x="60" y="43" width="36" height="23" rx="6" fill="#e4edf7" stroke="#5d5348" stroke-width="5"/>
+  <path d="M77 94v18M68 103h18" stroke="#65ad74" stroke-width="6" stroke-linecap="round"/>
+  <path d="M145 48c0 27-19 34-19 57 0 31 25 56 58 56 31 0 54-20 54-48 0-31-25-49-58-41-6-9-10-18-10-24" fill="#ffd9b7" stroke="#5d5348" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M159 104c15-7 36-5 48 6" fill="none" stroke="#d98a2b" stroke-width="7" stroke-linecap="round"/>
+  <path d="M97 100c16 19 26 34 26 49 0 15-13 28-28 28s-28-13-28-28c0-15 13-32 30-49Z" fill="#e55b49" stroke="#5d5348" stroke-width="5" stroke-linejoin="round"/>
+  <path d="M232 45h48l-24 42-24-42Z" fill="#ffe49a" stroke="#5d5348" stroke-width="5" stroke-linejoin="round"/>
+  <path d="M256 56v14" stroke="#5d5348" stroke-width="6" stroke-linecap="round"/><circle cx="256" cy="78" r="4" fill="#5d5348"/>
 </svg>

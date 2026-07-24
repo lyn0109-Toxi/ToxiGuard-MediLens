@@ -1,13 +1,23 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 220 160" role="img" aria-labelledby="title desc">
-  <title id="title">Avoid grapefruit</title>
-  <desc id="desc">Grapefruit halves crossed out with a red prohibition mark.</desc>
-  <rect width="220" height="160" rx="18" fill="#fff8ed"/>
-  <rect x="14" y="14" width="192" height="132" rx="16" fill="#ffffff" stroke="#d8e2e7" stroke-width="2"/>
-  <circle cx="91" cy="82" r="48" fill="#f7b44b" stroke="#1f2b32" stroke-width="6"/>
-  <circle cx="91" cy="82" r="34" fill="#f26f7f" stroke="#ffffff" stroke-width="5"/>
-  <path d="M91 49v66M58 82h66M68 59l46 46M114 59l-46 46" stroke="#ffffff" stroke-width="5" stroke-linecap="round"/>
-  <circle cx="139" cy="99" r="27" fill="#f7b44b" stroke="#1f2b32" stroke-width="6"/>
-  <path d="M139 77v43M118 99h43M124 84l30 30M154 84l-30 30" stroke="#ffffff" stroke-width="4" stroke-linecap="round"/>
-  <circle cx="111" cy="82" r="62" fill="none" stroke="#d94435" stroke-width="12"/>
-  <path d="M66 37 156 127" stroke="#d94435" stroke-width="13" stroke-linecap="round"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 230" role="img" aria-labelledby="title desc">
+  <title id="title">Grapefruit medicine warning card</title>
+  <desc id="desc">A friendly medicine bottle next to grapefruit, with a red avoid mark and warning strip.</desc>
+  <rect width="320" height="230" rx="22" fill="#fffdf9"/>
+  <rect x="16" y="16" width="288" height="198" rx="20" fill="#ffffff" stroke="#b9b2a9" stroke-width="3"/>
+  <path d="M48 183c42 13 139 15 223 3" fill="none" stroke="#ffe3d5" stroke-width="20" stroke-linecap="round"/>
+  <rect x="60" y="67" width="64" height="88" rx="14" fill="#ffe0a8" stroke="#5d5348" stroke-width="5"/>
+  <rect x="72" y="46" width="40" height="24" rx="6" fill="#dcebf8" stroke="#5d5348" stroke-width="5"/>
+  <rect x="72" y="92" width="40" height="34" rx="6" fill="#ffffff" stroke="#5d5348" stroke-width="4"/>
+  <path d="M92 101v16M84 109h16" stroke="#65ad74" stroke-width="6" stroke-linecap="round"/>
+  <circle cx="171" cy="109" r="54" fill="#f7b95a" stroke="#5d5348" stroke-width="5"/>
+  <circle cx="171" cy="109" r="39" fill="#ff8391" stroke="#fff4e9" stroke-width="6"/>
+  <path d="M171 72v74M134 109h74M145 83l52 52M197 83l-52 52" stroke="#fff4e9" stroke-width="5" stroke-linecap="round"/>
+  <circle cx="229" cy="125" r="31" fill="#f7b95a" stroke="#5d5348" stroke-width="5"/>
+  <path d="M229 99v52M203 125h52M211 107l36 36M247 107l-36 36" stroke="#fff4e9" stroke-width="4" stroke-linecap="round"/>
+  <path d="M194 50c10 3 18 1 26-8" fill="none" stroke="#6baa5c" stroke-width="6" stroke-linecap="round"/>
+  <circle cx="160" cy="112" r="4" fill="#5d5348"/><circle cx="183" cy="112" r="4" fill="#5d5348"/>
+  <path d="M160 130c8 6 17 6 25 0" fill="none" stroke="#5d5348" stroke-width="4" stroke-linecap="round"/>
+  <circle cx="160" cy="108" r="78" fill="none" stroke="#e55b49" stroke-width="12"/>
+  <path d="M104 52 217 166" stroke="#e55b49" stroke-width="13" stroke-linecap="round"/>
+  <path d="M248 44h36l-18 32-18-32Z" fill="#ffe49a" stroke="#5d5348" stroke-width="4" stroke-linejoin="round"/>
+  <path d="M266 52v11" stroke="#5d5348" stroke-width="5" stroke-linecap="round"/><circle cx="266" cy="69" r="3" fill="#5d5348"/>
 </svg>

@@ -1,13 +1,14 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 220 160" role="img" aria-labelledby="title desc">
-  <title id="title">Review the source label</title>
-  <desc id="desc">A medicine label document under a magnifying glass.</desc>
-  <rect width="220" height="160" rx="18" fill="#f4f9fd"/>
-  <rect x="14" y="14" width="192" height="132" rx="16" fill="#ffffff" stroke="#d8e2e7" stroke-width="2"/>
-  <path d="M58 31h78l26 26v70H58V31Z" fill="#ffffff" stroke="#1f2b32" stroke-width="6" stroke-linejoin="round"/>
-  <path d="M136 31v28h26" fill="#e7f0fa" stroke="#1f2b32" stroke-width="6" stroke-linejoin="round"/>
-  <rect x="75" y="56" width="44" height="18" rx="9" fill="#dff4ed" stroke="#1f2b32" stroke-width="4"/>
-  <path d="M78 91h60M78 108h47" stroke="#61707c" stroke-width="6" stroke-linecap="round"/>
-  <circle cx="145" cy="104" r="25" fill="none" stroke="#2d6cb3" stroke-width="8"/>
-  <path d="M163 122l25 25" stroke="#2d6cb3" stroke-width="8" stroke-linecap="round"/>
-  <path d="M147 92v25M134 104h26" stroke="#d94435" stroke-width="6" stroke-linecap="round"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 230" role="img" aria-labelledby="title desc">
+  <title id="title">Review official label card</title>
+  <desc id="desc">Official medication label, magnifier, and source check symbol.</desc>
+  <rect width="320" height="230" rx="22" fill="#fffdf9"/>
+  <rect x="16" y="16" width="288" height="198" rx="20" fill="#ffffff" stroke="#b9b2a9" stroke-width="3"/>
+  <path d="M51 184c44 12 144 15 219 2" fill="none" stroke="#dbeeff" stroke-width="21" stroke-linecap="round"/>
+  <path d="M78 42h111l38 39v99H78V42Z" fill="#ffffff" stroke="#5d5348" stroke-width="6" stroke-linejoin="round"/>
+  <path d="M189 42v41h38" fill="#dbeeff" stroke="#5d5348" stroke-width="6" stroke-linejoin="round"/>
+  <rect x="100" y="78" width="63" height="27" rx="14" fill="#dff2e8" stroke="#5d5348" stroke-width="5"/>
+  <path d="M103 129h86M103 153h67" stroke="#9f9a91" stroke-width="7" stroke-linecap="round"/>
+  <circle cx="215" cy="148" r="36" fill="none" stroke="#70aee8" stroke-width="9"/>
+  <path d="M241 174l35 35" stroke="#70aee8" stroke-width="9" stroke-linecap="round"/>
+  <path d="M215 131v34M198 148h34" stroke="#e55b49" stroke-width="7" stroke-linecap="round"/>
 </svg>

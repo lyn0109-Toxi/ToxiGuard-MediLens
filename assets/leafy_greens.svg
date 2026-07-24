@@ -1,13 +1,19 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 220 160" role="img" aria-labelledby="title desc">
-  <title id="title">Keep vitamin K intake consistent</title>
-  <desc id="desc">Leafy greens with a vitamin K badge and steady arrows.</desc>
-  <rect width="220" height="160" rx="18" fill="#f2fbf6"/>
-  <rect x="14" y="14" width="192" height="132" rx="16" fill="#ffffff" stroke="#d8e2e7" stroke-width="2"/>
-  <path d="M75 124c-22-30-16-68 22-92 14 37 8 72-22 92Z" fill="#62b572" stroke="#1f2b32" stroke-width="5" stroke-linejoin="round"/>
-  <path d="M111 126c-28-25-29-67 4-96 20 33 22 70-4 96Z" fill="#2e8f65" stroke="#1f2b32" stroke-width="5" stroke-linejoin="round"/>
-  <path d="M144 124c-12-34-1-67 33-87 11 37-1 69-33 87Z" fill="#8dca72" stroke="#1f2b32" stroke-width="5" stroke-linejoin="round"/>
-  <path d="M75 124c19-25 26-55 22-92M111 126c9-32 10-64 4-96M144 124c18-25 28-53 33-87" fill="none" stroke="#ffffff" stroke-width="4" stroke-linecap="round"/>
-  <circle cx="53" cy="52" r="25" fill="#dff4ed" stroke="#207a5a" stroke-width="6"/>
-  <text x="53" y="60" text-anchor="middle" font-family="Arial, sans-serif" font-size="26" font-weight="800" fill="#207a5a">K</text>
-  <path d="M44 123h42M76 114l12 9-12 9M176 123h-42M144 114l-12 9 12 9" fill="none" stroke="#2d6cb3" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 230" role="img" aria-labelledby="title desc">
+  <title id="title">Vitamin K consistency card</title>
+  <desc id="desc">Warfarin-style tablets and leafy greens with steady arrows for consistent intake.</desc>
+  <rect width="320" height="230" rx="22" fill="#fffdf9"/>
+  <rect x="16" y="16" width="288" height="198" rx="20" fill="#ffffff" stroke="#b9b2a9" stroke-width="3"/>
+  <path d="M54 184c44 13 138 14 217 2" fill="none" stroke="#ddf3d0" stroke-width="21" stroke-linecap="round"/>
+  <rect x="56" y="74" width="50" height="82" rx="10" fill="#ffffff" stroke="#5d5348" stroke-width="5"/>
+  <g fill="#ffe3e6" stroke="#5d5348" stroke-width="3">
+    <circle cx="72" cy="91" r="6"/><circle cx="90" cy="91" r="6"/><circle cx="72" cy="111" r="6"/><circle cx="90" cy="111" r="6"/>
+    <circle cx="72" cy="131" r="6"/><circle cx="90" cy="131" r="6"/>
+  </g>
+  <path d="M139 162c-24-32-20-74 18-103 17 42 10 80-18 103Z" fill="#6fbe70" stroke="#5d5348" stroke-width="5" stroke-linejoin="round"/>
+  <path d="M181 163c-30-28-31-76 5-108 23 39 23 82-5 108Z" fill="#2e9b68" stroke="#5d5348" stroke-width="5" stroke-linejoin="round"/>
+  <path d="M224 160c-14-38-2-77 35-100 13 43-1 78-35 100Z" fill="#95ca66" stroke="#5d5348" stroke-width="5" stroke-linejoin="round"/>
+  <path d="M139 162c18-30 23-65 18-103M181 163c9-38 10-76 5-108M224 160c20-30 31-63 35-100" stroke="#ffffff" stroke-width="4" stroke-linecap="round"/>
+  <circle cx="128" cy="57" r="24" fill="#e4f4d7" stroke="#5d5348" stroke-width="5"/>
+  <text x="128" y="66" text-anchor="middle" font-family="Arial, sans-serif" font-size="28" font-weight="800" fill="#39805a">K</text>
+  <path d="M64 184h50M100 174l14 10-14 10M258 184h-50M222 174l-14 10 14 10" fill="none" stroke="#70aee8" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
 </svg>

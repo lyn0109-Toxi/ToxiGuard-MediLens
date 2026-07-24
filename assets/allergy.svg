@@ -1,13 +1,16 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 220 160" role="img" aria-labelledby="title desc">
-  <title id="title">Severe allergy warning</title>
-  <desc id="desc">A face with swelling and breathing warning marks.</desc>
-  <rect width="220" height="160" rx="18" fill="#f4f9fd"/>
-  <rect x="14" y="14" width="192" height="132" rx="16" fill="#ffffff" stroke="#d8e2e7" stroke-width="2"/>
-  <circle cx="94" cy="78" r="43" fill="#ffe0bf" stroke="#1f2b32" stroke-width="5"/>
-  <path d="M68 64c7-6 15-6 22 0M99 64c7-6 15-6 22 0" fill="none" stroke="#1f2b32" stroke-width="5" stroke-linecap="round"/>
-  <ellipse cx="97" cy="96" rx="23" ry="10" fill="#d94435" stroke="#1f2b32" stroke-width="4"/>
-  <path d="M154 48c20 21 21 43 0 64M171 36c30 31 31 63 0 94" fill="none" stroke="#2d6cb3" stroke-width="7" stroke-linecap="round"/>
-  <path d="M154 111h38l-19 32-19-32Z" fill="#fde5e0" stroke="#d94435" stroke-width="5" stroke-linejoin="round"/>
-  <path d="M173 120v9" stroke="#d94435" stroke-width="5" stroke-linecap="round"/>
-  <circle cx="173" cy="135" r="3.5" fill="#d94435"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 230" role="img" aria-labelledby="title desc">
+  <title id="title">Severe allergy red flag card</title>
+  <desc id="desc">Medicine, swollen face, breathing signal, and urgent warning mark.</desc>
+  <rect width="320" height="230" rx="22" fill="#fffdf9"/>
+  <rect x="16" y="16" width="288" height="198" rx="20" fill="#ffffff" stroke="#b9b2a9" stroke-width="3"/>
+  <path d="M51 184c44 12 143 15 219 2" fill="none" stroke="#ffd9cd" stroke-width="21" stroke-linecap="round"/>
+  <rect x="47" y="65" width="55" height="81" rx="12" fill="#dbeeff" stroke="#5d5348" stroke-width="5"/>
+  <rect x="58" y="45" width="34" height="23" rx="6" fill="#70aee8" stroke="#5d5348" stroke-width="5"/>
+  <path d="M74 94v17M66 103h17" stroke="#65ad74" stroke-width="6" stroke-linecap="round"/>
+  <circle cx="159" cy="112" r="55" fill="#ffd9b7" stroke="#5d5348" stroke-width="6"/>
+  <path d="M127 96c9-8 20-8 29 0M164 96c9-8 20-8 29 0" fill="none" stroke="#5d5348" stroke-width="6" stroke-linecap="round"/>
+  <ellipse cx="160" cy="135" rx="30" ry="14" fill="#e55b49" stroke="#5d5348" stroke-width="5"/>
+  <path d="M233 76c25 28 25 58 0 87M255 59c37 39 37 82 0 122" fill="none" stroke="#70aee8" stroke-width="8" stroke-linecap="round"/>
+  <path d="M228 154h49l-25 43-24-43Z" fill="#ffe3e6" stroke="#e55b49" stroke-width="6" stroke-linejoin="round"/>
+  <path d="M252 166v14" stroke="#e55b49" stroke-width="6" stroke-linecap="round"/><circle cx="252" cy="188" r="4" fill="#e55b49"/>
 </svg>

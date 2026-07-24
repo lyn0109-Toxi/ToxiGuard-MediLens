@@ -1,15 +1,18 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 220 160" role="img" aria-labelledby="title desc">
-  <title id="title">Blood pressure caution</title>
-  <desc id="desc">A blood pressure cuff and gauge with a warning mark.</desc>
-  <rect width="220" height="160" rx="18" fill="#f4f9fd"/>
-  <rect x="14" y="14" width="192" height="132" rx="16" fill="#ffffff" stroke="#d8e2e7" stroke-width="2"/>
-  <rect x="38" y="57" width="66" height="58" rx="14" fill="#2d6cb3" stroke="#1f2b32" stroke-width="5"/>
-  <path d="M104 86h24c13 0 20-8 20-18" fill="none" stroke="#1f2b32" stroke-width="7" stroke-linecap="round"/>
-  <circle cx="152" cy="66" r="29" fill="#ffffff" stroke="#1f2b32" stroke-width="5"/>
-  <path d="M152 66l15-12" stroke="#d94435" stroke-width="6" stroke-linecap="round"/>
-  <path d="M137 73h30" stroke="#d8e2e7" stroke-width="4" stroke-linecap="round"/>
-  <path d="M70 70v31" stroke="#ffffff" stroke-width="7" stroke-linecap="round"/>
-  <path d="M154 98h42l-21 36-21-36Z" fill="#fff2d7" stroke="#d9821f" stroke-width="5" stroke-linejoin="round"/>
-  <path d="M175 108v11" stroke="#d9821f" stroke-width="5" stroke-linecap="round"/>
-  <circle cx="175" cy="126" r="3.5" fill="#d9821f"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 230" role="img" aria-labelledby="title desc">
+  <title id="title">Blood pressure caution card</title>
+  <desc id="desc">Blood pressure cuff, medicine, gauge, and caution symbol.</desc>
+  <rect width="320" height="230" rx="22" fill="#fffdf9"/>
+  <rect x="16" y="16" width="288" height="198" rx="20" fill="#ffffff" stroke="#b9b2a9" stroke-width="3"/>
+  <path d="M51 184c45 12 143 15 219 2" fill="none" stroke="#ffe8c9" stroke-width="21" stroke-linecap="round"/>
+  <rect x="47" y="66" width="55" height="81" rx="12" fill="#ffe0a8" stroke="#5d5348" stroke-width="5"/>
+  <rect x="58" y="46" width="34" height="23" rx="6" fill="#e4edf7" stroke="#5d5348" stroke-width="5"/>
+  <path d="M74 95v17M66 104h17" stroke="#65ad74" stroke-width="6" stroke-linecap="round"/>
+  <rect x="123" y="90" width="87" height="75" rx="18" fill="#70aee8" stroke="#5d5348" stroke-width="6"/>
+  <path d="M210 128h34c18 0 27-11 27-25" fill="none" stroke="#5d5348" stroke-width="8" stroke-linecap="round"/>
+  <circle cx="250" cy="100" r="38" fill="#ffffff" stroke="#5d5348" stroke-width="6"/>
+  <path d="M250 100l22-17" stroke="#e55b49" stroke-width="7" stroke-linecap="round"/>
+  <path d="M230 111h40" stroke="#d8e2e7" stroke-width="5" stroke-linecap="round"/>
+  <path d="M165 107v42" stroke="#ffffff" stroke-width="9" stroke-linecap="round"/>
+  <path d="M231 151h51l-26 45-25-45Z" fill="#ffe49a" stroke="#5d5348" stroke-width="5" stroke-linejoin="round"/>
+  <path d="M256 163v14" stroke="#5d5348" stroke-width="6" stroke-linecap="round"/><circle cx="256" cy="185" r="4" fill="#5d5348"/>
 </svg>

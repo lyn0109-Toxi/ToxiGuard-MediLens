@@ -1,14 +1,17 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 220 160" role="img" aria-labelledby="title desc">
-  <title id="title">Severe muscle pain red flag</title>
-  <desc id="desc">A flexed arm with sharp pain bolts and an emergency marker.</desc>
-  <rect width="220" height="160" rx="18" fill="#fff8f5"/>
-  <rect x="14" y="14" width="192" height="132" rx="16" fill="#ffffff" stroke="#d8e2e7" stroke-width="2"/>
-  <path d="M55 106c24-1 36-12 43-30 5-14 17-25 33-25 18 0 33 13 33 31 0 14-9 25-22 30l-27 10c-25 9-48 6-60-16Z" fill="#ffe0bf" stroke="#1f2b32" stroke-width="6" stroke-linejoin="round"/>
-  <path d="M92 78c19 2 36 12 44 34" fill="none" stroke="#d9821f" stroke-width="7" stroke-linecap="round"/>
-  <rect x="36" y="89" width="42" height="34" rx="12" fill="#ffe0bf" stroke="#1f2b32" stroke-width="6"/>
-  <path d="M142 34l-18 28h17l-24 36" fill="none" stroke="#d94435" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
-  <path d="M170 51l-13 20h13l-18 27" fill="none" stroke="#d94435" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
-  <circle cx="176" cy="116" r="21" fill="#fde5e0" stroke="#d94435" stroke-width="6"/>
-  <path d="M176 105v15" stroke="#d94435" stroke-width="6" stroke-linecap="round"/>
-  <circle cx="176" cy="128" r="4" fill="#d94435"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 230" role="img" aria-labelledby="title desc">
+  <title id="title">Muscle pain red flag card</title>
+  <desc id="desc">Flexed arm, medicine bottle, pain bolts, and urgent mark for muscle symptoms.</desc>
+  <rect width="320" height="230" rx="22" fill="#fffdf9"/>
+  <rect x="16" y="16" width="288" height="198" rx="20" fill="#ffffff" stroke="#b9b2a9" stroke-width="3"/>
+  <path d="M50 184c44 12 146 15 220 2" fill="none" stroke="#ffd9cd" stroke-width="21" stroke-linecap="round"/>
+  <rect x="47" y="63" width="55" height="80" rx="12" fill="#ffe0a8" stroke="#5d5348" stroke-width="5"/>
+  <rect x="58" y="43" width="34" height="23" rx="6" fill="#e4edf7" stroke="#5d5348" stroke-width="5"/>
+  <path d="M74 92v17M66 101h17" stroke="#65ad74" stroke-width="6" stroke-linecap="round"/>
+  <path d="M94 146c34-2 51-17 61-43 7-20 25-35 47-35 25 0 46 19 46 44 0 20-13 36-32 43l-39 15c-36 13-69 9-83-24Z" fill="#ffd9b7" stroke="#5d5348" stroke-width="6" stroke-linejoin="round"/>
+  <path d="M151 104c26 3 48 19 59 52" fill="none" stroke="#d98a2b" stroke-width="8" stroke-linecap="round"/>
+  <rect x="65" y="124" width="57" height="44" rx="15" fill="#ffd9b7" stroke="#5d5348" stroke-width="6"/>
+  <path d="M211 40l-22 34h21l-31 48" fill="none" stroke="#e55b49" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M248 58l-16 24h16l-23 36" fill="none" stroke="#e55b49" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+  <circle cx="248" cy="156" r="27" fill="#ffe3e6" stroke="#e55b49" stroke-width="6"/>
+  <path d="M248 141v20" stroke="#e55b49" stroke-width="7" stroke-linecap="round"/><circle cx="248" cy="171" r="5" fill="#e55b49"/>
 </svg>

@@ -81,7 +81,7 @@ UI = {
         "context_selected": "선택한 상황",
         "items": "개",
         "image_map": "이미지 체크맵",
-        "image_map_copy": "그림을 먼저 보고, 필요한 항목만 빠르게 확인하세요.",
+        "image_map_copy": "약과 음식/조건 조합을 그림으로 먼저 보고, 필요한 항목만 빠르게 확인하세요.",
     },
     "en": {
         "language": "Language",
@@ -141,7 +141,7 @@ UI = {
         "context_selected": "Selected context",
         "items": "items",
         "image_map": "Image-first check map",
-        "image_map_copy": "Scan the pictures first, then read only the items that matter.",
+        "image_map_copy": "Scan the medicine-food/context cards first, then read only the items that matter.",
     },
 }
 
@@ -634,9 +634,9 @@ def css() -> None:
           }
           div[data-testid="stImage"] img {
             border-radius: 8px;
-            border: 2px solid #cbd8df;
-            background: #fff;
-            box-shadow: 0 10px 20px rgba(22,38,46,.06);
+            border: 2px solid #c9c1b8;
+            background: #fffdf9;
+            box-shadow: 0 12px 24px rgba(92,76,60,.08);
           }
           div[data-testid="stMetricValue"] {
             font-size: 18px;
@@ -756,7 +756,7 @@ def card(title: str, body: str, severity: str, lang: str, source: str | None = N
     image_path = visual_image_path({"title": title, "body": body, "severity": severity, "tags": tags or []})
 
     with st.container(border=True):
-        image_col, text_col = st.columns([0.36, 0.64], gap="medium", vertical_alignment="center")
+        image_col, text_col = st.columns([0.44, 0.56], gap="medium", vertical_alignment="center")
         with image_col:
             if image_path.exists():
                 st.image(str(image_path), width="stretch")
@@ -820,6 +820,8 @@ def render_image_check_map(drug: dict[str, Any], cards: list[dict[str, Any]], la
                         color=SEVERITY_COLORS.get(severity, "gray"),
                     )
                     st.markdown(f"**{l(item.get('title', ''), lang)}**")
+                    if item.get("body"):
+                        st.caption(l(item["body"], lang))
 
 
 def render_visual_overview(

@@ -1,15 +1,15 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 220 160" role="img" aria-labelledby="title desc">
-  <title id="title">Driving and machinery caution</title>
-  <desc id="desc">A car and steering wheel with a yellow caution triangle.</desc>
-  <rect width="220" height="160" rx="18" fill="#fff8ed"/>
-  <rect x="14" y="14" width="192" height="132" rx="16" fill="#ffffff" stroke="#d8e2e7" stroke-width="2"/>
-  <path d="M45 86l17-31h82l21 31v30H45V86Z" fill="#75b7da" stroke="#1f2b32" stroke-width="6" stroke-linejoin="round"/>
-  <path d="M72 63h61l12 22H61l11-22Z" fill="#ffffff" stroke="#1f2b32" stroke-width="5" stroke-linejoin="round"/>
-  <circle cx="72" cy="116" r="13" fill="#1f2b32"/>
-  <circle cx="139" cy="116" r="13" fill="#1f2b32"/>
-  <circle cx="104" cy="97" r="23" fill="none" stroke="#1f2b32" stroke-width="6"/>
-  <path d="M104 98v19M88 90l16 8 16-8" fill="none" stroke="#1f2b32" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
-  <path d="M152 34h44l-22 38-22-38Z" fill="#fff2d7" stroke="#d9821f" stroke-width="5" stroke-linejoin="round"/>
-  <path d="M174 44v12" stroke="#d9821f" stroke-width="5" stroke-linecap="round"/>
-  <circle cx="174" cy="62" r="3.5" fill="#d9821f"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 230" role="img" aria-labelledby="title desc">
+  <title id="title">Driving and machinery caution card</title>
+  <desc id="desc">Car, steering wheel, sleep marks, and caution badge for driving safety.</desc>
+  <rect width="320" height="230" rx="22" fill="#fffdf9"/>
+  <rect x="16" y="16" width="288" height="198" rx="20" fill="#ffffff" stroke="#b9b2a9" stroke-width="3"/>
+  <path d="M50 184c45 12 145 15 219 2" fill="none" stroke="#ffe8c9" stroke-width="21" stroke-linecap="round"/>
+  <path d="M56 121l24-43h116l29 43v42H56v-42Z" fill="#93c9ec" stroke="#5d5348" stroke-width="6" stroke-linejoin="round"/>
+  <path d="M93 89h85l17 31H76l17-31Z" fill="#ffffff" stroke="#5d5348" stroke-width="5" stroke-linejoin="round"/>
+  <circle cx="91" cy="164" r="16" fill="#5d5348"/><circle cx="190" cy="164" r="16" fill="#5d5348"/>
+  <circle cx="142" cy="136" r="28" fill="none" stroke="#5d5348" stroke-width="7"/>
+  <path d="M142 137v23M122 127l20 10 20-10" fill="none" stroke="#5d5348" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M224 61h47l-24 41-23-41Z" fill="#ffe49a" stroke="#5d5348" stroke-width="5" stroke-linejoin="round"/>
+  <path d="M247 72v14" stroke="#5d5348" stroke-width="6" stroke-linecap="round"/><circle cx="247" cy="94" r="4" fill="#5d5348"/>
+  <path d="M221 42h30M228 31h30M235 20h30" stroke="#9f9a91" stroke-width="6" stroke-linecap="round"/>
 </svg>

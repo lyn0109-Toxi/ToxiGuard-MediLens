@@ -1,14 +1,17 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 220 160" role="img" aria-labelledby="title desc">
-  <title id="title">Digestive discomfort</title>
-  <desc id="desc">A stomach pictogram with nausea bubbles and a mild information marker.</desc>
-  <rect width="220" height="160" rx="18" fill="#f4f9fd"/>
-  <rect x="14" y="14" width="192" height="132" rx="16" fill="#ffffff" stroke="#d8e2e7" stroke-width="2"/>
-  <path d="M97 35c0 22-15 28-15 47 0 25 20 45 48 45 25 0 43-16 43-38 0-24-20-39-46-34-5-7-9-14-9-20" fill="#ffe0bf" stroke="#1f2b32" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
-  <path d="M111 77c11-5 26-4 36 4" fill="none" stroke="#d9821f" stroke-width="6" stroke-linecap="round"/>
-  <circle cx="64" cy="58" r="9" fill="#dff4ed" stroke="#1f2b32" stroke-width="4"/>
-  <circle cx="48" cy="84" r="6" fill="#dff4ed" stroke="#1f2b32" stroke-width="4"/>
-  <circle cx="67" cy="105" r="5" fill="#dff4ed" stroke="#1f2b32" stroke-width="4"/>
-  <circle cx="181" cy="38" r="16" fill="#e7f0fa" stroke="#2d6cb3" stroke-width="5"/>
-  <path d="M181 34v18" stroke="#2d6cb3" stroke-width="5" stroke-linecap="round"/>
-  <circle cx="181" cy="27" r="3" fill="#2d6cb3"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 230" role="img" aria-labelledby="title desc">
+  <title id="title">Digestive side effect card</title>
+  <desc id="desc">Medicine, stomach, and nausea bubbles for digestive discomfort.</desc>
+  <rect width="320" height="230" rx="22" fill="#fffdf9"/>
+  <rect x="16" y="16" width="288" height="198" rx="20" fill="#ffffff" stroke="#b9b2a9" stroke-width="3"/>
+  <path d="M51 184c44 12 143 15 219 2" fill="none" stroke="#dbeeff" stroke-width="21" stroke-linecap="round"/>
+  <rect x="47" y="65" width="55" height="81" rx="12" fill="#dbeeff" stroke="#5d5348" stroke-width="5"/>
+  <rect x="58" y="45" width="34" height="23" rx="6" fill="#70aee8" stroke="#5d5348" stroke-width="5"/>
+  <path d="M74 94v17M66 103h17" stroke="#65ad74" stroke-width="6" stroke-linecap="round"/>
+  <path d="M153 49c0 30-21 38-21 63 0 35 29 65 68 65 35 0 61-23 61-55 0-35-30-57-66-48-7-10-12-21-12-25" fill="#ffd9b7" stroke="#5d5348" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M169 111c16-8 39-6 53 6" fill="none" stroke="#d98a2b" stroke-width="7" stroke-linecap="round"/>
+  <circle cx="112" cy="90" r="12" fill="#dff2e8" stroke="#5d5348" stroke-width="4"/>
+  <circle cx="91" cy="121" r="8" fill="#dff2e8" stroke="#5d5348" stroke-width="4"/>
+  <circle cx="114" cy="148" r="7" fill="#dff2e8" stroke="#5d5348" stroke-width="4"/>
+  <circle cx="258" cy="57" r="21" fill="#dbeeff" stroke="#70aee8" stroke-width="6"/>
+  <path d="M258 47v22" stroke="#70aee8" stroke-width="6" stroke-linecap="round"/><circle cx="258" cy="38" r="4" fill="#70aee8"/>
 </svg>

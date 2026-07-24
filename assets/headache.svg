@@ -1,13 +1,16 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 220 160" role="img" aria-labelledby="title desc">
-  <title id="title">Headache</title>
-  <desc id="desc">A head silhouette with bold pain bolts near the forehead.</desc>
-  <rect width="220" height="160" rx="18" fill="#f4f9fd"/>
-  <rect x="14" y="14" width="192" height="132" rx="16" fill="#ffffff" stroke="#d8e2e7" stroke-width="2"/>
-  <path d="M96 35c-25 0-45 20-45 46 0 18 9 32 23 40v18h53v-29h16c6 0 9-7 5-12l-11-16c1-27-16-47-41-47Z" fill="#e7f0fa" stroke="#1f2b32" stroke-width="6" stroke-linejoin="round"/>
-  <circle cx="89" cy="83" r="5" fill="#1f2b32"/>
-  <path d="M132 41l-18 22h17l-22 30" fill="none" stroke="#d94435" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
-  <path d="M154 56l-14 17h13l-17 25" fill="none" stroke="#d9821f" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
-  <circle cx="174" cy="119" r="17" fill="#e7f0fa" stroke="#2d6cb3" stroke-width="5"/>
-  <path d="M174 115v18" stroke="#2d6cb3" stroke-width="5" stroke-linecap="round"/>
-  <circle cx="174" cy="108" r="3" fill="#2d6cb3"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 230" role="img" aria-labelledby="title desc">
+  <title id="title">Headache side effect card</title>
+  <desc id="desc">Medicine and a head with pain bolts in a friendly counseling card.</desc>
+  <rect width="320" height="230" rx="22" fill="#fffdf9"/>
+  <rect x="16" y="16" width="288" height="198" rx="20" fill="#ffffff" stroke="#b9b2a9" stroke-width="3"/>
+  <path d="M51 184c44 12 143 15 219 2" fill="none" stroke="#dbeeff" stroke-width="21" stroke-linecap="round"/>
+  <rect x="49" y="65" width="55" height="81" rx="12" fill="#dbeeff" stroke="#5d5348" stroke-width="5"/>
+  <rect x="60" y="45" width="34" height="23" rx="6" fill="#70aee8" stroke="#5d5348" stroke-width="5"/>
+  <path d="M76 94v17M68 103h17" stroke="#65ad74" stroke-width="6" stroke-linecap="round"/>
+  <path d="M164 54c-36 0-65 29-65 66 0 26 13 46 34 58v26h76v-42h23c8 0 13-10 7-17l-16-23c2-39-23-68-59-68Z" fill="#e7f0fa" stroke="#5d5348" stroke-width="6" stroke-linejoin="round"/>
+  <circle cx="154" cy="123" r="5" fill="#5d5348"/>
+  <path d="M209 62l-23 31h22l-31 45" fill="none" stroke="#e55b49" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M245 80l-17 23h16l-23 35" fill="none" stroke="#d98a2b" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+  <circle cx="242" cy="165" r="22" fill="#dbeeff" stroke="#70aee8" stroke-width="6"/>
+  <path d="M242 154v22" stroke="#70aee8" stroke-width="6" stroke-linecap="round"/><circle cx="242" cy="145" r="4" fill="#70aee8"/>
 </svg>

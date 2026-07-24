@@ -1,15 +1,18 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 220 160" role="img" aria-labelledby="title desc">
-  <title id="title">Avoid fruit juice with this medicine</title>
-  <desc id="desc">A large glass of juice with citrus and apple symbols crossed out.</desc>
-  <rect width="220" height="160" rx="18" fill="#fff8ed"/>
-  <rect x="14" y="14" width="192" height="132" rx="16" fill="#ffffff" stroke="#d8e2e7" stroke-width="2"/>
-  <path d="M79 46h70l-11 88H90L79 46Z" fill="#f7c15e" stroke="#1f2b32" stroke-width="6" stroke-linejoin="round"/>
-  <path d="M86 73h55" stroke="#ffffff" stroke-width="8" stroke-linecap="round"/>
-  <path d="M132 40l17-22" stroke="#1f2b32" stroke-width="6" stroke-linecap="round"/>
-  <circle cx="63" cy="106" r="20" fill="#f6a74b" stroke="#1f2b32" stroke-width="5"/>
-  <path d="M63 90v32M47 106h32" stroke="#ffffff" stroke-width="4" stroke-linecap="round"/>
-  <circle cx="154" cy="108" r="19" fill="#d94435" stroke="#1f2b32" stroke-width="5"/>
-  <path d="M154 88c6 4 12 4 18-2" fill="none" stroke="#207a5a" stroke-width="5" stroke-linecap="round"/>
-  <circle cx="111" cy="82" r="61" fill="none" stroke="#d94435" stroke-width="12"/>
-  <path d="M68 38 156 126" stroke="#d94435" stroke-width="13" stroke-linecap="round"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 230" role="img" aria-labelledby="title desc">
+  <title id="title">Fruit juice medicine warning card</title>
+  <desc id="desc">A smiling medicine bottle and fruit juice are crossed out to show reduced effect.</desc>
+  <rect width="320" height="230" rx="22" fill="#fffdf9"/>
+  <rect x="16" y="16" width="288" height="198" rx="20" fill="#ffffff" stroke="#b9b2a9" stroke-width="3"/>
+  <path d="M51 184c44 13 143 14 219 2" fill="none" stroke="#ffe8c9" stroke-width="21" stroke-linecap="round"/>
+  <rect x="54" y="70" width="58" height="83" rx="13" fill="#d9f1ff" stroke="#5d5348" stroke-width="5"/>
+  <rect x="65" y="49" width="36" height="24" rx="6" fill="#d4d7ee" stroke="#5d5348" stroke-width="5"/>
+  <path d="M73 104c7 6 14 6 21 0" fill="none" stroke="#5d5348" stroke-width="4" stroke-linecap="round"/>
+  <circle cx="74" cy="93" r="3.5" fill="#5d5348"/><circle cx="93" cy="93" r="3.5" fill="#5d5348"/>
+  <path d="M145 66h70l-13 91h-44l-13-91Z" fill="#ffc65d" stroke="#5d5348" stroke-width="5" stroke-linejoin="round"/>
+  <path d="M154 96h52" stroke="#ffffff" stroke-width="8" stroke-linecap="round"/>
+  <path d="M202 60l19-27" stroke="#5d5348" stroke-width="6" stroke-linecap="round"/>
+  <circle cx="228" cy="123" r="27" fill="#f7a34e" stroke="#5d5348" stroke-width="5"/>
+  <path d="M228 100v46M205 123h46" stroke="#fff4e9" stroke-width="4" stroke-linecap="round"/>
+  <circle cx="179" cy="111" r="78" fill="none" stroke="#e55b49" stroke-width="12"/>
+  <path d="M123 55 235 167" stroke="#e55b49" stroke-width="13" stroke-linecap="round"/>
 </svg>

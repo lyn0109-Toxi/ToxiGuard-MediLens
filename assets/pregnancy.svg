@@ -1,15 +1,18 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 220 160" role="img" aria-labelledby="title desc">
-  <title id="title">Pregnancy or breastfeeding caution</title>
-  <desc id="desc">A pregnancy pictogram with a 20 weeks plus caution badge.</desc>
-  <rect width="220" height="160" rx="18" fill="#fff8ed"/>
-  <rect x="14" y="14" width="192" height="132" rx="16" fill="#ffffff" stroke="#d8e2e7" stroke-width="2"/>
-  <circle cx="88" cy="42" r="17" fill="#ffe0bf" stroke="#1f2b32" stroke-width="5"/>
-  <path d="M70 61c22-14 52 1 48 35 19 4 28 18 25 33H76c-18-26-20-51-6-68Z" fill="#e7f0fa" stroke="#1f2b32" stroke-width="6" stroke-linejoin="round"/>
-  <path d="M113 95c-9 2-18 8-22 20" fill="none" stroke="#2d6cb3" stroke-width="6" stroke-linecap="round"/>
-  <path d="M66 85l-22 25M109 126v20M83 126l-11 20" stroke="#1f2b32" stroke-width="6" stroke-linecap="round"/>
-  <rect x="134" y="39" width="56" height="34" rx="17" fill="#fff2d7" stroke="#d9821f" stroke-width="5"/>
-  <text x="162" y="62" text-anchor="middle" font-family="Arial, sans-serif" font-size="18" font-weight="800" fill="#1f2b32">20w+</text>
-  <path d="M145 91h45l-22.5 39-22.5-39Z" fill="#fff2d7" stroke="#d9821f" stroke-width="5" stroke-linejoin="round"/>
-  <path d="M168 101v12" stroke="#d9821f" stroke-width="5" stroke-linecap="round"/>
-  <circle cx="168" cy="120" r="3.5" fill="#d9821f"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 230" role="img" aria-labelledby="title desc">
+  <title id="title">Pregnancy and breastfeeding caution card</title>
+  <desc id="desc">Pregnancy silhouette with medicine, baby bottle, and caution badge.</desc>
+  <rect width="320" height="230" rx="22" fill="#fffdf9"/>
+  <rect x="16" y="16" width="288" height="198" rx="20" fill="#ffffff" stroke="#b9b2a9" stroke-width="3"/>
+  <path d="M54 184c45 12 141 15 217 2" fill="none" stroke="#ffe8c9" stroke-width="21" stroke-linecap="round"/>
+  <circle cx="115" cy="57" r="22" fill="#ffd9b7" stroke="#5d5348" stroke-width="5"/>
+  <path d="M91 84c26-18 64 1 60 43 23 5 34 21 30 39H99c-22-32-25-62-8-82Z" fill="#dbeeff" stroke="#5d5348" stroke-width="6" stroke-linejoin="round"/>
+  <path d="M145 125c-13 3-24 13-29 28" fill="none" stroke="#70aee8" stroke-width="7" stroke-linecap="round"/>
+  <path d="M83 111 57 141M147 163v22M116 163l-14 22" stroke="#5d5348" stroke-width="7" stroke-linecap="round"/>
+  <rect x="206" y="74" width="44" height="76" rx="12" fill="#f7fbff" stroke="#5d5348" stroke-width="5"/>
+  <rect x="214" y="58" width="28" height="20" rx="5" fill="#ffd9b7" stroke="#5d5348" stroke-width="4"/>
+  <path d="M218 102h20" stroke="#70aee8" stroke-width="6" stroke-linecap="round"/>
+  <rect x="206" y="32" width="62" height="36" rx="18" fill="#ffe49a" stroke="#5d5348" stroke-width="5"/>
+  <text x="237" y="57" text-anchor="middle" font-family="Arial, sans-serif" font-size="19" font-weight="800" fill="#5d5348">20w+</text>
+  <path d="M226 160h48l-24 42-24-42Z" fill="#ffe49a" stroke="#5d5348" stroke-width="5" stroke-linejoin="round"/>
+  <path d="M250 171v14" stroke="#5d5348" stroke-width="6" stroke-linecap="round"/><circle cx="250" cy="193" r="4" fill="#5d5348"/>
 </svg>

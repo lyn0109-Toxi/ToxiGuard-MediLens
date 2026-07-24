@@ -1,13 +1,20 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 220 160" role="img" aria-labelledby="title desc">
-  <title id="title">Avoid alcohol</title>
-  <desc id="desc">A large bottle and glass crossed out with a red prohibition mark.</desc>
-  <rect width="220" height="160" rx="18" fill="#fff8f5"/>
-  <rect x="14" y="14" width="192" height="132" rx="16" fill="#ffffff" stroke="#d8e2e7" stroke-width="2"/>
-  <path d="M72 31h32v25c0 9 10 12 10 27v42c0 8-6 14-14 14H76c-8 0-14-6-14-14V83c0-15 10-18 10-27V31Z" fill="#75b7da" stroke="#1f2b32" stroke-width="5" stroke-linejoin="round"/>
-  <rect x="76" y="19" width="24" height="18" rx="4" fill="#2d6cb3" stroke="#1f2b32" stroke-width="4"/>
-  <rect x="74" y="77" width="28" height="34" rx="5" fill="#ffffff" stroke="#1f2b32" stroke-width="4"/>
-  <path d="M134 65h39l-8 67h-23l-8-67Z" fill="#f6c36c" stroke="#1f2b32" stroke-width="5" stroke-linejoin="round"/>
-  <path d="M141 84h25" stroke="#ffffff" stroke-width="7" stroke-linecap="round"/>
-  <circle cx="112" cy="82" r="61" fill="none" stroke="#d94435" stroke-width="12"/>
-  <path d="M68 38 156 126" stroke="#d94435" stroke-width="13" stroke-linecap="round"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 230" role="img" aria-labelledby="title desc">
+  <title id="title">Alcohol medicine warning card</title>
+  <desc id="desc">Medicine, wine, and an ambulance symbol communicate serious alcohol caution.</desc>
+  <rect width="320" height="230" rx="22" fill="#fffdf9"/>
+  <rect x="16" y="16" width="288" height="198" rx="20" fill="#ffffff" stroke="#b9b2a9" stroke-width="3"/>
+  <path d="M53 184c45 12 131 15 218 2" fill="none" stroke="#ffd9cd" stroke-width="21" stroke-linecap="round"/>
+  <rect x="55" y="68" width="65" height="86" rx="14" fill="#ffc27a" stroke="#5d5348" stroke-width="5"/>
+  <rect x="68" y="47" width="39" height="24" rx="6" fill="#e4edf7" stroke="#5d5348" stroke-width="5"/>
+  <rect x="68" y="95" width="39" height="33" rx="6" fill="#ffffff" stroke="#5d5348" stroke-width="4"/>
+  <path d="M87 103v17M78 112h18" stroke="#65ad74" stroke-width="6" stroke-linecap="round"/>
+  <path d="M151 70h49l-11 79h-27l-11-79Z" fill="#ffe3df" stroke="#5d5348" stroke-width="5" stroke-linejoin="round"/>
+  <path d="M157 101c15 6 24 6 37 0l-6 46h-25l-6-46Z" fill="#b84e55"/>
+  <path d="M175 149v23M153 172h44" stroke="#5d5348" stroke-width="5" stroke-linecap="round"/>
+  <path d="M215 111h58v36h-58z" fill="#ffffff" stroke="#5d5348" stroke-width="5" stroke-linejoin="round"/>
+  <path d="M224 111l7-19h28l8 19" fill="#e4edf7" stroke="#5d5348" stroke-width="5" stroke-linejoin="round"/>
+  <path d="M242 120v18M233 129h18" stroke="#e55b49" stroke-width="6" stroke-linecap="round"/>
+  <circle cx="230" cy="151" r="6" fill="#5d5348"/><circle cx="260" cy="151" r="6" fill="#5d5348"/>
+  <circle cx="160" cy="109" r="82" fill="none" stroke="#e55b49" stroke-width="12"/>
+  <path d="M101 50 222 170" stroke="#e55b49" stroke-width="13" stroke-linecap="round"/>
 </svg>

@@ -1,13 +1,15 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 220 160" role="img" aria-labelledby="title desc">
-  <title id="title">Sun exposure caution</title>
-  <desc id="desc">A bright sun, shield, and caution mark for photosensitivity.</desc>
-  <rect width="220" height="160" rx="18" fill="#fff8ed"/>
-  <rect x="14" y="14" width="192" height="132" rx="16" fill="#ffffff" stroke="#d8e2e7" stroke-width="2"/>
-  <circle cx="76" cy="68" r="28" fill="#f7c15e" stroke="#1f2b32" stroke-width="6"/>
-  <path d="M76 24v17M76 95v18M32 68h17M103 68h18M45 37l12 12M95 88l12 12M107 37 95 49M57 88l-12 12" stroke="#f7c15e" stroke-width="8" stroke-linecap="round"/>
-  <path d="M134 46l43 15v30c0 25-18 41-43 50-25-9-43-25-43-50V61l43-15Z" fill="#e7f0fa" stroke="#1f2b32" stroke-width="6" stroke-linejoin="round"/>
-  <path d="M116 91l13 13 27-31" fill="none" stroke="#207a5a" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
-  <path d="M154 29h42l-21 36-21-36Z" fill="#fff2d7" stroke="#d9821f" stroke-width="5" stroke-linejoin="round"/>
-  <path d="M175 39v11" stroke="#d9821f" stroke-width="5" stroke-linecap="round"/>
-  <circle cx="175" cy="56" r="3.5" fill="#d9821f"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 230" role="img" aria-labelledby="title desc">
+  <title id="title">Sun exposure caution card</title>
+  <desc id="desc">Bright sun, medicine, hat, and shield for photosensitivity caution.</desc>
+  <rect width="320" height="230" rx="22" fill="#fffdf9"/>
+  <rect x="16" y="16" width="288" height="198" rx="20" fill="#ffffff" stroke="#b9b2a9" stroke-width="3"/>
+  <path d="M51 184c44 12 143 15 219 2" fill="none" stroke="#ffe8c9" stroke-width="21" stroke-linecap="round"/>
+  <circle cx="83" cy="80" r="31" fill="#ffc957" stroke="#5d5348" stroke-width="6"/>
+  <path d="M83 28v19M83 113v20M31 80h20M115 80h20M47 43l14 14M105 103l14 14M119 43l-14 14M61 103l-14 14" stroke="#ffc957" stroke-width="9" stroke-linecap="round"/>
+  <rect x="42" y="133" width="55" height="40" rx="12" fill="#dbeeff" stroke="#5d5348" stroke-width="5"/>
+  <rect x="52" y="117" width="35" height="20" rx="5" fill="#70aee8" stroke="#5d5348" stroke-width="4"/>
+  <path d="M160 62l62 21v43c0 34-27 55-62 67-35-12-62-33-62-67V83l62-21Z" fill="#dbeeff" stroke="#5d5348" stroke-width="6" stroke-linejoin="round"/>
+  <path d="M135 126l20 20 40-50" fill="none" stroke="#65ad74" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M217 42h49l-25 43-24-43Z" fill="#ffe49a" stroke="#5d5348" stroke-width="5" stroke-linejoin="round"/>
+  <path d="M241 54v14" stroke="#5d5348" stroke-width="6" stroke-linecap="round"/><circle cx="241" cy="76" r="4" fill="#5d5348"/>
 </svg>

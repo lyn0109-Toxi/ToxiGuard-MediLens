@@ -1,21 +1,22 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 220 160" role="img" aria-labelledby="title desc">
-  <title id="title">Separate antacids and minerals</title>
-  <desc id="desc">Mineral tablets and a medicine tablet separated by a clock and arrows.</desc>
-  <rect width="220" height="160" rx="18" fill="#fff8ed"/>
-  <rect x="14" y="14" width="192" height="132" rx="16" fill="#ffffff" stroke="#d8e2e7" stroke-width="2"/>
-  <rect x="34" y="60" width="46" height="52" rx="10" fill="#e7f0fa" stroke="#1f2b32" stroke-width="5"/>
-  <rect x="42" y="48" width="30" height="17" rx="5" fill="#2d6cb3" stroke="#1f2b32" stroke-width="4"/>
-  <text x="57" y="91" text-anchor="middle" font-family="Arial, sans-serif" font-size="18" font-weight="700" fill="#1f2b32">Rx</text>
-  <circle cx="111" cy="84" r="31" fill="#fff2d7" stroke="#d9821f" stroke-width="6"/>
-  <path d="M111 66v19l14 8" fill="none" stroke="#1f2b32" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
-  <path d="M85 84H72M137 84h13" stroke="#d9821f" stroke-width="6" stroke-linecap="round"/>
-  <path d="M75 75 63 84l12 9M147 75l12 9-12 9" fill="none" stroke="#d9821f" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
-  <g font-family="Arial, sans-serif" font-weight="700" font-size="15" fill="#1f2b32">
-    <rect x="156" y="50" width="42" height="24" rx="12" fill="#dff4ed" stroke="#1f2b32" stroke-width="4"/>
-    <text x="177" y="67" text-anchor="middle">Ca</text>
-    <rect x="145" y="84" width="42" height="24" rx="12" fill="#fde5e0" stroke="#1f2b32" stroke-width="4"/>
-    <text x="166" y="101" text-anchor="middle">Mg</text>
-    <rect x="166" y="116" width="42" height="24" rx="12" fill="#e7f0fa" stroke="#1f2b32" stroke-width="4"/>
-    <text x="187" y="133" text-anchor="middle">Fe</text>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 230" role="img" aria-labelledby="title desc">
+  <title id="title">Antacid and mineral spacing card</title>
+  <desc id="desc">Medicine and calcium magnesium iron supplements separated by a clock.</desc>
+  <rect width="320" height="230" rx="22" fill="#fffdf9"/>
+  <rect x="16" y="16" width="288" height="198" rx="20" fill="#ffffff" stroke="#b9b2a9" stroke-width="3"/>
+  <path d="M50 184c43 13 145 14 220 2" fill="none" stroke="#ffe8c9" stroke-width="21" stroke-linecap="round"/>
+  <rect x="48" y="72" width="61" height="87" rx="13" fill="#dbeeff" stroke="#5d5348" stroke-width="5"/>
+  <rect x="60" y="51" width="38" height="24" rx="6" fill="#70aee8" stroke="#5d5348" stroke-width="5"/>
+  <text x="79" y="120" text-anchor="middle" font-family="Arial, sans-serif" font-size="21" font-weight="800" fill="#5d5348">Rx</text>
+  <circle cx="157" cy="115" r="39" fill="#fff1bf" stroke="#5d5348" stroke-width="5"/>
+  <path d="M157 91v26l20 11" fill="none" stroke="#5d5348" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M119 115H99M196 115h20" stroke="#d98a2b" stroke-width="7" stroke-linecap="round"/>
+  <path d="M102 104 88 115l14 11M213 104l14 11-14 11" fill="none" stroke="#d98a2b" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
+  <g font-family="Arial, sans-serif" font-weight="800" font-size="19" fill="#5d5348">
+    <rect x="227" y="60" width="56" height="31" rx="15" fill="#e4f4d7" stroke="#5d5348" stroke-width="5"/>
+    <text x="255" y="82" text-anchor="middle">Ca</text>
+    <rect x="213" y="99" width="56" height="31" rx="15" fill="#ffe3e6" stroke="#5d5348" stroke-width="5"/>
+    <text x="241" y="121" text-anchor="middle">Mg</text>
+    <rect x="234" y="138" width="56" height="31" rx="15" fill="#dbeeff" stroke="#5d5348" stroke-width="5"/>
+    <text x="262" y="160" text-anchor="middle">Fe</text>
   </g>
 </svg>
