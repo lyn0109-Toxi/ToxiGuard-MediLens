@@ -82,6 +82,16 @@ UI = {
         "items": "개",
         "image_map": "이미지 체크맵",
         "image_map_copy": "약과 음식/조건 조합을 그림으로 먼저 보고, 필요한 항목만 빠르게 확인하세요.",
+        "action_board": "복용 전 행동 카드",
+        "action_board_copy": "피할 항목, 지켜볼 증상, 확인할 질문을 나눠 봅니다.",
+        "action_avoid": "지금 피하기",
+        "action_watch": "증상 관찰",
+        "action_ask": "약사 확인",
+        "personal_items": "함께 먹는 약/음식",
+        "personal_items_help": "다른 약, 영양제, 음식/음료를 쉼표로 입력하세요.",
+        "personal_matches": "내 입력과 맞는 경고",
+        "personal_no_matches": "직접 맞는 경고를 찾지 못했습니다.",
+        "matched_input": "입력",
     },
     "en": {
         "language": "Language",
@@ -142,6 +152,16 @@ UI = {
         "items": "items",
         "image_map": "Image-first check map",
         "image_map_copy": "Scan the medicine-food/context cards first, then read only the items that matter.",
+        "action_board": "Pre-dose action cards",
+        "action_board_copy": "Separate what to avoid, what to watch, and what to ask.",
+        "action_avoid": "Avoid now",
+        "action_watch": "Watch symptoms",
+        "action_ask": "Ask pharmacist",
+        "personal_items": "Meds / foods with this",
+        "personal_items_help": "Enter other medicines, supplements, foods, or drinks separated by commas.",
+        "personal_matches": "Warnings matched to my input",
+        "personal_no_matches": "No direct warning matched your input yet.",
+        "matched_input": "Input",
     },
 }
 
@@ -223,6 +243,39 @@ VISUAL_IMAGE_RULES = [
     (("heartburn", "stomach discomfort", "abdominal", "nausea", "constipation", "속쓰림", "위 불편감", "복부", "메스꺼움", "변비"), "digestive.svg"),
     (("nsaid", "duplicate", "interaction", "interacting", "ibuprofen", "aspirin", "other medicines", "병용", "중복", "상호작용", "다른 약"), "med_interaction.svg"),
 ]
+
+PERSONAL_TOKEN_ALIASES = {
+    "grapefruit": ("grapefruit", "자몽", "cyp3a4"),
+    "자몽": ("grapefruit", "자몽", "cyp3a4"),
+    "orange juice": ("orange", "juice", "transporters", "오렌지"),
+    "apple juice": ("apple", "juice", "transporters", "사과"),
+    "과일주스": ("fruit juice", "juice", "transporters", "과일주스"),
+    "술": ("alcohol", "음주", "술"),
+    "alcohol": ("alcohol", "음주", "술"),
+    "aspirin": ("aspirin", "아스피린", "nsaid", "duplicate"),
+    "아스피린": ("aspirin", "아스피린", "nsaid", "duplicate"),
+    "ibuprofen": ("ibuprofen", "이부프로펜", "nsaid", "duplicate"),
+    "이부프로펜": ("ibuprofen", "이부프로펜", "nsaid", "duplicate"),
+    "calcium": ("calcium", "antacid", "mineral", "칼슘", "제산제"),
+    "magnesium": ("magnesium", "antacid", "mineral", "마그네슘", "제산제"),
+    "iron": ("iron", "mineral", "철분", "미네랄"),
+    "antacid": ("antacid", "magnesium", "aluminum", "제산제"),
+    "제산제": ("antacid", "magnesium", "aluminum", "제산제"),
+    "milk": ("milk", "dairy", "우유", "유제품"),
+    "우유": ("milk", "dairy", "우유", "유제품"),
+    "cheese": ("cheese", "tyramine", "치즈", "티라민"),
+    "치즈": ("cheese", "tyramine", "치즈", "티라민"),
+    "coffee": ("coffee", "caffeine", "커피", "카페인"),
+    "커피": ("coffee", "caffeine", "커피", "카페인"),
+    "kale": ("vitamin k", "leafy", "greens", "kale", "케일"),
+    "spinach": ("vitamin k", "leafy", "greens", "spinach", "시금치"),
+    "clarithromycin": ("clarithromycin", "antibiotic", "antibiotics", "항생제"),
+    "erythromycin": ("erythromycin", "antibiotic", "antibiotics", "항생제"),
+    "itraconazole": ("itraconazole", "antifungal", "antifungals", "항진균제"),
+    "ketoconazole": ("ketoconazole", "antifungal", "antifungals", "항진균제"),
+    "antibiotic": ("antibiotic", "antibiotics", "항생제"),
+    "antifungal": ("antifungal", "antifungals", "항진균제"),
+}
 
 
 SOURCE_LINKS = {
@@ -731,14 +784,8 @@ def context_match_count(items: list[dict[str, Any]], contexts: set[str]) -> int:
     return sum(1 for item in items if set(item.get("context", [])) & contexts)
 
 
-def visual_image_path(item: dict[str, Any]) -> Path:
-    explicit_image = item.get("image")
-    if explicit_image:
-        explicit_path = ASSET_DIR / str(explicit_image)
-        if explicit_path.exists():
-            return explicit_path
-
-    search_text = normalize(
+def item_search_text(item: dict[str, Any]) -> str:
+    return normalize(
         " ".join(
             [
                 l(item.get("title", ""), "ko"),
@@ -747,9 +794,67 @@ def visual_image_path(item: dict[str, Any]) -> Path:
                 l(item.get("body", ""), "en"),
                 " ".join(item.get("tags", [])),
                 " ".join(item.get("context", [])),
+                str(item.get("image", "")),
             ]
         )
     )
+
+
+def parse_personal_items(value: str) -> list[dict[str, Any]]:
+    chunks = [chunk.strip() for chunk in value.replace("\n", ",").replace(";", ",").split(",")]
+    items: list[dict[str, Any]] = []
+    seen: set[str] = set()
+    for chunk in chunks:
+        normalized = normalize(chunk)
+        if not normalized or normalized in seen:
+            continue
+        seen.add(normalized)
+        expanded = set(PERSONAL_TOKEN_ALIASES.get(normalized, (normalized,)))
+        expanded.add(QUERY_ALIASES.get(normalized, normalized))
+        items.append({"raw": chunk, "tokens": {normalize(token) for token in expanded if token}})
+    return items
+
+
+def unique_warning_items(drug: dict[str, Any], cards: list[dict[str, Any]]) -> list[dict[str, Any]]:
+    unique: list[dict[str, Any]] = []
+    seen: set[str] = set()
+    for item in [*cards, *drug.get("avoid", [])]:
+        key = normalize(l(item.get("title", ""), "en") or l(item.get("title", ""), "ko"))
+        if key and key not in seen:
+            unique.append(item)
+            seen.add(key)
+    return unique
+
+
+def personal_matches(drug: dict[str, Any], cards: list[dict[str, Any]], personal_text: str) -> list[dict[str, Any]]:
+    parsed = parse_personal_items(personal_text)
+    if not parsed:
+        return []
+
+    matches: list[dict[str, Any]] = []
+    seen: set[tuple[str, str]] = set()
+    for entered in parsed:
+        for item in unique_warning_items(drug, cards):
+            search_text = item_search_text(item)
+            if not any(token and token in search_text for token in entered["tokens"]):
+                continue
+            title_key = normalize(l(item.get("title", ""), "en") or l(item.get("title", ""), "ko"))
+            key = (entered["raw"].lower(), title_key)
+            if key in seen:
+                continue
+            matches.append({"input": entered["raw"], "item": item})
+            seen.add(key)
+    return matches[:6]
+
+
+def visual_image_path(item: dict[str, Any]) -> Path:
+    explicit_image = item.get("image")
+    if explicit_image:
+        explicit_path = ASSET_DIR / str(explicit_image)
+        if explicit_path.exists():
+            return explicit_path
+
+    search_text = item_search_text(item)
     for keywords, filename in VISUAL_IMAGE_RULES:
         if any(keyword in search_text for keyword in keywords):
             return ASSET_DIR / filename
@@ -853,6 +958,91 @@ def render_image_check_map(drug: dict[str, Any], cards: list[dict[str, Any]], la
                     st.markdown(f"**{l(item.get('title', ''), lang)}**")
                     if item.get("body"):
                         st.caption(l(item["body"], lang))
+
+
+def first_side_effect_item(drug: dict[str, Any], key: str) -> dict[str, Any] | None:
+    entries = drug.get("side_effects", {}).get(key, [])
+    if not entries:
+        return None
+    title, body, image_name, tags = side_effect_entry(entries[0])
+    return {"title": title, "body": body, "image": image_name, "tags": tags}
+
+
+def action_board_items(drug: dict[str, Any], cards: list[dict[str, Any]]) -> list[dict[str, Any]]:
+    warnings = unique_warning_items(drug, cards)
+    avoid_item = next((item for item in warnings if item.get("severity") == "avoid"), warnings[0] if warnings else None)
+    watch_item = next((item for item in warnings if item.get("severity") == "urgent"), None) or first_side_effect_item(drug, "urgent")
+    ask_item = next(
+        (
+            item
+            for item in warnings
+            if item.get("severity") == "caution" and set(item.get("context", [])) & {"other_meds", "pregnancy", "supplements"}
+        ),
+        None,
+    ) or next((item for item in warnings if item.get("severity") == "caution"), None)
+
+    fallback = warnings[0] if warnings else first_side_effect_item(drug, "common")
+    action_items = [
+        {"label_key": "action_avoid", "severity": "avoid", "item": avoid_item or fallback},
+        {"label_key": "action_watch", "severity": "urgent", "item": watch_item or fallback},
+        {"label_key": "action_ask", "severity": "caution", "item": ask_item or fallback},
+    ]
+    return [item for item in action_items if item["item"]]
+
+
+def render_action_board(drug: dict[str, Any], cards: list[dict[str, Any]], lang: str) -> None:
+    actions = action_board_items(drug, cards)
+    if not actions:
+        return
+
+    with st.container(border=True):
+        st.badge(t(lang, "action_board"), icon=":material/task_alt:", color="primary")
+        st.caption(t(lang, "action_board_copy"))
+        cols = st.columns(3, gap="medium")
+        for col, action in zip(cols, actions):
+            item = action["item"]
+            severity = item.get("severity", action["severity"])
+            with col.container(border=True):
+                image_path = visual_image_path(item)
+                if image_path.exists():
+                    st.image(str(image_path), width="stretch")
+                st.badge(
+                    t(lang, action["label_key"]),
+                    icon=SEVERITY_ICONS.get(severity),
+                    color=SEVERITY_COLORS.get(severity, "gray"),
+                )
+                st.markdown(f"**{l(item.get('title', ''), lang)}**")
+                if item.get("body"):
+                    st.caption(l(item["body"], lang))
+
+
+def render_personal_match_panel(drug: dict[str, Any], cards: list[dict[str, Any]], personal_text: str, lang: str) -> None:
+    if not parse_personal_items(personal_text):
+        return
+
+    matches = personal_matches(drug, cards, personal_text)
+    with st.container(border=True):
+        st.badge(t(lang, "personal_matches"), icon=":material/manage_search:", color="primary")
+        if not matches:
+            st.caption(t(lang, "personal_no_matches"))
+            return
+
+        for start in range(0, len(matches), 3):
+            cols = st.columns(3, gap="medium")
+            for col, match in zip(cols, matches[start : start + 3]):
+                item = match["item"]
+                severity = item.get("severity", "info")
+                with col.container(border=True):
+                    image_path = visual_image_path(item)
+                    if image_path.exists():
+                        st.image(str(image_path), width="stretch")
+                    st.badge(
+                        l(SEVERITY[severity], lang),
+                        icon=SEVERITY_ICONS.get(severity),
+                        color=SEVERITY_COLORS.get(severity, "gray"),
+                    )
+                    st.markdown(f"**{l(item.get('title', ''), lang)}**")
+                    st.caption(f"{t(lang, 'matched_input')}: {match['input']}")
 
 
 def render_visual_overview(
@@ -1287,6 +1477,14 @@ def main() -> None:
         if checked:
             active_contexts.add(context["id"])
 
+    personal_items_text = st.sidebar.text_area(
+        t(lang, "personal_items"),
+        value="",
+        help=t(lang, "personal_items_help"),
+        placeholder="aspirin, grapefruit, calcium, coffee",
+        height=88,
+    )
+
     st.sidebar.markdown(f"### {t(lang, 'sources')}")
     st.sidebar.link_button("RxNorm", SOURCE_LINKS["rxnorm"], icon=":material/hub:", use_container_width=True)
     st.sidebar.link_button("openFDA Drug Label", SOURCE_LINKS["openfda"], icon=":material/open_in_new:", use_container_width=True)
@@ -1303,6 +1501,8 @@ def main() -> None:
     cards = ranked_prechecks(selected, active_contexts)
     risk_class, risk_text = risk_label(lang, cards)
     render_visual_overview(selected, cards, risk_class, risk_text, active_contexts, lang)
+    render_action_board(selected, cards, lang)
+    render_personal_match_panel(selected, cards, personal_items_text, lang)
     render_image_check_map(selected, cards, lang)
 
     left, right = st.columns([1.08, 0.92], gap="large")
