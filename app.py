@@ -39,6 +39,8 @@ UI = {
         "precheck": "복용 전 확인",
         "evidence_flow": "근거 흐름",
         "side_effects": "부작용 비주얼",
+        "side_effect_gallery": "부작용 이미지 한눈에 보기",
+        "side_effect_gallery_copy": "장기와 증상 이미지를 먼저 보고, 위험 신호는 바로 확인하세요.",
         "avoid": "피하거나 확인할 음식/조건",
         "evidence": "근거",
         "advice": "조언",
@@ -109,6 +111,8 @@ UI = {
         "precheck": "Before you take it",
         "evidence_flow": "Evidence flow",
         "side_effects": "Side-effect view",
+        "side_effect_gallery": "Side effects at a glance",
+        "side_effect_gallery_copy": "Scan organ and symptom images first, then check red flags.",
         "avoid": "Foods / conditions to avoid or check",
         "evidence": "Evidence",
         "advice": "Advice",
@@ -339,6 +343,7 @@ SAMPLE_DRUGS = [
                 "severity": "avoid",
                 "context": [],
                 "source": "simvastatin-grapefruit",
+                "image": "grapefruit.svg",
             },
             {
                 "title": {"ko": "설명되지 않는 근육 통증은 즉시 확인", "en": "Check unexplained muscle pain promptly"},
@@ -349,6 +354,7 @@ SAMPLE_DRUGS = [
                 "severity": "urgent",
                 "context": [],
                 "source": "simvastatin-muscle",
+                "image": "muscle.svg",
             },
             {
                 "title": {"ko": "다른 항생제/항진균제 병용 확인", "en": "Check antibiotics and antifungals"},
@@ -367,6 +373,7 @@ SAMPLE_DRUGS = [
                 "body": {"ko": "복용 기간 중 피해야 할 항목으로 우선 표시합니다.", "en": "Flagged as an item to avoid during treatment."},
                 "severity": "avoid",
                 "tags": ["food", "CYP3A4"],
+                "image": "grapefruit.svg",
             },
             {
                 "title": {"ko": "과도한 음주", "en": "Heavy alcohol use"},
@@ -377,8 +384,9 @@ SAMPLE_DRUGS = [
         ],
         "side_effects": {
             "common": [
-                ({"ko": "두통, 복부 불편감", "en": "Headache, abdominal discomfort"}, {"ko": "지속되면 상담", "en": "Discuss if persistent"}),
-                ({"ko": "메스꺼움, 변비", "en": "Nausea, constipation"}, {"ko": "반복되면 약사에게 확인", "en": "Ask a pharmacist if repeated"}),
+                ({"ko": "두통", "en": "Headache"}, {"ko": "지속되면 상담", "en": "Discuss if persistent"}),
+                ({"ko": "복부 불편감", "en": "Abdominal discomfort"}, {"ko": "반복되거나 심해지면 약사에게 확인", "en": "Ask a pharmacist if repeated or worsening"}),
+                ({"ko": "메스꺼움/변비", "en": "Nausea / constipation"}, {"ko": "반복되면 약사에게 확인", "en": "Ask a pharmacist if repeated"}),
             ],
             "caution": [
                 ({"ko": "간 관련 이상 신호", "en": "Possible liver-related warning signs"}, {"ko": "피로, 진한 소변, 황달 등", "en": "Fatigue, dark urine, jaundice, and similar signs"}),
@@ -445,6 +453,7 @@ SAMPLE_DRUGS = [
                 "severity": "urgent",
                 "context": [],
                 "source": "warfarin-bleeding",
+                "image": "bleeding.svg",
             },
         ],
         "avoid": [
@@ -459,6 +468,7 @@ SAMPLE_DRUGS = [
                 "body": {"ko": "출혈 위험이 커질 수 있어 처방자 또는 약사 확인이 필요합니다.", "en": "Bleeding risk can increase, so prescriber or pharmacist review is needed."},
                 "severity": "avoid",
                 "tags": ["drug", "NSAID"],
+                "image": "med_interaction.svg",
             },
         ],
         "side_effects": {
@@ -621,7 +631,8 @@ SAMPLE_DRUGS = [
         ],
         "side_effects": {
             "common": [
-                ({"ko": "속쓰림, 위 불편감", "en": "Heartburn, stomach discomfort"}, {"ko": "식사와 함께 복용 가능 여부 확인", "en": "Check whether taking with food is appropriate"}),
+                ({"ko": "속쓰림", "en": "Heartburn"}, {"ko": "식사와 함께 복용 가능 여부 확인", "en": "Check whether taking with food is appropriate"}),
+                ({"ko": "위 불편감", "en": "Stomach discomfort"}, {"ko": "반복되면 위장 관련 부작용 여부 확인", "en": "Review if stomach discomfort repeats"}),
                 ({"ko": "어지러움", "en": "Dizziness"}, {"ko": "운전 전 개인 반응 확인", "en": "Check your response before driving"}),
             ],
             "caution": [
@@ -966,6 +977,49 @@ def first_side_effect_item(drug: dict[str, Any], key: str) -> dict[str, Any] | N
         return None
     title, body, image_name, tags = side_effect_entry(entries[0])
     return {"title": title, "body": body, "image": image_name, "tags": tags}
+
+
+def all_side_effect_items(drug: dict[str, Any]) -> list[dict[str, Any]]:
+    items: list[dict[str, Any]] = []
+    for key, severity in [("urgent", "urgent"), ("caution", "caution"), ("common", "info")]:
+        for entry in drug.get("side_effects", {}).get(key, []):
+            title, body, image_name, tags = side_effect_entry(entry)
+            items.append(
+                {
+                    "title": title,
+                    "body": body,
+                    "severity": severity,
+                    "image": image_name,
+                    "tags": tags,
+                }
+            )
+    return items
+
+
+def render_side_effect_gallery(drug: dict[str, Any], lang: str) -> None:
+    items = all_side_effect_items(drug)
+    if not items:
+        return
+
+    with st.container(border=True):
+        st.badge(t(lang, "side_effect_gallery"), icon=":material/visibility:", color="primary")
+        st.caption(t(lang, "side_effect_gallery_copy"))
+        for start in range(0, min(len(items), 6), 3):
+            cols = st.columns(3, gap="medium")
+            for col, item in zip(cols, items[start : start + 3]):
+                severity = item.get("severity", "info")
+                with col.container(border=True):
+                    image_path = visual_image_path(item)
+                    if image_path.exists():
+                        st.image(str(image_path), width="stretch")
+                    st.badge(
+                        l(SEVERITY[severity], lang),
+                        icon=SEVERITY_ICONS.get(severity),
+                        color=SEVERITY_COLORS.get(severity, "gray"),
+                    )
+                    st.markdown(f"**{l(item.get('title', ''), lang)}**")
+                    if item.get("body"):
+                        st.caption(l(item["body"], lang))
 
 
 def action_board_items(drug: dict[str, Any], cards: list[dict[str, Any]]) -> list[dict[str, Any]]:
@@ -1504,6 +1558,7 @@ def main() -> None:
     render_action_board(selected, cards, lang)
     render_personal_match_panel(selected, cards, personal_items_text, lang)
     render_image_check_map(selected, cards, lang)
+    render_side_effect_gallery(selected, lang)
 
     left, right = st.columns([1.08, 0.92], gap="large")
     with left:
