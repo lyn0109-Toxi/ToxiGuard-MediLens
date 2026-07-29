@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 230" role="img" aria-labelledby="title desc">
+  <title id="title">Treatment duration review card</title>
+  <desc id="desc">Calendar, clock, medicine bottle, and a caution marker for duration review.</desc>
+  <rect width="320" height="230" rx="22" fill="#fffdf9"/>
+  <rect x="16" y="16" width="288" height="198" rx="20" fill="#ffffff" stroke="#b9b2a9" stroke-width="3"/>
+  <path d="M51 184c44 12 143 15 219 2" fill="none" stroke="#dbeeff" stroke-width="21" stroke-linecap="round"/>
+  <rect x="54" y="61" width="70" height="95" rx="13" fill="#ffe0a8" stroke="#5d5348" stroke-width="5"/>
+  <rect x="68" y="40" width="42" height="24" rx="6" fill="#e4edf7" stroke="#5d5348" stroke-width="5"/>
+  <path d="M89 91v19M79 100h19" stroke="#65ad74" stroke-width="7" stroke-linecap="round"/>
+  <rect x="148" y="59" width="116" height="102" rx="15" fill="#ffffff" stroke="#5d5348" stroke-width="6"/>
+  <path d="M148 87h116" stroke="#70aee8" stroke-width="10"/>
+  <path d="M176 47v27M236 47v27" stroke="#5d5348" stroke-width="7" stroke-linecap="round"/>
+  <g fill="#ffe8c9" stroke="#5d5348" stroke-width="4">
+    <rect x="167" y="106" width="20" height="18" rx="4"/>
+    <rect x="198" y="106" width="20" height="18" rx="4"/>
+    <rect x="229" y="106" width="20" height="18" rx="4"/>
+    <rect x="167" y="135" width="20" height="18" rx="4"/>
+    <rect x="198" y="135" width="20" height="18" rx="4"/>
+  </g>
+  <circle cx="240" cy="153" r="31" fill="#fff1bf" stroke="#5d5348" stroke-width="5"/>
+  <path d="M240 133v21l15 9" fill="none" stroke="#5d5348" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>

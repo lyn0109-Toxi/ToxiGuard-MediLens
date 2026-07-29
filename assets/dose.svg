@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 230" role="img" aria-labelledby="title desc">
+  <title id="title">Dose appropriateness review card</title>
+  <desc id="desc">Medicine bottle, tablets, measuring spoon, and a review magnifier for dose checking.</desc>
+  <rect width="320" height="230" rx="22" fill="#fffdf9"/>
+  <rect x="16" y="16" width="288" height="198" rx="20" fill="#ffffff" stroke="#b9b2a9" stroke-width="3"/>
+  <path d="M51 184c44 12 143 15 219 2" fill="none" stroke="#dbeeff" stroke-width="21" stroke-linecap="round"/>
+  <rect x="51" y="65" width="62" height="88" rx="13" fill="#dbeeff" stroke="#5d5348" stroke-width="5"/>
+  <rect x="63" y="45" width="38" height="23" rx="6" fill="#70aee8" stroke="#5d5348" stroke-width="5"/>
+  <text x="82" y="119" text-anchor="middle" font-family="Arial, sans-serif" font-size="22" font-weight="800" fill="#5d5348">Rx</text>
+  <path d="M140 117h89c16 0 28 12 28 27s-12 27-28 27h-89c-15 0-27-12-27-27s12-27 27-27Z" fill="#fff1bf" stroke="#5d5348" stroke-width="6"/>
+  <circle cx="230" cy="144" r="17" fill="#ffffff" stroke="#5d5348" stroke-width="5"/>
+  <rect x="128" y="66" width="66" height="30" rx="15" fill="#ffc1cb" stroke="#5d5348" stroke-width="5"/>
+  <path d="M161 66v30" stroke="#5d5348" stroke-width="4"/>
+  <circle cx="241" cy="72" r="30" fill="none" stroke="#70aee8" stroke-width="8"/>
+  <path d="M263 94l27 27" stroke="#70aee8" stroke-width="8" stroke-linecap="round"/>
+  <path d="M241 56v32M225 72h32" stroke="#e55b49" stroke-width="7" stroke-linecap="round"/>
+</svg>

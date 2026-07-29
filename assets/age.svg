@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 230" role="img" aria-labelledby="title desc">
+  <title id="title">Age-related caution review card</title>
+  <desc id="desc">Child and older adult silhouettes with a medicine bottle and caution sign.</desc>
+  <rect width="320" height="230" rx="22" fill="#fffdf9"/>
+  <rect x="16" y="16" width="288" height="198" rx="20" fill="#ffffff" stroke="#b9b2a9" stroke-width="3"/>
+  <path d="M51 184c44 12 143 15 219 2" fill="none" stroke="#ffe8c9" stroke-width="21" stroke-linecap="round"/>
+  <rect x="132" y="59" width="58" height="83" rx="13" fill="#dbeeff" stroke="#5d5348" stroke-width="5"/>
+  <rect x="143" y="39" width="36" height="23" rx="6" fill="#70aee8" stroke="#5d5348" stroke-width="5"/>
+  <path d="M160 88v18M151 97h18" stroke="#65ad74" stroke-width="6" stroke-linecap="round"/>
+  <circle cx="83" cy="74" r="20" fill="#ffd9b7" stroke="#5d5348" stroke-width="5"/>
+  <path d="M59 165V117c0-18 11-29 24-29s24 11 24 29v48" fill="#e4f4d7" stroke="#5d5348" stroke-width="6" stroke-linejoin="round"/>
+  <path d="M72 165v33M94 165v33" stroke="#5d5348" stroke-width="7" stroke-linecap="round"/>
+  <circle cx="230" cy="68" r="23" fill="#ffd9b7" stroke="#5d5348" stroke-width="5"/>
+  <path d="M202 166v-54c0-20 13-33 28-33s28 13 28 33v54" fill="#f2d2ad" stroke="#5d5348" stroke-width="6" stroke-linejoin="round"/>
+  <path d="M221 166v33M246 166v33M260 114l24 54" stroke="#5d5348" stroke-width="7" stroke-linecap="round"/>
+  <path d="M246 31h48l-24 42-24-42Z" fill="#ffe49a" stroke="#5d5348" stroke-width="5" stroke-linejoin="round"/>
+  <path d="M270 43v14" stroke="#5d5348" stroke-width="6" stroke-linecap="round"/><circle cx="270" cy="65" r="4" fill="#5d5348"/>
+</svg>

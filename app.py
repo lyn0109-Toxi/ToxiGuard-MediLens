@@ -94,6 +94,35 @@ UI = {
         "personal_matches": "내 입력과 맞는 경고",
         "personal_no_matches": "직접 맞는 경고를 찾지 못했습니다.",
         "matched_input": "입력",
+        "dur_review": "DUR식 처방 검토",
+        "dur_review_copy": "스마트DUR+의 공개 설명처럼 용량, 중복, 상호작용, 연령, 임신/수유, 음식, 복용기간을 한 번에 점검합니다.",
+        "dur_pass": "확인됨",
+        "dur_review_needed": "확인 필요",
+        "dur_caution": "주의",
+        "dur_avoid": "피하기",
+        "dur_dose": "용량 적정성",
+        "dur_duplicate": "치료군/성분 중복",
+        "dur_interaction": "약물상호작용",
+        "dur_age": "연령대 주의",
+        "dur_pregnancy": "임신/수유",
+        "dur_food": "주의 음식물",
+        "dur_duration": "복용기간",
+        "age_group": "연령대",
+        "age_adult": "성인",
+        "age_child": "소아",
+        "age_elderly": "고령자",
+        "duration_days": "복용 예정 기간(일)",
+        "duration_help": "알 수 없으면 0으로 두세요. 레이블의 복용기간 관련 문구 확인에 사용합니다.",
+        "dose_review_body": "실제 1일 용량/횟수 입력이 없어 원문 레이블 또는 처방전 기준 확인이 필요합니다.",
+        "duplicate_clear_body": "입력한 함께 먹는 약에서 직접적인 중복 경고를 찾지 못했습니다.",
+        "interaction_clear_body": "입력한 함께 먹는 약/음식에서 직접적인 상호작용 경고를 찾지 못했습니다.",
+        "age_adult_body": "성인 기준으로 별도 연령 경고를 추가하지 않았습니다.",
+        "age_review_body": "소아 또는 고령자는 용량, 금기, 주의사항을 원문 레이블로 다시 확인하세요.",
+        "pregnancy_clear_body": "임신/수유 상황을 선택하지 않았습니다.",
+        "pregnancy_review_body": "임신/수유 상황은 처방자 또는 약사 확인이 필요합니다.",
+        "food_body": "피하거나 확인할 음식/조건이 레이블 기반 카드에 표시됩니다.",
+        "duration_empty_body": "복용기간을 입력하면 기간 관련 확인 카드로 표시합니다.",
+        "duration_review_body": "입력한 복용기간을 기준으로 원문 레이블의 duration/stop-use 문구를 확인하세요.",
     },
     "en": {
         "language": "Language",
@@ -166,6 +195,35 @@ UI = {
         "personal_matches": "Warnings matched to my input",
         "personal_no_matches": "No direct warning matched your input yet.",
         "matched_input": "Input",
+        "dur_review": "DUR-style prescription review",
+        "dur_review_copy": "Like the public SmartDUR+ description, this checks dose, duplication, interactions, age, pregnancy/breastfeeding, food, and duration at once.",
+        "dur_pass": "Checked",
+        "dur_review_needed": "Review",
+        "dur_caution": "Caution",
+        "dur_avoid": "Avoid",
+        "dur_dose": "Dose appropriateness",
+        "dur_duplicate": "Therapeutic duplication",
+        "dur_interaction": "Drug interactions",
+        "dur_age": "Age-related caution",
+        "dur_pregnancy": "Pregnancy / breastfeeding",
+        "dur_food": "Food cautions",
+        "dur_duration": "Treatment duration",
+        "age_group": "Age group",
+        "age_adult": "Adult",
+        "age_child": "Child",
+        "age_elderly": "Older adult",
+        "duration_days": "Planned duration (days)",
+        "duration_help": "Leave 0 if unknown. Used to highlight duration-related label checks.",
+        "dose_review_body": "Actual daily dose/frequency is not entered, so source-label or prescription review is needed.",
+        "duplicate_clear_body": "No direct duplicate-therapy warning matched the entered items.",
+        "interaction_clear_body": "No direct interaction warning matched the entered medicines or foods.",
+        "age_adult_body": "No extra age caution was added for adult context.",
+        "age_review_body": "For children or older adults, review dose, contraindications, and cautions in the source label.",
+        "pregnancy_clear_body": "Pregnancy/breastfeeding context was not selected.",
+        "pregnancy_review_body": "Pregnancy/breastfeeding context needs prescriber or pharmacist review.",
+        "food_body": "Foods or conditions to avoid/check appear in the label-based cards.",
+        "duration_empty_body": "Enter a planned duration to surface duration-related review.",
+        "duration_review_body": "Use the entered duration to review duration or stop-use wording in the source label.",
     },
 }
 
@@ -1099,6 +1157,118 @@ def render_personal_match_panel(drug: dict[str, Any], cards: list[dict[str, Any]
                     st.caption(f"{t(lang, 'matched_input')}: {match['input']}")
 
 
+def dur_status_meta(status: str, lang: str) -> tuple[str, str, str]:
+    metadata = {
+        "pass": ("dur_pass", "green", ":material/check_circle:"),
+        "review": ("dur_review_needed", "blue", ":material/manage_search:"),
+        "caution": ("dur_caution", "orange", ":material/report:"),
+        "avoid": ("dur_avoid", "red", ":material/block:"),
+    }
+    label_key, color, icon = metadata.get(status, metadata["review"])
+    return t(lang, label_key), color, icon
+
+
+def dur_review_items(
+    drug: dict[str, Any],
+    cards: list[dict[str, Any]],
+    contexts: set[str],
+    personal_text: str,
+    age_group: str,
+    duration_days: int,
+    lang: str,
+) -> list[dict[str, Any]]:
+    matches = personal_matches(drug, cards, personal_text)
+    duplicate_hits = [
+        match
+        for match in matches
+        if any(token in item_search_text(match["item"]) for token in ["duplicate", "nsaid", "중복", "ibuprofen", "aspirin"])
+    ]
+    interaction_hits = [
+        match
+        for match in matches
+        if any(token in item_search_text(match["item"]) for token in ["interaction", "interacting", "antibiotic", "antifungal", "상호작용", "병용"])
+    ]
+    food_items = list(drug.get("avoid", []))
+    pregnancy_hits = [item for item in cards if "pregnancy" in item.get("context", [])]
+
+    def match_body(hits: list[dict[str, Any]], fallback_key: str) -> str:
+        if hits:
+            inputs = ", ".join(sorted({hit["input"] for hit in hits}))
+            return f"{t(lang, 'matched_input')}: {inputs}"
+        return t(lang, fallback_key)
+
+    return [
+        {
+            "title": t(lang, "dur_dose"),
+            "body": t(lang, "dose_review_body"),
+            "status": "review",
+            "image": "dose.svg",
+        },
+        {
+            "title": t(lang, "dur_duplicate"),
+            "body": match_body(duplicate_hits, "duplicate_clear_body"),
+            "status": "avoid" if duplicate_hits else "pass",
+            "image": "med_interaction.svg",
+        },
+        {
+            "title": t(lang, "dur_interaction"),
+            "body": match_body(interaction_hits, "interaction_clear_body"),
+            "status": "caution" if interaction_hits else "pass",
+            "image": "med_interaction.svg",
+        },
+        {
+            "title": t(lang, "dur_age"),
+            "body": t(lang, "age_adult_body") if age_group == "adult" else t(lang, "age_review_body"),
+            "status": "pass" if age_group == "adult" else "review",
+            "image": "age.svg",
+        },
+        {
+            "title": t(lang, "dur_pregnancy"),
+            "body": t(lang, "pregnancy_review_body") if "pregnancy" in contexts or pregnancy_hits else t(lang, "pregnancy_clear_body"),
+            "status": "caution" if "pregnancy" in contexts or pregnancy_hits else "pass",
+            "image": "pregnancy.svg",
+        },
+        {
+            "title": t(lang, "dur_food"),
+            "body": f"{len(food_items)} {t(lang, 'items')} · {t(lang, 'food_body')}" if food_items else t(lang, "personal_no_matches"),
+            "status": "avoid" if any(item.get("severity") == "avoid" for item in food_items) else ("caution" if food_items else "pass"),
+            "image": visual_image_name(food_items[0]) if food_items else "review.svg",
+        },
+        {
+            "title": t(lang, "dur_duration"),
+            "body": t(lang, "duration_review_body") if duration_days else t(lang, "duration_empty_body"),
+            "status": "review" if duration_days else "pass",
+            "image": "duration.svg",
+        },
+    ]
+
+
+def render_dur_review_panel(
+    drug: dict[str, Any],
+    cards: list[dict[str, Any]],
+    contexts: set[str],
+    personal_text: str,
+    age_group: str,
+    duration_days: int,
+    lang: str,
+) -> None:
+    items = dur_review_items(drug, cards, contexts, personal_text, age_group, duration_days, lang)
+    with st.container(border=True):
+        st.badge(t(lang, "dur_review"), icon=":material/rule:", color="primary")
+        st.caption(t(lang, "dur_review_copy"))
+        for start in range(0, len(items), 4):
+            cols = st.columns(4, gap="medium")
+            for col, item in zip(cols, items[start : start + 4]):
+                label, color, icon = dur_status_meta(item["status"], lang)
+                with col.container(border=True):
+                    image_path = visual_image_path({"image": item["image"]})
+                    if image_path.exists():
+                        st.image(str(image_path), width="stretch")
+                    st.badge(label, icon=icon, color=color)
+                    st.markdown(f"**{item['title']}**")
+                    st.caption(item["body"])
+
+
 def render_visual_overview(
     drug: dict[str, Any],
     cards: list[dict[str, Any]],
@@ -1531,6 +1701,23 @@ def main() -> None:
         if checked:
             active_contexts.add(context["id"])
 
+    age_group = st.sidebar.selectbox(
+        t(lang, "age_group"),
+        options=["adult", "child", "elderly"],
+        index=0,
+        format_func=lambda value: t(lang, f"age_{value}"),
+    )
+    duration_days = int(
+        st.sidebar.number_input(
+            t(lang, "duration_days"),
+            min_value=0,
+            max_value=365,
+            value=0,
+            step=1,
+            help=t(lang, "duration_help"),
+        )
+    )
+
     personal_items_text = st.sidebar.text_area(
         t(lang, "personal_items"),
         value="",
@@ -1555,6 +1742,7 @@ def main() -> None:
     cards = ranked_prechecks(selected, active_contexts)
     risk_class, risk_text = risk_label(lang, cards)
     render_visual_overview(selected, cards, risk_class, risk_text, active_contexts, lang)
+    render_dur_review_panel(selected, cards, active_contexts, personal_items_text, age_group, duration_days, lang)
     render_action_board(selected, cards, lang)
     render_personal_match_panel(selected, cards, personal_items_text, lang)
     render_image_check_map(selected, cards, lang)

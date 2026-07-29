@@ -8,6 +8,7 @@ ToxiGuard-MediLens is a Streamlit prototype for turning long medication labels i
 - Automatically look up non-sample medications through the openFDA Drug Label API.
 - Show active ingredient, product form, and label provenance.
 - Show a visual safety overview with Material design icons, risk meters, and evidence counts.
+- Show a DUR-style prescription review panel for dose, duplication, interactions, age, pregnancy/breastfeeding, food, and treatment duration.
 - Summarize pre-dose checks, side effects, foods/conditions to avoid, and source evidence.
 - Display image-first cards and an illustrated check map for foods, conditions, and warning signals.
 - Show pre-dose action cards for avoid-now, watch-symptoms, and ask-pharmacist decisions.
