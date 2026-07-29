@@ -123,6 +123,28 @@ UI = {
         "food_body": "피하거나 확인할 음식/조건이 레이블 기반 카드에 표시됩니다.",
         "duration_empty_body": "복용기간을 입력하면 기간 관련 확인 카드로 표시합니다.",
         "duration_review_body": "입력한 복용기간을 기준으로 원문 레이블의 duration/stop-use 문구를 확인하세요.",
+        "smartdur_lens": "스마트DUR+식 복약 렌즈",
+        "smartdur_lens_copy": "처방전/함께 먹는 항목을 기준으로 용량, 중복, 상호작용, 연령, 임신/수유, 음식, 복용기간을 한 화면에서 판정합니다.",
+        "smartdur_reference": "SmartDUR+ 공개 설명의 점검축을 참고해 환자용 화면으로 재구성했습니다.",
+        "rx_items": "처방전/복약 리스트",
+        "rx_items_help": "처방전 약 이름, 성분명, 복용 중인 약을 줄바꿈이나 쉼표로 입력하세요.",
+        "rx_items_placeholder": "예: warfarin, aspirin, ibuprofen",
+        "rx_snapshot": "입력 기반 처방 스냅샷",
+        "rx_input_count": "인식 항목",
+        "rx_signal_count": "검토 신호",
+        "rx_avoid_count": "피하기 판정",
+        "rx_no_input": "약 이름 검색과 함께 먹는 항목을 입력하면 처방 단위 검토가 더 구체화됩니다.",
+        "rx_recognized": "인식된 약/음식",
+        "rx_not_medical_scan": "이미지 OCR은 아직 연결하지 않았고, 입력 텍스트와 공식 레이블 근거로 판정합니다.",
+        "clinical_path": "검토 흐름",
+        "clinical_path_copy": "처방 입력 -> DUR 항목 -> 행동 카드 -> 원문 근거 순서로 확인합니다.",
+        "step_label_source": "처방/입력",
+        "step_label_screening": "DUR 검토",
+        "step_label_action": "행동 카드",
+        "step_label_evidence": "원문 근거",
+        "screening_findings": "처방 검토 발견사항",
+        "screening_clear": "현재 입력에서 직접적인 고위험 조합은 찾지 못했습니다.",
+        "finding_basis": "판정 기준",
     },
     "en": {
         "language": "Language",
@@ -224,6 +246,28 @@ UI = {
         "food_body": "Foods or conditions to avoid/check appear in the label-based cards.",
         "duration_empty_body": "Enter a planned duration to surface duration-related review.",
         "duration_review_body": "Use the entered duration to review duration or stop-use wording in the source label.",
+        "smartdur_lens": "SmartDUR+ style medication lens",
+        "smartdur_lens_copy": "Checks dose, duplication, interactions, age, pregnancy/breastfeeding, food, and duration from the prescription and entered co-use items.",
+        "smartdur_reference": "Adapted into a patient-facing screen from the public SmartDUR+ review categories.",
+        "rx_items": "Prescription / medication list",
+        "rx_items_help": "Enter prescription medicines, generic names, or current medicines separated by line breaks or commas.",
+        "rx_items_placeholder": "Example: warfarin, aspirin, ibuprofen",
+        "rx_snapshot": "Input-based prescription snapshot",
+        "rx_input_count": "Recognized items",
+        "rx_signal_count": "Review signals",
+        "rx_avoid_count": "Avoid findings",
+        "rx_no_input": "Add medication or food items to make prescription-level review more specific.",
+        "rx_recognized": "Recognized meds / foods",
+        "rx_not_medical_scan": "Image OCR is not connected yet; this prototype uses entered text and official-label evidence.",
+        "clinical_path": "Review flow",
+        "clinical_path_copy": "Prescription input -> DUR checks -> action cards -> source evidence.",
+        "step_label_source": "Prescription/input",
+        "step_label_screening": "DUR review",
+        "step_label_action": "Action cards",
+        "step_label_evidence": "Source evidence",
+        "screening_findings": "Prescription review findings",
+        "screening_clear": "No direct high-risk combination was found from the current input.",
+        "finding_basis": "Basis",
     },
 }
 
@@ -284,6 +328,7 @@ SEVERITY_COLORS = {
 }
 
 VISUAL_IMAGE_RULES = [
+    (("prescription", "rx list", "처방전", "복약 리스트"), "prescription.svg"),
     (("fruit juice", "juice", "transporters", "orange", "apple", "과일주스", "오렌지", "사과"), "fruit_juice.svg"),
     (("grapefruit", "cyp3a4", "자몽"), "grapefruit.svg"),
     (("vitamin k", "leafy", "greens", "kale", "spinach", "케일", "시금치", "녹색 잎채소"), "leafy_greens.svg"),
@@ -338,6 +383,122 @@ PERSONAL_TOKEN_ALIASES = {
     "antibiotic": ("antibiotic", "antibiotics", "항생제"),
     "antifungal": ("antifungal", "antifungals", "항진균제"),
 }
+
+
+INTAKE_TOKEN_GROUPS = [
+    {
+        "canonical": "warfarin",
+        "label": {"ko": "와파린", "en": "Warfarin"},
+        "aliases": ("warfarin", "coumadin", "jantoven", "와파린", "쿠마딘"),
+        "classes": ("anticoagulant", "high_alert"),
+        "image": "bleeding.svg",
+    },
+    {
+        "canonical": "ibuprofen",
+        "label": {"ko": "이부프로펜", "en": "Ibuprofen"},
+        "aliases": ("ibuprofen", "advil", "motrin", "이부프로펜"),
+        "classes": ("nsaid", "pain"),
+        "image": "stomach_bleeding.svg",
+    },
+    {
+        "canonical": "aspirin",
+        "label": {"ko": "아스피린", "en": "Aspirin"},
+        "aliases": ("aspirin", "아스피린"),
+        "classes": ("nsaid", "antiplatelet"),
+        "image": "med_interaction.svg",
+    },
+    {
+        "canonical": "simvastatin",
+        "label": {"ko": "심바스타틴", "en": "Simvastatin"},
+        "aliases": ("simvastatin", "zocor", "심바스타틴", "스타틴"),
+        "classes": ("statin", "cyp3a4_substrate"),
+        "image": "muscle.svg",
+    },
+    {
+        "canonical": "fexofenadine",
+        "label": {"ko": "펙소페나딘", "en": "Fexofenadine"},
+        "aliases": ("fexofenadine", "allegra", "펙소페나딘", "알레그라"),
+        "classes": ("antihistamine", "transporter_substrate"),
+        "image": "fruit_juice.svg",
+    },
+    {
+        "canonical": "pseudoephedrine",
+        "label": {"ko": "슈도에페드린", "en": "Pseudoephedrine"},
+        "aliases": ("pseudoephedrine", "sudafed", "슈도에페드린", "수도에페드린"),
+        "classes": ("decongestant", "stimulant"),
+        "image": "blood_pressure.svg",
+    },
+    {
+        "canonical": "clarithromycin",
+        "label": {"ko": "클래리스로마이신", "en": "Clarithromycin"},
+        "aliases": ("clarithromycin", "클래리스로마이신"),
+        "classes": ("antibiotic", "cyp3a4_inhibitor"),
+        "image": "med_interaction.svg",
+    },
+    {
+        "canonical": "erythromycin",
+        "label": {"ko": "에리스로마이신", "en": "Erythromycin"},
+        "aliases": ("erythromycin", "에리스로마이신"),
+        "classes": ("antibiotic", "cyp3a4_inhibitor"),
+        "image": "med_interaction.svg",
+    },
+    {
+        "canonical": "azole_antifungal",
+        "label": {"ko": "아졸계 항진균제", "en": "Azole antifungal"},
+        "aliases": ("ketoconazole", "itraconazole", "azole", "항진균제", "케토코나졸", "이트라코나졸"),
+        "classes": ("antifungal", "cyp3a4_inhibitor"),
+        "image": "med_interaction.svg",
+    },
+    {
+        "canonical": "grapefruit",
+        "label": {"ko": "자몽", "en": "Grapefruit"},
+        "aliases": ("grapefruit", "자몽"),
+        "classes": ("food", "cyp3a4_inhibitor"),
+        "image": "grapefruit.svg",
+    },
+    {
+        "canonical": "fruit_juice",
+        "label": {"ko": "과일주스", "en": "Fruit juice"},
+        "aliases": ("fruit juice", "orange juice", "apple juice", "juice", "오렌지", "사과", "과일주스"),
+        "classes": ("food", "transporter_inhibitor"),
+        "image": "fruit_juice.svg",
+    },
+    {
+        "canonical": "alcohol",
+        "label": {"ko": "술/알코올", "en": "Alcohol"},
+        "aliases": ("alcohol", "술", "음주", "wine", "beer"),
+        "classes": ("condition", "alcohol"),
+        "image": "alcohol.svg",
+    },
+    {
+        "canonical": "antacid",
+        "label": {"ko": "제산제/미네랄", "en": "Antacid / minerals"},
+        "aliases": ("antacid", "calcium", "magnesium", "iron", "제산제", "칼슘", "마그네슘", "철분"),
+        "classes": ("supplement", "antacid", "mineral"),
+        "image": "antacid.svg",
+    },
+    {
+        "canonical": "dairy",
+        "label": {"ko": "우유/유제품", "en": "Milk / dairy"},
+        "aliases": ("milk", "dairy", "우유", "유제품"),
+        "classes": ("food", "dairy"),
+        "image": "milk.svg",
+    },
+    {
+        "canonical": "coffee",
+        "label": {"ko": "커피/카페인", "en": "Coffee / caffeine"},
+        "aliases": ("coffee", "caffeine", "커피", "카페인"),
+        "classes": ("food", "caffeine"),
+        "image": "coffee.svg",
+    },
+    {
+        "canonical": "leafy_greens",
+        "label": {"ko": "녹색 잎채소", "en": "Leafy greens"},
+        "aliases": ("leafy greens", "kale", "spinach", "vitamin k", "케일", "시금치", "비타민 k", "녹색 잎채소"),
+        "classes": ("food", "vitamin_k"),
+        "image": "leafy_greens.svg",
+    },
+]
 
 
 SOURCE_LINKS = {
@@ -762,6 +923,9 @@ def css() -> None:
             border-radius: 8px;
             border: 2px solid #c9c1b8;
             background: #fffdf9;
+            padding: 8px;
+            max-height: 174px;
+            object-fit: contain;
             box-shadow: 0 12px 24px rgba(92,76,60,.08);
           }
           div[data-testid="stMetricValue"] {
@@ -882,6 +1046,225 @@ def parse_personal_items(value: str) -> list[dict[str, Any]]:
         expanded.add(QUERY_ALIASES.get(normalized, normalized))
         items.append({"raw": chunk, "tokens": {normalize(token) for token in expanded if token}})
     return items
+
+
+def free_text_chunks(*values: str) -> list[str]:
+    chunks: list[str] = []
+    seen: set[str] = set()
+    for value in values:
+        for chunk in value.replace("\n", ",").replace(";", ",").replace("/", ",").split(","):
+            cleaned = chunk.strip()
+            key = normalize(cleaned)
+            if cleaned and key not in seen:
+                chunks.append(cleaned)
+                seen.add(key)
+    return chunks
+
+
+def recognized_intake_items(drug: dict[str, Any], personal_text: str, rx_text: str, lang: str) -> list[dict[str, Any]]:
+    chunks = [drug.get("name", ""), drug.get("active", ""), *free_text_chunks(personal_text, rx_text)]
+    recognized: list[dict[str, Any]] = []
+    seen: set[str] = set()
+
+    for chunk in chunks:
+        haystack = normalize(chunk)
+        if not haystack:
+            continue
+        for group in INTAKE_TOKEN_GROUPS:
+            aliases = tuple(normalize(alias) for alias in group["aliases"])
+            if not any(alias and alias in haystack for alias in aliases):
+                continue
+            if group["canonical"] in seen:
+                continue
+            recognized.append(
+                {
+                    "canonical": group["canonical"],
+                    "label": l(group["label"], lang),
+                    "raw": chunk,
+                    "classes": set(group["classes"]),
+                    "image": group["image"],
+                }
+            )
+            seen.add(group["canonical"])
+
+    if not recognized:
+        fallback_label = drug.get("name", "")
+        if fallback_label:
+            recognized.append(
+                {
+                    "canonical": normalize(fallback_label),
+                    "label": fallback_label,
+                    "raw": fallback_label,
+                    "classes": set(),
+                    "image": "prescription.svg",
+                }
+            )
+    return recognized
+
+
+def has_intake(items: list[dict[str, Any]], canonical: str) -> bool:
+    return any(item["canonical"] == canonical for item in items)
+
+
+def has_class(items: list[dict[str, Any]], class_name: str) -> bool:
+    return any(class_name in item.get("classes", set()) for item in items)
+
+
+def item_labels_by_class(items: list[dict[str, Any]], class_name: str) -> list[str]:
+    return [item["label"] for item in items if class_name in item.get("classes", set())]
+
+
+def add_screening_finding(
+    findings: list[dict[str, Any]],
+    title: dict[str, str],
+    body: dict[str, str],
+    status: str,
+    image: str,
+    basis: str,
+) -> None:
+    findings.append(
+        {
+            "title": title,
+            "body": body,
+            "status": status,
+            "image": image,
+            "basis": basis,
+        }
+    )
+
+
+def prescription_screening_findings(
+    drug: dict[str, Any],
+    cards: list[dict[str, Any]],
+    contexts: set[str],
+    personal_text: str,
+    rx_text: str,
+    age_group: str,
+    duration_days: int,
+    lang: str,
+) -> tuple[list[dict[str, Any]], list[dict[str, Any]]]:
+    intake_items = recognized_intake_items(drug, personal_text, rx_text, lang)
+    findings: list[dict[str, Any]] = []
+    nsaid_labels = item_labels_by_class(intake_items, "nsaid")
+
+    if has_intake(intake_items, "warfarin") and (has_class(intake_items, "nsaid") or has_intake(intake_items, "alcohol")):
+        add_screening_finding(
+            findings,
+            {"ko": "항응고제와 출혈 위험 조합", "en": "Anticoagulant bleeding-risk combination"},
+            {
+                "ko": "와파린과 NSAID/아스피린/음주는 출혈 위험을 키울 수 있어 복용 전 확인이 필요합니다.",
+                "en": "Warfarin with NSAIDs, aspirin, or alcohol may increase bleeding risk and needs review before use.",
+            },
+            "avoid",
+            "bleeding.svg",
+            "Drug interaction / bleeding warning",
+        )
+
+    if len(nsaid_labels) >= 2:
+        add_screening_finding(
+            findings,
+            {"ko": "NSAID 계열 중복 가능성", "en": "Possible duplicate NSAID therapy"},
+            {
+                "ko": f"{', '.join(nsaid_labels)} 조합은 같은 계열 위험이 누적될 수 있습니다.",
+                "en": f"{', '.join(nsaid_labels)} may stack class-related risk.",
+            },
+            "avoid",
+            "med_interaction.svg",
+            "Therapeutic duplication screen",
+        )
+
+    if has_intake(intake_items, "simvastatin") and (has_class(intake_items, "cyp3a4_inhibitor") or has_intake(intake_items, "grapefruit")):
+        add_screening_finding(
+            findings,
+            {"ko": "심바스타틴 농도 상승 가능성", "en": "Possible simvastatin exposure increase"},
+            {
+                "ko": "자몽 또는 일부 항생제/항진균제는 심바스타틴 관련 근육 부작용 위험을 높일 수 있습니다.",
+                "en": "Grapefruit or some antibiotics/antifungals can raise simvastatin-related muscle-risk concerns.",
+            },
+            "avoid",
+            "muscle.svg",
+            "Drug interaction / grapefruit warning",
+        )
+
+    if has_intake(intake_items, "fexofenadine") and (
+        has_intake(intake_items, "fruit_juice") or has_class(intake_items, "antacid") or has_class(intake_items, "mineral")
+    ):
+        add_screening_finding(
+            findings,
+            {"ko": "펙소페나딘 흡수 저하 가능성", "en": "Possible reduced fexofenadine absorption"},
+            {
+                "ko": "과일주스나 제산제/미네랄은 약효를 낮출 수 있어 복용 간격 확인이 필요합니다.",
+                "en": "Fruit juice or antacids/minerals can reduce effect, so spacing should be checked.",
+            },
+            "caution",
+            "fruit_juice.svg",
+            "Food / absorption interaction screen",
+        )
+
+    if has_class(intake_items, "nsaid") and "pregnancy" in contexts:
+        add_screening_finding(
+            findings,
+            {"ko": "임신 중 NSAID 사용 확인", "en": "NSAID use in pregnancy needs review"},
+            {
+                "ko": "임신 상황에서는 NSAID 복용 전 처방자 또는 약사 확인이 필요합니다.",
+                "en": "With pregnancy context, NSAID use should be reviewed with a prescriber or pharmacist.",
+            },
+            "avoid",
+            "pregnancy.svg",
+            "Pregnancy / breastfeeding DUR screen",
+        )
+
+    if has_intake(intake_items, "pseudoephedrine") and (age_group == "elderly" or has_class(intake_items, "caffeine")):
+        add_screening_finding(
+            findings,
+            {"ko": "혈압/자극 증상 확인", "en": "Blood-pressure or stimulant-effect check"},
+            {
+                "ko": "슈도에페드린은 혈압, 심박, 불면 관련 반응을 확인해야 합니다.",
+                "en": "Pseudoephedrine warrants checking blood pressure, heart-rate, and insomnia-related effects.",
+            },
+            "caution",
+            "blood_pressure.svg",
+            "Age / condition review",
+        )
+
+    if age_group != "adult":
+        add_screening_finding(
+            findings,
+            {"ko": "연령대별 용량/금기 재확인", "en": "Age-specific dose and contraindication review"},
+            {
+                "ko": "소아 또는 고령자는 성인 기본 설명만으로 판단하기 어렵기 때문에 원문 용량과 금기를 다시 확인하세요.",
+                "en": "Children or older adults need dose and contraindication review beyond the adult default.",
+            },
+            "review",
+            "age.svg",
+            "Age DUR screen",
+        )
+
+    if duration_days >= 10 and (has_class(intake_items, "nsaid") or has_class(intake_items, "decongestant")):
+        add_screening_finding(
+            findings,
+            {"ko": "장기 복용 전 기간 확인", "en": "Duration check before extended use"},
+            {
+                "ko": "일부 일반의약품은 며칠 이상 지속 복용 시 원문 stop-use 문구와 처방자 확인이 필요합니다.",
+                "en": "Some OTC medicines require stop-use wording and clinician review before extended use.",
+            },
+            "review",
+            "duration.svg",
+            "Duration DUR screen",
+        )
+
+    if not findings and cards:
+        top_card = cards[0]
+        add_screening_finding(
+            findings,
+            top_card.get("title", {"ko": "레이블 기반 확인", "en": "Label-based check"}),
+            top_card.get("body", {"ko": t(lang, "screening_clear"), "en": t(lang, "screening_clear")}),
+            "caution" if top_card.get("severity") in {"urgent", "avoid"} else "review",
+            visual_image_name(top_card),
+            "Current medication label",
+        )
+
+    return findings, intake_items
 
 
 def unique_warning_items(drug: dict[str, Any], cards: list[dict[str, Any]]) -> list[dict[str, Any]]:
@@ -1267,6 +1650,100 @@ def render_dur_review_panel(
                     st.badge(label, icon=icon, color=color)
                     st.markdown(f"**{item['title']}**")
                     st.caption(item["body"])
+
+
+def render_prescription_lens_panel(
+    drug: dict[str, Any],
+    cards: list[dict[str, Any]],
+    contexts: set[str],
+    personal_text: str,
+    rx_text: str,
+    age_group: str,
+    duration_days: int,
+    lang: str,
+) -> None:
+    findings, intake_items = prescription_screening_findings(
+        drug,
+        cards,
+        contexts,
+        personal_text,
+        rx_text,
+        age_group,
+        duration_days,
+        lang,
+    )
+    avoid_count = sum(1 for item in findings if item["status"] == "avoid")
+    review_count = len(findings)
+    headline_status = "avoid" if avoid_count else ("caution" if review_count else "pass")
+    status_label, status_color, status_icon = dur_status_meta(headline_status, lang)
+
+    with st.container(border=True):
+        head_col, status_col = st.columns([0.7, 0.3], vertical_alignment="center")
+        with head_col:
+            st.badge(t(lang, "smartdur_lens"), icon=":material/rule:", color="primary")
+            st.caption(t(lang, "smartdur_lens_copy"))
+            st.caption(t(lang, "smartdur_reference"))
+        with status_col:
+            st.badge(status_label, icon=status_icon, color=status_color)
+
+        metric_cols = st.columns(3)
+        metrics = [
+            (t(lang, "rx_input_count"), len(intake_items), ":material/prescriptions:", "blue"),
+            (t(lang, "rx_signal_count"), review_count, ":material/monitor_heart:", "orange" if review_count else "green"),
+            (t(lang, "rx_avoid_count"), avoid_count, ":material/block:", "red" if avoid_count else "green"),
+        ]
+        for col, (label, value, icon, color) in zip(metric_cols, metrics):
+            with col.container(border=True):
+                st.badge(label, icon=icon, color=color)
+                st.markdown(f"### {value}")
+
+        st.markdown(f"**{t(lang, 'clinical_path')}**")
+        st.caption(t(lang, "clinical_path_copy"))
+        path_items = [
+            (t(lang, "step_label_source"), "prescription.svg", ":material/edit_document:"),
+            (t(lang, "step_label_screening"), "review.svg", ":material/rule:"),
+            (t(lang, "step_label_action"), "dose.svg", ":material/task_alt:"),
+            (t(lang, "step_label_evidence"), "source", ":material/source:"),
+        ]
+        path_cols = st.columns(4, gap="medium")
+        for col, (label, image_name, icon) in zip(path_cols, path_items):
+            with col.container(border=True):
+                if image_name != "source":
+                    image_path = visual_image_path({"image": image_name})
+                    if image_path.exists():
+                        st.image(str(image_path), width="stretch")
+                st.badge(label, icon=icon, color="blue")
+
+        if intake_items:
+            st.markdown(f"**{t(lang, 'rx_recognized')}**")
+            for start in range(0, min(len(intake_items), 8), 4):
+                cols = st.columns(4, gap="medium")
+                for col, item in zip(cols, intake_items[start : start + 4]):
+                    with col.container(border=True):
+                        image_path = visual_image_path({"image": item["image"]})
+                        if image_path.exists():
+                            st.image(str(image_path), width="stretch")
+                        st.markdown(f"**{item['label']}**")
+                        if item.get("classes"):
+                            st.caption(" · ".join(sorted(item["classes"])[:3]))
+        else:
+            st.caption(t(lang, "rx_no_input"))
+
+        st.markdown(f"**{t(lang, 'screening_findings')}**")
+        for start in range(0, len(findings), 3):
+            cols = st.columns(3, gap="medium")
+            for col, item in zip(cols, findings[start : start + 3]):
+                label, color, icon = dur_status_meta(item["status"], lang)
+                with col.container(border=True):
+                    image_path = visual_image_path({"image": item["image"]})
+                    if image_path.exists():
+                        st.image(str(image_path), width="stretch")
+                    st.badge(label, icon=icon, color=color)
+                    st.markdown(f"**{l(item['title'], lang)}**")
+                    st.caption(l(item["body"], lang))
+                    st.caption(f"{t(lang, 'finding_basis')}: {item['basis']}")
+
+        st.caption(t(lang, "rx_not_medical_scan"))
 
 
 def render_visual_overview(
@@ -1725,6 +2202,13 @@ def main() -> None:
         placeholder="aspirin, grapefruit, calcium, coffee",
         height=88,
     )
+    rx_items_text = st.sidebar.text_area(
+        t(lang, "rx_items"),
+        value="",
+        help=t(lang, "rx_items_help"),
+        placeholder=t(lang, "rx_items_placeholder"),
+        height=96,
+    )
 
     st.sidebar.markdown(f"### {t(lang, 'sources')}")
     st.sidebar.link_button("RxNorm", SOURCE_LINKS["rxnorm"], icon=":material/hub:", use_container_width=True)
@@ -1742,6 +2226,16 @@ def main() -> None:
     cards = ranked_prechecks(selected, active_contexts)
     risk_class, risk_text = risk_label(lang, cards)
     render_visual_overview(selected, cards, risk_class, risk_text, active_contexts, lang)
+    render_prescription_lens_panel(
+        selected,
+        cards,
+        active_contexts,
+        personal_items_text,
+        rx_items_text,
+        age_group,
+        duration_days,
+        lang,
+    )
     render_dur_review_panel(selected, cards, active_contexts, personal_items_text, age_group, duration_days, lang)
     render_action_board(selected, cards, lang)
     render_personal_match_panel(selected, cards, personal_items_text, lang)
