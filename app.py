@@ -2111,6 +2111,11 @@ def main() -> None:
         format_func=lambda value: "한국어" if value == "ko" else "English",
     )
     render_brand(lang)
+    workspace = st.sidebar.radio("보기 / Workspace", ["composition", "safety"], format_func=lambda x: ("성분 보기" if lang == "ko" else "Composition") if x == "composition" else ("기존 안전성 보기" if lang == "ko" else "Safety overview"))
+    if workspace == "composition":
+        from composition_ui import render_composition
+        render_composition(lang)
+        return
 
     query = st.sidebar.text_input(t(lang, "search"), value="", help=t(lang, "search_help"))
     normalized_query = normalize(query)

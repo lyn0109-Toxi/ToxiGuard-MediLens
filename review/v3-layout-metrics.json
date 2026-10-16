@@ -1,0 +1,104 @@
+[
+  {
+    "bars": [
+      1020,
+      1020,
+      265.1953125
+    ],
+    "case": "combination-desktop",
+    "images": [
+      {
+        "h": 101,
+        "loaded": true,
+        "w": 144
+      },
+      {
+        "h": 101,
+        "loaded": true,
+        "w": 144
+      },
+      {
+        "h": 101,
+        "loaded": true,
+        "w": 144
+      }
+    ],
+    "overflow": false,
+    "width": 1406
+  },
+  {
+    "bars": [
+      216,
+      216,
+      56.15625
+    ],
+    "case": "combination-narrow",
+    "images": [
+      {
+        "h": 74,
+        "loaded": true,
+        "w": 96
+      },
+      {
+        "h": 74,
+        "loaded": true,
+        "w": 96
+      },
+      {
+        "h": 74,
+        "loaded": true,
+        "w": 96
+      }
+    ],
+    "overflow": false,
+    "width": 390
+  },
+  {
+    "case": "single-narrow",
+    "images": [
+      {
+        "h": 74,
+        "loaded": true,
+        "w": 96
+      }
+    ],
+    "overflow": false,
+    "width": 390
+  },
+  {
+    "case": "single-desktop",
+    "images": [
+      {
+        "h": 101,
+        "loaded": true,
+        "w": 144
+      }
+    ],
+    "overflow": false,
+    "width": 1406
+  },
+  {
+    "case": "liquid-desktop",
+    "images": [
+      {
+        "h": 101,
+        "loaded": true,
+        "w": 144
+      }
+    ],
+    "overflow": false,
+    "width": 1406
+  },
+  {
+    "case": "liquid-narrow",
+    "images": [
+      {
+        "h": 74,
+        "loaded": true,
+        "w": 96
+      }
+    ],
+    "overflow": false,
+    "width": 390
+  }
+]
