@@ -1,0 +1,45 @@
+test_ambiguous_search_preserves_all (test_composition.CompositionTests.test_ambiguous_search_preserves_all) ... ok
+test_blank_search (test_composition.CompositionTests.test_blank_search) ... ok
+test_combination (test_composition.CompositionTests.test_combination) ... ok
+test_empty_search (test_composition.CompositionTests.test_empty_search) ... ok
+test_er_salt_and_reference_basis (test_composition.CompositionTests.test_er_salt_and_reference_basis) ... ok
+test_explicit_release_variants (test_composition.CompositionTests.test_explicit_release_variants) ... ok
+test_incompatible_and_missing_units (test_composition.CompositionTests.test_incompatible_and_missing_units) ... ok
+test_invalid_amounts (test_composition.CompositionTests.test_invalid_amounts) ... ok
+test_invalid_xml (test_composition.CompositionTests.test_invalid_xml) ... ok
+test_kit_missing_not_fabricated (test_composition.CompositionTests.test_kit_missing_not_fabricated) ... ok
+test_liquid (test_composition.CompositionTests.test_liquid) ... ok
+test_malformed_search (test_composition.CompositionTests.test_malformed_search) ... ok
+test_single_tablet (test_composition.CompositionTests.test_single_tablet) ... ok
+test_source_failure (test_composition.CompositionTests.test_source_failure) ... ok
+test_undisclosed_inactive_is_not_zero (test_composition.CompositionTests.test_undisclosed_inactive_is_not_zero) ... ok
+test_unit_conversions (test_composition.CompositionTests.test_unit_conversions) ... ok
+test_unknown_basis_excluded (test_composition.CompositionTests.test_unknown_basis_excluded) ... ok
+test_wrong_source_identity (test_composition.CompositionTests.test_wrong_source_identity) ... ok
+test_english_and_korean (test_composition_ui.UITests.test_english_and_korean) ... 2026-10-16 01:02:56.516 WARNING streamlit.runtime.scriptrunner_utils.script_run_context: Thread 'MainThread': missing ScriptRunContext! This warning can be ignored when running in bare mode.
+2026-10-16 01:02:56.562 Thread 'MainThread': missing ScriptRunContext! This warning can be ignored when running in bare mode.
+ok
+test_existing_app_starts (test_composition_ui.UITests.test_existing_app_starts) ... 2026-10-16 01:02:56.566 Thread 'MainThread': missing ScriptRunContext! This warning can be ignored when running in bare mode.
+ok
+test_explicit_selection_and_bars (test_composition_ui.UITests.test_explicit_selection_and_bars) ... 2026-10-16 01:02:56.665 Thread 'MainThread': missing ScriptRunContext! This warning can be ignored when running in bare mode.
+2026-10-16 01:02:56.668 Thread 'MainThread': missing ScriptRunContext! This warning can be ignored when running in bare mode.
+ok
+test_label_failure (test_composition_ui.UITests.test_label_failure) ... 2026-10-16 01:02:56.904 Thread 'MainThread': missing ScriptRunContext! This warning can be ignored when running in bare mode.
+2026-10-16 01:02:56.907 Thread 'MainThread': missing ScriptRunContext! This warning can be ignored when running in bare mode.
+ok
+test_search_failure_clears_previous (test_composition_ui.UITests.test_search_failure_clears_previous) ... 2026-10-16 01:02:56.911 Thread 'MainThread': missing ScriptRunContext! This warning can be ignored when running in bare mode.
+2026-10-16 01:02:56.913 Thread 'MainThread': missing ScriptRunContext! This warning can be ignored when running in bare mode.
+ok
+test_basis_preserved (test_composition_visuals.VisualTests.test_basis_preserved) ... ok
+test_combination_proportions_and_direct_labels (test_composition_visuals.VisualTests.test_combination_proportions_and_direct_labels) ... ok
+test_incompatible_denominators_separate_figures (test_composition_visuals.VisualTests.test_incompatible_denominators_separate_figures) ... ok
+test_incompatible_units_unscaled (test_composition_visuals.VisualTests.test_incompatible_units_unscaled) ... ok
+test_korean (test_composition_visuals.VisualTests.test_korean) ... ok
+test_liquid_original_and_normalized_denominator (test_composition_visuals.VisualTests.test_liquid_original_and_normalized_denominator) ... ok
+test_missing_excipients_not_quantified (test_composition_visuals.VisualTests.test_missing_excipients_not_quantified) ... ok
+test_single_no_invented_maximum_or_comparator (test_composition_visuals.VisualTests.test_single_no_invented_maximum_or_comparator) ... ok
+
+----------------------------------------------------------------------
+Ran 31 tests in 0.419s
+
+OK

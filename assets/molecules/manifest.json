@@ -1,0 +1,68 @@
+{
+  "362O9ITL9D": {
+    "CID": 1983,
+    "MolecularFormula": "C8H9NO2",
+    "SMILES": "CC(=O)NC1=CC=C(C=C1)O",
+    "InChIKey": "RZVAJINKPMORJF-UHFFFAOYSA-N",
+    "IUPACName": "N-(4-hydroxyphenyl)acetamide",
+    "entity": "ACETAMINOPHEN",
+    "verified_names": [
+      "ACETAMINOPHEN"
+    ],
+    "unii": "362O9ITL9D",
+    "accent": "#147d85",
+    "image": "cid-1983.png",
+    "image_sha256": "b26d19569e2ac65d48f77a5d742a4b53e0ccf7b6d66d3eb7cdae8215c98aed30",
+    "source_url": "https://pubchem.ncbi.nlm.nih.gov/compound/1983",
+    "properties_url": "https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/cid/1983,2244,2519/property/IUPACName,InChIKey,IsomericSMILES,MolecularFormula/JSON",
+    "synonyms_url": "https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/cid/1983,2244,2519/synonyms/JSON",
+    "retrieved_at": "2026-10-16",
+    "renderer": "RDKit 2026.03.1",
+    "identity_scope": "Exact neutral ingredient substance; not salt, metabolite or strength-basis substitution",
+    "depiction": "Deterministic 2D structure; transparent PNG 600 \u00d7 420"
+  },
+  "R16CO5Y76E": {
+    "CID": 2244,
+    "MolecularFormula": "C9H8O4",
+    "SMILES": "CC(=O)OC1=CC=CC=C1C(=O)O",
+    "InChIKey": "BSYNRYMUTXBXSQ-UHFFFAOYSA-N",
+    "IUPACName": "2-acetyloxybenzoic acid",
+    "entity": "ASPIRIN",
+    "verified_names": [
+      "ASPIRIN"
+    ],
+    "unii": "R16CO5Y76E",
+    "accent": "#625cb4",
+    "image": "cid-2244.png",
+    "image_sha256": "4702ceb568911c1a4d797d0d7a40d8bc4e63ee71e7a01652d092de6a6c07d81c",
+    "source_url": "https://pubchem.ncbi.nlm.nih.gov/compound/2244",
+    "properties_url": "https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/cid/1983,2244,2519/property/IUPACName,InChIKey,IsomericSMILES,MolecularFormula/JSON",
+    "synonyms_url": "https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/cid/1983,2244,2519/synonyms/JSON",
+    "retrieved_at": "2026-10-16",
+    "renderer": "RDKit 2026.03.1",
+    "identity_scope": "Exact neutral ingredient substance; not salt, metabolite or strength-basis substitution",
+    "depiction": "Deterministic 2D structure; transparent PNG 600 \u00d7 420"
+  },
+  "3G6A5W338E": {
+    "CID": 2519,
+    "MolecularFormula": "C8H10N4O2",
+    "SMILES": "CN1C=NC2=C1C(=O)N(C(=O)N2C)C",
+    "InChIKey": "RYYVLZVUVIJVGH-UHFFFAOYSA-N",
+    "IUPACName": "1,3,7-trimethylpurine-2,6-dione",
+    "entity": "CAFFEINE",
+    "verified_names": [
+      "CAFFEINE"
+    ],
+    "unii": "3G6A5W338E",
+    "accent": "#b16a2f",
+    "image": "cid-2519.png",
+    "image_sha256": "29da1d8204b7a69e078964de0a246621803692d9eaf486d866c8dcb9aac63c1c",
+    "source_url": "https://pubchem.ncbi.nlm.nih.gov/compound/2519",
+    "properties_url": "https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/cid/1983,2244,2519/property/IUPACName,InChIKey,IsomericSMILES,MolecularFormula/JSON",
+    "synonyms_url": "https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/cid/1983,2244,2519/synonyms/JSON",
+    "retrieved_at": "2026-10-16",
+    "renderer": "RDKit 2026.03.1",
+    "identity_scope": "Exact neutral ingredient substance; not salt, metabolite or strength-basis substitution",
+    "depiction": "Deterministic 2D structure; transparent PNG 600 \u00d7 420"
+  }
+}

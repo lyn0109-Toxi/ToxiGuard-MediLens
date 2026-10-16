@@ -37,3 +37,17 @@ http://127.0.0.1:8501
 ## Notes
 
 This is an educational prototype based on official-label concepts. It is not a diagnosis, prescribing, or emergency-care tool.
+
+## Composition preview
+
+Current design: [verified molecular ingredient visuals](review/MOLECULAR_REVISION.md). Matching requires name and UNII; unverified identities use generic placeholders. See [molecular source/reuse evidence](assets/molecules/PROVENANCE.md).
+
+The default **Composition** workspace searches DailyMed by product/generic name and optionally by manufacturer or labeler. Choose a label, then an exact structured product/strength/form/NDC. **Safety overview** preserves the existing application.
+
+- Displays active ingredient quantity, strength basis, active moiety, original XML/text and provenance.
+- Compares only supported mass units per dosage unit or per mL. Does not infer missing amounts, total tablet mass, therapeutic equivalence or approval status.
+- Korean UI and English UI; label terminology remains in its original language.
+- Korea reports MFDS access unavailable; kits with nested parts report missing structured composition.
+- Public DailyMed access is required. Successful requests are cached for one hour; displayed retrieval timestamps describe the cached response.
+
+Run checks with `python3 -m unittest discover -s tests -v`. See [the visual revision](review/VISUAL_REVISION.md) for the current proportional-bar interface and responsive QA; see [review/REVIEW.md](review/REVIEW.md) for original scope, screenshots, limitations and deployment requirements. See [new image provenance](assets/COMPOSITION_IMAGE_LICENSE.md).
