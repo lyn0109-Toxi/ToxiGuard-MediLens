@@ -77,3 +77,8 @@ def excipient_visual_html(product,lang='en',narrative=None):
     if not inactive:
         html='<div class="unknown-panel">'+tr('이 구조화된 항목에는 첨가제 목록이 없습니다.','No inactive ingredient list in this structured entry.')+'</div>'
     return html
+
+# Only composition-specific classes are styled; the legacy safety workspace is untouched.
+STYLE += """<style>
+.composition-hero{padding:22px 0 24px;border-bottom:1px solid #d4e0e7;color:#152f40}.composition-hero small{font-size:.65rem;letter-spacing:.16em;font-weight:700;color:#526574}.composition-hero h1{font-size:2.2rem;letter-spacing:-.055em;line-height:1.15;margin:10px 0}.composition-hero p{font-size:.88rem;color:#526574}.dose-figure{background:#fff;border-color:#d4e0e7;border-radius:24px;box-shadow:0 9px 28px #153e4406}.dose-title{color:#17384a;letter-spacing:-.03em}.dose-bar{border-radius:0 8px 8px 0}.dose-value{font-variant-numeric:tabular-nums}.unknown-panel{border-color:#b6c9d2;border-radius:18px}.unknown-chip{border-color:#cfdae1;border-radius:8px}.unknown-heading{letter-spacing:-.02em}@media(max-width:600px){.composition-hero h1{font-size:1.7rem}.composition-hero{padding:14px 0 20px}}
+</style>"""

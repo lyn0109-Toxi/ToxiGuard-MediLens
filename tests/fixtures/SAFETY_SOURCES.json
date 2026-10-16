@@ -1,0 +1,42 @@
+[
+  {
+    "fixture": "mucinex-solution.xml",
+    "source_url": "https://dailymed.nlm.nih.gov/dailymed/services/v2/spls/182222b5-a852-4dbe-b05f-a41d89806021.xml",
+    "page_url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=182222b5-a852-4dbe-b05f-a41d89806021",
+    "retrieved_date_UTC": "2026-10-16",
+    "download_file_completed_UTC": "2026-10-16T18:05:57.200987+00:00",
+    "SPL_version": "9",
+    "sha256": "fb78e44e74a05b426c222e76def65bc40eb8bc2357533ea727180b7de97651cd",
+    "matches_retained_fixture": true
+  },
+  {
+    "fixture": "metoprolol-er.xml",
+    "source_url": "https://dailymed.nlm.nih.gov/dailymed/services/v2/spls/aec38606-2009-4933-b9d7-5031be85e898.xml",
+    "page_url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=aec38606-2009-4933-b9d7-5031be85e898",
+    "retrieved_date_UTC": "2026-10-16",
+    "download_file_completed_UTC": "2026-10-16T18:05:57.507127+00:00",
+    "SPL_version": "2",
+    "sha256": "d06d45debe88f79d58f80fad476d612024fa3e2fa764cb0e986188db60109a9e",
+    "matches_retained_fixture": true
+  },
+  {
+    "fixture": "fexofenadine.xml",
+    "source_url": "https://dailymed.nlm.nih.gov/dailymed/services/v2/spls/f9ccd673-c65f-45c6-9863-26136eb816db.xml",
+    "page_url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=f9ccd673-c65f-45c6-9863-26136eb816db",
+    "retrieved_date_UTC": "2026-10-16",
+    "download_file_completed_UTC": "2026-10-16T18:05:56.991034+00:00",
+    "SPL_version": "3",
+    "sha256": "0514d40aff44cf1ce46dad1c8bcb318994641c39ab4665cddcde09846e95df3d",
+    "matches_retained_fixture": true
+  },
+  {
+    "fixture": "artificial-tears.xml",
+    "source_url": "https://dailymed.nlm.nih.gov/dailymed/services/v2/spls/8cccc589-3a8e-baad-e053-2a95a90ab8c7.xml",
+    "page_url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=8cccc589-3a8e-baad-e053-2a95a90ab8c7",
+    "retrieved_date_UTC": "2026-10-16",
+    "download_file_completed_UTC": "2026-10-16T18:10:32.814758+00:00",
+    "SPL_version": "6",
+    "sha256": "b6de073df8034067d9c2562f4cfa72a01afdef24dad3f9eb3dd4f47399c29dd0",
+    "matches_retained_fixture": true
+  }
+]

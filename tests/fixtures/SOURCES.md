@@ -11,3 +11,5 @@ Retrieved 2026-10-16 UTC from DailyMed API; no private health information.
 | combination.xml | bc2f2c36-2d3d-47f5-bdd0-d684464473ca | https://dailymed.nlm.nih.gov/dailymed/services/v2/spls/bc2f2c36-2d3d-47f5-bdd0-d684464473ca.xml |
 
 `combination.xml` is a kit, used to ensure unsupported nested composition is not fabricated or merged into one product. Excedrin is the supported ordinary combination tablet case.
+
+Additional safety examples: `mucinex-solution.xml`, `fexofenadine.xml`, and `artificial-tears.xml`. Exact official URLs, download timestamps, versions and retained-file SHA-256 values for these and the metoprolol example are recorded in [SAFETY_SOURCES.json](SAFETY_SOURCES.json). QA explicitly labels retained fixtures rather than presenting them as live responses.

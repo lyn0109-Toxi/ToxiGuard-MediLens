@@ -83,11 +83,17 @@ def parse_spl(raw, source_url='', retrieved_at=None):
         raise SourceError('DailyMed returned invalid XML.') from exc
     labeler = txt(root, 'h:author/h:assignedEntity/h:representedOrganization/h:name')
     sections = []
+    parents={child:parent for parent in root.iter() for child in parent}
     for section in root.findall('.//h:section', NS):
         # Direct section text preserves the original wording, without conflating tables with structured values.
         text_node = section.find('h:text', NS)
         if text_node is not None:
-            sections.append({'title': txt(section, 'h:title'), 'text': ' '.join(' '.join(text_node.itertext()).split())})
+            parent_codes=[];parent=parents.get(section)
+            while parent is not None:
+                if parent.tag=='{urn:hl7-org:v3}section':
+                    parent_codes.append(attr(parent,'h:code','code'))
+                parent=parents.get(parent)
+            sections.append({'title': txt(section, 'h:title'), 'text': ' '.join(' '.join(text_node.itertext()).split()), 'code':attr(section,'h:code','code'),'display_name':attr(section,'h:code','displayName'),'id':section.get('ID',''),'effective_date':attr(section,'h:effectiveTime','value'),'parent_codes':parent_codes})
     products = []
     for p in root.findall('.//h:manufacturedProduct/h:manufacturedProduct', NS):
         ingredients = []

@@ -59,3 +59,7 @@ The composition workspace includes a keyboard-accessible ingredient map with a c
 Run the full app with `python3 -m streamlit run app.py`. For a deterministic review using public downloaded fixtures, run `python3 -m streamlit run review/visual_qa.py --server.port 8521` and open `http://localhost:8521/?example=mucinex-solution&lang=en`. This harness calls the production renderer and explicitly identifies its fixture data; it is not a live DailyMed response. Other examples cover single and combination tablets, a liquid and an extended-release salt.
 
 Run verification with `python3 -m unittest discover -s tests`. Component JS/CSS is in `ingredient_map_assets`; source-derived strings are assigned with `textContent`. The generic dosage-form SVG is original code artwork, not a photograph or product likeness. Existing verified molecule PNG provenance remains in `assets/molecules/PROVENANCE.md`. No new external imagery is introduced by the ingredient map.
+
+### Modern map and product-label safety review
+
+See [review/MODERN_MAP_SAFETY.md](review/MODERN_MAP_SAFETY.md) for the current local revision, source-backed safety-card scope, motion/accessibility behavior and validation limits.
