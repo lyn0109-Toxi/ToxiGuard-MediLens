@@ -4,6 +4,8 @@ import streamlit as st
 from composition import SourceError, search_labels, load_label, strength
 from composition_visuals import STYLE, dose_visual_html, excipient_visual_html
 from molecular_assets import structure_evidence
+from ingredient_map import render_map
+from ingredient_evidence import inactive_evidence
 
 @st.cache_data(ttl=3600, show_spinner=False)
 def search(name, org, role, page):
@@ -75,19 +77,26 @@ def render_composition(lang):
     st.caption(p['form'] + ' · ' + releases[p['release']] + ' · NDC ' + (p['ndc'] or '—'))
     if not any(i['active'] for i in p['ingredients']):
         st.warning(tr('활성 성분 정보가 없습니다.', 'Active ingredient information unavailable.'))
-    st.markdown(dose_visual_html(p, lang), unsafe_allow_html=True)
-    st.markdown(excipient_visual_html(p, lang), unsafe_allow_html=True)
+    basis = st.radio(tr('함량 표시 기준', 'Amount display basis'), ['label','normalized'], horizontal=True, format_func=lambda v: tr('레이블 원문 기준', 'Original label denominator') if v == 'label' else tr('1정·1 mL 기준', 'Per unit / mL'), key='amount_basis_'+record['setid']+'_'+lang)
+    st.caption(tr('레이블의 분모는 함량 표시 기준이며 복용량 권장이 아닙니다. 단위가 호환되는 성분만 같은 차트에 표시합니다.', 'The label denominator is a strength basis, not a dosing recommendation. Only compatible units share a chart.'))
+    render_map(p, record, lang, basis)
+    st.markdown(dose_visual_html(p, lang, basis), unsafe_allow_html=True)
+    st.markdown(excipient_visual_html(p, lang, record.get('inactive_narrative',[])), unsafe_allow_html=True)
     st.caption(tr('성분 함량은 효능·안전성·치료적 동등성을 뜻하지 않습니다. DailyMed 등재가 FDA 승인을 뜻하지 않습니다.', 'Amounts do not indicate potency, safety or therapeutic equivalence. DailyMed listing does not imply FDA approval.'))
     with st.expander(tr('첨가제 및 원문 근거', 'Inactive ingredients & original evidence')):
+        for i in inactive_evidence(p,record.get('inactive_narrative',[])):
+            note = tr('조건부 · 원문 확인','Conditional · see narrative') if i['presence']=='conditional' else tr('원문 구절 · 별도 성분으로 확정하지 않음','Narrative phrase · not asserted as an additional chemical') if i['origin']=='narrative-only' else tr('구조화된 항목','Structured entry')
+            st.write(i['name'] + ' — ' + (strength(i) or tr('함량 미공개','Amount not disclosed')))
+            st.caption(note + (' · '+'; '.join(i['narrative']) if i['narrative'] else ''))
+        st.caption(tr('미공개 함량은 0이 아닙니다. IID 최대 역가로 추정하지 않습니다. 레이블 전체의 원문 구절은 다른 제품에도 해당할 수 있어 적용 여부를 확인하세요. 구조화된 항목과 겹칠 수 있습니다.', 'Undisclosed amounts are not zero. IID maximum potency is not used to infer amounts. Label-level narrative may cover other products; check applicability. Phrases may overlap structured entries.'))
+        for section in record.get('inactive_narrative',[]):
+            st.write(section['title']); st.text(section['text'])
+    with st.expander(tr('고급 근거 · 구조화된 SPL XML', 'Advanced evidence · structured SPL XML')):
         for i in p['ingredients']:
             st.write(i['name'] + ' — ' + (strength(i) or tr('함량 미공개','Amount not disclosed')))
-            if i['active']:
-                st.caption(tr('활성 부분: ','Active moiety: ') + ('; '.join(i['active_moieties']) or tr('미공개','Not disclosed')) + ' · SPL ' + i['class_code'])
-            st.code(i['original_xml'], language='xml')
-        st.caption(tr('미공개 함량은 0이 아닙니다. IID 최대 역가로 추정하지 않습니다. 총질량을 알 수 없어 원형 차트를 사용하지 않습니다.', 'Undisclosed amounts are not zero. IID maximum potency is not used to infer amounts. No total composition pie chart is shown.'))
-        for section in record['sections']:
-            if any(word in section['title'].lower() for word in ('ingredient','description','active')):
-                st.write(section['title']); st.text(section['text'])
+            st.code(i['original_xml'],language='xml')
+        for section in record.get('inactive_narrative',[]):
+            st.code(section['original_xml'],language='xml')
     with st.expander(tr('분자 구조 · 식별자 · 출처', 'Molecular structures · identity · sources')):
         st.caption(tr('검증된 구조 데이터로 직접 렌더링한 2D PNG입니다. 이름과 UNII가 모두 일치하는 성분만 표시합니다.','2D PNGs rendered deterministically from verified structure data. Both name and UNII must match.'))
         st.json(structure_evidence(p['ingredients']))
