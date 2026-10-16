@@ -1,6 +1,7 @@
 """DailyMed SPL composition: preserve source quantities; never infer missing mass."""
 from __future__ import annotations
 import json
+import math
 import ssl
 import urllib.parse
 import urllib.request
@@ -9,6 +10,7 @@ from collections import defaultdict
 from datetime import datetime, timezone
 from decimal import Decimal, InvalidOperation
 import certifi
+from ingredient_evidence import narrative_sections
 
 NS = {'h': 'urn:hl7-org:v3'}
 BASE = 'https://dailymed.nlm.nih.gov/dailymed/services/v2'
@@ -106,7 +108,7 @@ def parse_spl(raw, source_url='', retrieved_at=None):
         release = 'extended' if 'EXTENDED RELEASE' in f else 'delayed' if 'DELAYED RELEASE' in f else 'immediate' if 'IMMEDIATE RELEASE' in f else 'unspecified'
         manufacturers = [txt(x, 'h:manufacturerOrganization/h:name') for x in p.findall('h:asManufacturedProduct', NS)]
         products.append({'name': txt(p, 'h:name'), 'generic': txt(p, 'h:asEntityWithGeneric/h:genericMedicine/h:name'), 'ndc': attr(p, 'h:code', 'code'), 'form': form, 'release': release, 'manufacturer': ', '.join(filter(None, manufacturers)) or None, 'labeler': labeler or None, 'ingredients': ingredients})
-    return {'setid': attr(root, 'h:setId', 'root'), 'version': attr(root, 'h:versionNumber', 'value'), 'effective_date': attr(root, 'h:effectiveTime', 'value'), 'title': txt(root, 'h:title'), 'retrieved_at': retrieved_at or datetime.now(timezone.utc).isoformat(), 'source_url': source_url, 'products': products, 'sections': sections}
+    return {'setid': attr(root, 'h:setId', 'root'), 'version': attr(root, 'h:versionNumber', 'value'), 'effective_date': attr(root, 'h:effectiveTime', 'value'), 'title': txt(root, 'h:title'), 'retrieved_at': retrieved_at or datetime.now(timezone.utc).isoformat(), 'source_url': source_url, 'products': products, 'sections': sections, 'inactive_narrative': narrative_sections(root)}
 
 def load_label(setid):
     import re
@@ -118,8 +120,10 @@ def load_label(setid):
         raise SourceError('Returned label does not match the selected SPL identifier.')
     return record
 
-def chart_groups(ingredients):
+def chart_groups(ingredients, basis='normalized'):
     """Only mass strengths with known basis and identical/convertible denominators."""
+    if basis not in ('label', 'normalized'):
+        raise ValueError('Unknown display basis')
     groups = defaultdict(list)
     for i in ingredients:
         if not i['active'] or not i.get('basis'):
@@ -128,12 +132,23 @@ def chart_groups(ingredients):
         nv, dv = number(n['value']), number(d['value'])
         if nv is None or dv is None or n['unit'] not in MASS:
             continue
-        if d['unit'] in VOLUME:
-            key, divisor = 'mg / mL', dv * VOLUME[d['unit']]
-        elif d['unit'] == '1':
-            key, divisor = 'mg / unit', dv
-        else:
-            # Unknown denominator units are intentionally excluded.
+        try:
+            if d['unit'] in VOLUME:
+                key, divisor = (f"mg / {d['value']} {d['unit']}", Decimal(1)) if basis == 'label' else ('mg / mL', dv * VOLUME[d['unit']])
+            elif d['unit'] == '1':
+                key, divisor = (f"mg / {d['value']} unit", Decimal(1)) if basis == 'label' else ('mg / unit', dv)
+            else:
+                # Unknown denominator units are intentionally excluded.
+                continue
+        except ArithmeticError:
             continue
-        groups[key].append({'ingredient': i['name'], 'basis': i['basis'], 'amount': float(nv * MASS[n['unit']] / divisor), 'original_strength': strength(i), 'unii': i.get('unii')})
+        # Decimal source quantities can exceed the finite range of browser/chart floats.
+        # Keep original evidence, but never chart overflow, underflow-to-zero or NaN.
+        try:
+            amount = float(nv * MASS[n['unit']] / divisor)
+        except (ArithmeticError, ValueError):
+            continue
+        if not math.isfinite(amount) or amount <= 0:
+            continue
+        groups[key].append({'ingredient': i['name'], 'basis': i['basis'], 'amount': amount, 'original_strength': strength(i), 'unii': i.get('unii')})
     return dict(groups)

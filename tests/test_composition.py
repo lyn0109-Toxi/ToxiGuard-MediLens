@@ -65,6 +65,21 @@ class CompositionTests(unittest.TestCase):
     def test_unknown_basis_excluded(self):
         i=copy.deepcopy(next(i for i in fixture('liquid')['products'][0]['ingredients'] if i['active']));i['basis']=None
         self.assertEqual(chart_groups([i]),{})
+    def test_chart_numeric_render_range(self):
+        i=copy.deepcopy(next(i for i in fixture('liquid')['products'][0]['ingredients'] if i['active']))
+        for value in ['1e9999','1e-9999','1e999999999']:
+            i['quantity']['numerator']['value']=value
+            for basis in ['label','normalized']:
+                self.assertEqual(chart_groups([i],basis),{})
+            self.assertIsNotNone(strength(i))  # Preserve evidence even when unchartable.
+
+    def test_chart_denominator_render_range(self):
+        i=copy.deepcopy(next(i for i in fixture('liquid')['products'][0]['ingredients'] if i['active']))
+        for unit in ['mL','L','uL']:
+            for value in ['1e999999999','1e-999999999']:
+                i['quantity']['denominator']={'unit':unit,'value':value}
+                self.assertEqual(chart_groups([i],'normalized'),{})
+
     def test_blank_search(self):
         for q in ['', ' ', 'a']:
             with self.assertRaises(ValueError): search_labels(q)

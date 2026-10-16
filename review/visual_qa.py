@@ -10,7 +10,7 @@ from composition_ui import render_composition
 st.set_page_config(page_title='MediLens · public-label layout QA',layout='wide',initial_sidebar_state='collapsed')
 st.caption('PUBLIC LABEL FIXTURES · LAYOUT QA · downloaded 2026-10-16 · not a live source response')
 a,b=st.columns([2,1])
-example=a.selectbox('Public example',['excedrin','acetaminophen','liquid','metoprolol-er'],index={'excedrin':0,'acetaminophen':1,'liquid':2,'metoprolol-er':3}.get(st.query_params.get('example'),0),format_func=lambda x:{'excedrin':'Combination tablet · 250 / 250 / 65 mg','acetaminophen':'Single tablet · 500 mg','liquid':'Liquid · 160 mg / 5 mL','metoprolol-er':'Salt identity · verified structure unavailable'}[x])
+example=a.selectbox('Public example',['excedrin','acetaminophen','liquid','metoprolol-er','mucinex-solution'],index={'excedrin':0,'acetaminophen':1,'liquid':2,'metoprolol-er':3,'mucinex-solution':4}.get(st.query_params.get('example'),0),format_func=lambda x:{'excedrin':'Combination tablet · 250 / 250 / 65 mg','acetaminophen':'Single tablet · 500 mg','liquid':'Liquid · 160 mg / 5 mL','metoprolol-er':'Salt identity · verified structure unavailable','mucinex-solution':'Mucinex solution · four actives per 20 mL'}[x])
 lang=b.selectbox('Language',['en','ko'],index=1 if st.query_params.get('lang')=='ko' else 0)
 raw=(ROOT/'tests'/'fixtures'/(example+'.xml')).read_bytes()
 record=parse_spl(raw,retrieved_at='2026-10-16T00:00:00Z')

@@ -2,10 +2,19 @@ import copy
 import unittest
 from pathlib import Path
 from composition import parse_spl
-from composition_visuals import dose_visual_html, excipient_visual_html, per_unit
+from composition_visuals import dose_visual_html, excipient_visual_html, per_unit, fmt
 F=Path(__file__).parent/'fixtures'
 def product(name):return parse_spl((F/(name+'.xml')).read_bytes())['products'][0]
 class VisualTests(unittest.TestCase):
+    def test_small_nonzero_strength_is_not_displayed_as_zero(self):
+        for value in [1e-9,1e-7,5e-324]:
+            self.assertNotEqual(fmt(value),'0')
+        self.assertEqual(fmt(0),'0')
+        self.assertEqual(fmt(32.5),'32.5')
+        p=copy.deepcopy(product('acetaminophen'))
+        p['ingredients'][0]['quantity']['numerator']['value']='0.000000001'
+        self.assertIn('1e-09 mg',dose_visual_html(p))
+
     def test_combination_proportions_and_direct_labels(self):
         html=dose_visual_html(product('excedrin'))
         self.assertEqual(html.count('class="dose-bar"'),3)
