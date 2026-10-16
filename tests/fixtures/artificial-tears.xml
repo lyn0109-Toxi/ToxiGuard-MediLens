@@ -1,0 +1,426 @@
+<?xml version="1.0" encoding="UTF-8"?><?xml-stylesheet href="https://www.accessdata.fda.gov/spl/stylesheet/spl.xsl" type="text/xsl"?>
+<document xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="urn:hl7-org:v3" xsi:schemaLocation="urn:hl7-org:v3 https://www.accessdata.fda.gov/spl/schema/spl.xsd">
+   <id root="5b120e34-0a0e-e1ae-e063-6294a90a15bc"/>
+   <code code="34390-5" codeSystem="2.16.840.1.113883.6.1" displayName="HUMAN OTC DRUG LABEL"/>
+   <title>Leader Artificial Tears 15mL (PLD)</title>
+   <effectiveTime value="20260909"/>
+   <setId root="8cccc589-3a8e-baad-e053-2a95a90ab8c7"/>
+   <versionNumber value="6"/>
+   <author>
+      <time/>
+      <assignedEntity>
+         <representedOrganization>
+            <id root="1.3.6.1.4.1.519.1" extension="063997360"/>
+            <name>Cardinal Health</name>
+            <assignedEntity>
+               <assignedOrganization>
+                  <id root="1.3.6.1.4.1.519.1" extension="174450460"/>
+                  <name>KC Pharmaceuticals, Inc.</name>
+                  <assignedEntity>
+                     <assignedOrganization>
+                        <id root="1.3.6.1.4.1.519.1" extension="174450460"/>
+                        <name>KC Pharmaceuticals, Inc.</name>
+                     </assignedOrganization>
+                     <performance>
+                        <actDefinition>
+                           <code code="C43360" displayName="manufacture" codeSystem="2.16.840.1.113883.3.26.1.1"/>
+                           <product>
+                              <manufacturedProduct classCode="MANU">
+                                 <manufacturedMaterialKind>
+                                    <code code="70000-0011" codeSystem="2.16.840.1.113883.6.69"/>
+                                 </manufacturedMaterialKind>
+                              </manufacturedProduct>
+                           </product>
+                        </actDefinition>
+                     </performance>
+                     <performance>
+                        <actDefinition>
+                           <code code="C84731" displayName="pack" codeSystem="2.16.840.1.113883.3.26.1.1"/>
+                           <product>
+                              <manufacturedProduct classCode="MANU">
+                                 <manufacturedMaterialKind>
+                                    <code code="70000-0011" codeSystem="2.16.840.1.113883.6.69"/>
+                                 </manufacturedMaterialKind>
+                              </manufacturedProduct>
+                           </product>
+                        </actDefinition>
+                     </performance>
+                     <performance>
+                        <actDefinition>
+                           <code code="C84732" displayName="label" codeSystem="2.16.840.1.113883.3.26.1.1"/>
+                           <product>
+                              <manufacturedProduct classCode="MANU">
+                                 <manufacturedMaterialKind>
+                                    <code code="70000-0011" codeSystem="2.16.840.1.113883.6.69"/>
+                                 </manufacturedMaterialKind>
+                              </manufacturedProduct>
+                           </product>
+                        </actDefinition>
+                     </performance>
+                  </assignedEntity>
+               </assignedOrganization>
+            </assignedEntity>
+         </representedOrganization>
+      </assignedEntity>
+   </author>
+   <component>
+      <structuredBody>
+         <component>
+            <section>
+               <id root="5b12382c-80b0-07e0-e063-6294a90a39d2"/>
+               <code code="48780-1" codeSystem="2.16.840.1.113883.6.1" displayName="SPL product data elements section"/>
+               <effectiveTime value="20260909"/>
+               <subject>
+                  <manufacturedProduct>
+                     <manufacturedProduct>
+                        <code code="70000-0011" codeSystem="2.16.840.1.113883.6.69"/>
+                        <name>Leader Artificial Tears 15 mL</name>
+                        <formCode code="C60992" codeSystem="2.16.840.1.113883.3.26.1.1" displayName="SOLUTION/ DROPS"/>
+                        <asEntityWithGeneric>
+                           <genericMedicine>
+                              <name>Polyvinyl Alcohol, Povidone</name>
+                           </genericMedicine>
+                        </asEntityWithGeneric>
+                        <ingredient classCode="ACTIB">
+                           <quantity>
+                              <numerator unit="g" value="0.5"/>
+                              <denominator unit="mL" value="100"/>
+                           </quantity>
+                           <ingredientSubstance>
+                              <code code="532B59J990" codeSystem="2.16.840.1.113883.4.9"/>
+                              <name>POLYVINYL ALCOHOL, UNSPECIFIED</name>
+                              <activeMoiety>
+                                 <activeMoiety>
+                                    <code code="532B59J990" codeSystem="2.16.840.1.113883.4.9"/>
+                                    <name>POLYVINYL ALCOHOL, UNSPECIFIED</name>
+                                 </activeMoiety>
+                              </activeMoiety>
+                           </ingredientSubstance>
+                        </ingredient>
+                        <ingredient classCode="ACTIB">
+                           <quantity>
+                              <numerator unit="g" value="0.6"/>
+                              <denominator unit="mL" value="100"/>
+                           </quantity>
+                           <ingredientSubstance>
+                              <code code="FZ989GH94E" codeSystem="2.16.840.1.113883.4.9"/>
+                              <name>POVIDONE</name>
+                              <activeMoiety>
+                                 <activeMoiety>
+                                    <code code="FZ989GH94E" codeSystem="2.16.840.1.113883.4.9"/>
+                                    <name>POVIDONE</name>
+                                 </activeMoiety>
+                              </activeMoiety>
+                           </ingredientSubstance>
+                        </ingredient>
+                        <ingredient classCode="IACT">
+                           <ingredientSubstance>
+                              <code code="8MDF5V39QO" codeSystem="2.16.840.1.113883.4.9"/>
+                              <name>SODIUM BICARBONATE</name>
+                           </ingredientSubstance>
+                        </ingredient>
+                        <ingredient classCode="IACT">
+                           <ingredientSubstance>
+                              <code code="451W47IQ8X" codeSystem="2.16.840.1.113883.4.9"/>
+                              <name>SODIUM CHLORIDE</name>
+                           </ingredientSubstance>
+                        </ingredient>
+                        <ingredient classCode="IACT">
+                           <ingredientSubstance>
+                              <code code="22ADO53M6F" codeSystem="2.16.840.1.113883.4.9"/>
+                              <name>SODIUM PHOSPHATE, DIBASIC, ANHYDROUS</name>
+                           </ingredientSubstance>
+                        </ingredient>
+                        <ingredient classCode="IACT">
+                           <ingredientSubstance>
+                              <code code="KH7I04HPUU" codeSystem="2.16.840.1.113883.4.9"/>
+                              <name>SODIUM PHOSPHATE, MONOBASIC, ANHYDROUS</name>
+                           </ingredientSubstance>
+                        </ingredient>
+                        <ingredient classCode="IACT">
+                           <ingredientSubstance>
+                              <code code="IY9XDZ35W2" codeSystem="2.16.840.1.113883.4.9"/>
+                              <name>DEXTROSE</name>
+                           </ingredientSubstance>
+                        </ingredient>
+                        <ingredient classCode="IACT">
+                           <ingredientSubstance>
+                              <code code="F5UM2KM3W7" codeSystem="2.16.840.1.113883.4.9"/>
+                              <name>BENZALKONIUM CHLORIDE</name>
+                           </ingredientSubstance>
+                        </ingredient>
+                        <ingredient classCode="IACT">
+                           <ingredientSubstance>
+                              <code code="7FLD91C86K" codeSystem="2.16.840.1.113883.4.9"/>
+                              <name>EDETATE DISODIUM</name>
+                              <activeMoiety>
+                                 <activeMoiety>
+                                    <code code="9G34HU7RV0" codeSystem="2.16.840.1.113883.4.9"/>
+                                    <name>EDETIC ACID</name>
+                                 </activeMoiety>
+                              </activeMoiety>
+                           </ingredientSubstance>
+                        </ingredient>
+                        <ingredient classCode="IACT">
+                           <ingredientSubstance>
+                              <code code="059QF0KO0R" codeSystem="2.16.840.1.113883.4.9"/>
+                              <name>WATER</name>
+                           </ingredientSubstance>
+                        </ingredient>
+                        <ingredient classCode="IACT">
+                           <ingredientSubstance>
+                              <code code="1Q73Q2JULR" codeSystem="2.16.840.1.113883.4.9"/>
+                              <name>SODIUM CITRATE</name>
+                           </ingredientSubstance>
+                        </ingredient>
+                        <ingredient classCode="IACT">
+                           <ingredientSubstance>
+                              <code code="660YQ98I10" codeSystem="2.16.840.1.113883.4.9"/>
+                              <name>POTASSIUM CHLORIDE</name>
+                           </ingredientSubstance>
+                        </ingredient>
+                        <asContent>
+                           <quantity>
+                              <numerator value="15" unit="mL"/>
+                              <denominator value="1"/>
+                           </quantity>
+                           <containerPackagedProduct>
+                              <code/>
+                              <formCode code="C43171" codeSystem="2.16.840.1.113883.3.26.1.1" displayName="BOTTLE, DROPPER"/>
+                              <asContent>
+                                 <quantity>
+                                    <numerator value="1" unit="1"/>
+                                    <denominator value="1"/>
+                                 </quantity>
+                                 <containerPackagedProduct>
+                                    <code code="70000-0011-1" codeSystem="2.16.840.1.113883.6.69"/>
+                                    <formCode code="C43178" codeSystem="2.16.840.1.113883.3.26.1.1" displayName="BOX"/>
+                                 </containerPackagedProduct>
+                                 <subjectOf>
+                                    <marketingAct>
+                                       <code code="C53292" codeSystem="2.16.840.1.113883.3.26.1.1"/>
+                                       <statusCode code="completed"/>
+                                       <effectiveTime>
+                                          <low value="20190703"/>
+                                          <high value="20270930"/>
+                                       </effectiveTime>
+                                    </marketingAct>
+                                 </subjectOf>
+                              </asContent>
+                           </containerPackagedProduct>
+                           <subjectOf>
+                              <characteristic>
+                                 <code code="SPLCMBPRDTP" codeSystem="2.16.840.1.113883.1.11.19255"/>
+                                 <value code="C112160" codeSystem="2.16.840.1.113883.3.26.1.1" displayName="Type 0: Not a Combination Product" xsi:type="CV"/>
+                              </characteristic>
+                           </subjectOf>
+                        </asContent>
+                     </manufacturedProduct>
+                     <subjectOf>
+                        <approval>
+                           <id extension="M018" root="2.16.840.1.113883.3.9421"/>
+                           <code code="C200263" codeSystem="2.16.840.1.113883.3.26.1.1" displayName="OTC Monograph Drug"/>
+                           <author>
+                              <territorialAuthority>
+                                 <territory>
+                                    <code code="USA" codeSystem="2.16.840.1.113883.5.28"/>
+                                 </territory>
+                              </territorialAuthority>
+                           </author>
+                        </approval>
+                     </subjectOf>
+                     <subjectOf>
+                        <marketingAct>
+                           <code code="C53292" codeSystem="2.16.840.1.113883.3.26.1.1"/>
+                           <statusCode code="completed"/>
+                           <effectiveTime>
+                              <low value="20190703"/>
+                              <high value="20270930"/>
+                           </effectiveTime>
+                        </marketingAct>
+                     </subjectOf>
+                     <consumedIn>
+                        <substanceAdministration>
+                           <routeCode code="C38287" codeSystem="2.16.840.1.113883.3.26.1.1" displayName="OPHTHALMIC"/>
+                        </substanceAdministration>
+                     </consumedIn>
+                  </manufacturedProduct>
+               </subject>
+            </section>
+         </component>
+         <component>
+            <section ID="id_link_8ccd3611-73ec-75d5-e053-2995a90ad0fd">
+               <id root="5b120ddc-edea-dfa3-e063-6294a90ab906"/>
+               <code code="55106-9" codeSystem="2.16.840.1.113883.6.1" displayName="OTC - ACTIVE INGREDIENT SECTION"/>
+               <title>Active Ingredients</title>
+               <text>
+                  <paragraph>Polyvinyl alcohol 0.5%</paragraph>
+                  <paragraph>Povidone 0.6%</paragraph>
+               </text>
+               <effectiveTime value="20190703"/>
+            </section>
+         </component>
+         <component>
+            <section ID="id_link_8ccd3611-73ee-75d5-e053-2995a90ad0fd">
+               <id root="5b120ddc-edeb-dfa3-e063-6294a90ab906"/>
+               <code code="55105-1" codeSystem="2.16.840.1.113883.6.1" displayName="OTC - PURPOSE SECTION"/>
+               <title>Purposes</title>
+               <text>
+                  <paragraph>Lubricant</paragraph>
+                  <paragraph>Lubricant</paragraph>
+               </text>
+               <effectiveTime value="20190703"/>
+            </section>
+         </component>
+         <component>
+            <section ID="id_link_8ccd384c-7350-30d7-e053-2a95a90a416e">
+               <id root="5b120ddc-edec-dfa3-e063-6294a90ab906"/>
+               <code code="34067-9" codeSystem="2.16.840.1.113883.6.1" displayName="INDICATIONS &amp; USAGE SECTION"/>
+               <title>Uses</title>
+               <text>
+                  <list listType="unordered">
+                     <item>for use as a protectant against further irritation or to relieve dryness of the eye</item>
+                     <item>for the temporary relief of discomfort due to minor irritations of the eye, or to exposure to wind or sun</item>
+                  </list>
+               </text>
+               <effectiveTime value="20190703"/>
+            </section>
+         </component>
+         <component>
+            <section ID="id_link_8ccd384c-7352-30d7-e053-2a95a90a416e">
+               <id root="5b120ddc-eded-dfa3-e063-6294a90ab906"/>
+               <code code="34071-1" codeSystem="2.16.840.1.113883.6.1" displayName="WARNINGS SECTION"/>
+               <title>Warnings</title>
+               <text>
+                  <paragraph>For external use only</paragraph>
+               </text>
+               <effectiveTime value="20190703"/>
+               <component>
+                  <section ID="id_link_8ccd384c-7354-30d7-e053-2a95a90a416e">
+                     <id root="5b120ddc-edee-dfa3-e063-6294a90ab906"/>
+                     <code code="50570-1" codeSystem="2.16.840.1.113883.6.1" displayName="OTC - DO NOT USE SECTION"/>
+                     <title>Do not use this product if</title>
+                     <text>
+                        <list listType="unordered">
+                           <item>solution changes color or becomes cloudy</item>
+                        </list>
+                     </text>
+                     <effectiveTime value="20190703"/>
+                  </section>
+               </component>
+               <component>
+                  <section ID="id_link_8ccd7f44-ac8a-65dd-e053-2995a90a587d">
+                     <id root="5b120ddc-edef-dfa3-e063-6294a90ab906"/>
+                     <code code="50567-7" codeSystem="2.16.840.1.113883.6.1" displayName="OTC - WHEN USING SECTION"/>
+                     <title>When using this product</title>
+                     <text>
+                        <list listType="unordered">
+                           <item>remove contact lens before using</item>
+                           <item>to avoid contamination, do not touch tip of container to any surface</item>
+                           <item>replace cap after using. Keep container tightly closed.</item>
+                        </list>
+                     </text>
+                     <effectiveTime value="20190703"/>
+                  </section>
+               </component>
+               <component>
+                  <section ID="id_link_8ccd8760-e0b3-ea9d-e053-2a95a90a9341">
+                     <id root="5b120ddc-edf0-dfa3-e063-6294a90ab906"/>
+                     <code code="50566-9" codeSystem="2.16.840.1.113883.6.1" displayName="OTC - STOP USE SECTION"/>
+                     <title>Stop use and ask a doctor if you experience</title>
+                     <text>
+                        <list listType="unordered">
+                           <item>eye pain</item>
+                           <item>changes in vision</item>
+                           <item>continued redness or irritation of the eye or if the condition worsens or persists for more than 72 hours</item>
+                        </list>
+                     </text>
+                     <effectiveTime value="20190703"/>
+                  </section>
+               </component>
+               <component>
+                  <section ID="id_link_8ccd8f56-a737-1eda-e053-2a95a90aca4e">
+                     <id root="5b120ddc-edf1-dfa3-e063-6294a90ab906"/>
+                     <code code="50565-1" codeSystem="2.16.840.1.113883.6.1" displayName="OTC - KEEP OUT OF REACH OF CHILDREN SECTION"/>
+                     <title>Keep out of the reach of children.</title>
+                     <text>
+                        <paragraph>if accidentally swallowed, get medical help or contact Poison Control Center (1-800-222-1222) immediately.</paragraph>
+                     </text>
+                     <effectiveTime value="20190703"/>
+                  </section>
+               </component>
+            </section>
+         </component>
+         <component>
+            <section ID="id_link_8ccd7f44-ac8e-65dd-e053-2995a90a587d">
+               <id root="5b120ddc-edf2-dfa3-e063-6294a90ab906"/>
+               <code code="34068-7" codeSystem="2.16.840.1.113883.6.1" displayName="DOSAGE &amp; ADMINISTRATION SECTION"/>
+               <title>Directions</title>
+               <text>
+                  <list listType="unordered">
+                     <item>instill 1 or 2 drops in the affected eye(s) as needed</item>
+                     <item>children under 6 years of age: ask a doctor</item>
+                  </list>
+               </text>
+               <effectiveTime value="20190703"/>
+            </section>
+         </component>
+         <component>
+            <section ID="id_link_8ccd8f56-a739-1eda-e053-2a95a90aca4e">
+               <id root="5b120ddc-edf3-dfa3-e063-6294a90ab906"/>
+               <code code="60561-8" codeSystem="2.16.840.1.113883.6.1" displayName="OTHER SAFETY INFORMATION"/>
+               <title>Other Information</title>
+               <text>
+                  <list listType="unordered">
+                     <item>store at 15°-30°C (59°-86°F)</item>
+                  </list>
+               </text>
+               <effectiveTime value="20190703"/>
+            </section>
+         </component>
+         <component>
+            <section ID="id_link_8ccd7f44-ac90-65dd-e053-2995a90a587d">
+               <id root="5b120ddc-edf4-dfa3-e063-6294a90ab906"/>
+               <code code="51727-6" codeSystem="2.16.840.1.113883.6.1" displayName="INACTIVE INGREDIENT SECTION"/>
+               <title>Inactive Ingredients</title>
+               <text>
+                  <paragraph>benzalkonium chloride, dextrose, edetate disodium, potassium chloride, purified water, sodium bicarbonate, sodium chloride, sodium citrate, sodium phosphate dibasic, sodium phosphate monobasic</paragraph>
+               </text>
+               <effectiveTime value="20190703"/>
+            </section>
+         </component>
+         <component>
+            <section ID="id_link_8ccd8760-e0b7-ea9d-e053-2a95a90a9341">
+               <id root="5b120ddc-edf5-dfa3-e063-6294a90ab906"/>
+               <code code="53413-1" codeSystem="2.16.840.1.113883.6.1" displayName="OTC - QUESTIONS SECTION"/>
+               <title>Questions or comments?</title>
+               <text>
+                  <paragraph>Call 1-888-527-4276</paragraph>
+               </text>
+               <effectiveTime value="20190703"/>
+            </section>
+         </component>
+         <component>
+            <section ID="id_link_8ccd3611-73ea-75d5-e053-2995a90ad0fd">
+               <id root="5b120ddc-edf6-dfa3-e063-6294a90ab906"/>
+               <code code="51945-4" codeSystem="2.16.840.1.113883.6.1" displayName="PACKAGE LABEL.PRINCIPAL DISPLAY PANEL"/>
+               <title>Leader Artificial Tears 15mL</title>
+               <text>
+                  <paragraph>
+                     <renderMultiMedia referencedObject="img_8ccc167a-9df3-34f6-e053-2995a90a4c1e"/>
+                  </paragraph>
+               </text>
+               <effectiveTime value="20190703"/>
+               <component>
+                  <observationMedia ID="img_8ccc167a-9df3-34f6-e053-2995a90a4c1e">
+                     <text>Leader Artificial Tears 15 mL</text>
+                     <value mediaType="image/jpeg" xsi:type="ED">
+                        <reference value="KC Drug Listing - KC - Leader Artificial Tears-0.5oz.jpg"/>
+                     </value>
+                  </observationMedia>
+               </component>
+            </section>
+         </component>
+      </structuredBody>
+   </component>
+</document>

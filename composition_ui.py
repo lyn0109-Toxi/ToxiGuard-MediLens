@@ -6,6 +6,7 @@ from composition_visuals import STYLE, dose_visual_html, excipient_visual_html
 from molecular_assets import structure_evidence
 from ingredient_map import render_map
 from ingredient_evidence import inactive_evidence
+from label_safety_ui import STYLE as SAFETY_STYLE,urgent_html,safety_html
 
 @st.cache_data(ttl=3600, show_spinner=False)
 def search(name, org, role, page):
@@ -18,7 +19,7 @@ def label(setid):
 def render_composition(lang):
     ko = lang == 'ko'
     def tr(k, e): return k if ko else e
-    st.markdown(STYLE, unsafe_allow_html=True)
+    st.markdown(STYLE+SAFETY_STYLE, unsafe_allow_html=True)
     st.markdown('<div class="composition-hero"><small>MEDILENS / COMPOSITION</small><h1>' + tr('성분 함량을 한눈에', 'Ingredient amounts, visualized') + '</h1><p>' + tr('정확한 제품 선택 → 레이블 함량 시각화', 'Choose the exact product → see its declared amounts') + '</p></div>', unsafe_allow_html=True)
     country = st.radio(tr('국가', 'Country'), ['US', 'KR'], horizontal=True, format_func=lambda x: tr('미국', 'United States') if x == 'US' else tr('대한민국', 'South Korea'))
     if country == 'KR':
@@ -77,9 +78,11 @@ def render_composition(lang):
     st.caption(p['form'] + ' · ' + releases[p['release']] + ' · NDC ' + (p['ndc'] or '—'))
     if not any(i['active'] for i in p['ingredients']):
         st.warning(tr('활성 성분 정보가 없습니다.', 'Active ingredient information unavailable.'))
+    st.markdown(urgent_html(record,p,lang),unsafe_allow_html=True)
     basis = st.radio(tr('함량 표시 기준', 'Amount display basis'), ['label','normalized'], horizontal=True, format_func=lambda v: tr('레이블 원문 기준', 'Original label denominator') if v == 'label' else tr('1정·1 mL 기준', 'Per unit / mL'), key='amount_basis_'+record['setid']+'_'+lang)
     st.caption(tr('레이블의 분모는 함량 표시 기준이며 복용량 권장이 아닙니다. 단위가 호환되는 성분만 같은 차트에 표시합니다.', 'The label denominator is a strength basis, not a dosing recommendation. Only compatible units share a chart.'))
     render_map(p, record, lang, basis)
+    st.markdown(safety_html(record,p,lang),unsafe_allow_html=True)
     st.markdown(dose_visual_html(p, lang, basis), unsafe_allow_html=True)
     st.markdown(excipient_visual_html(p, lang, record.get('inactive_narrative',[])), unsafe_allow_html=True)
     st.caption(tr('성분 함량은 효능·안전성·치료적 동등성을 뜻하지 않습니다. DailyMed 등재가 FDA 승인을 뜻하지 않습니다.', 'Amounts do not indicate potency, safety or therapeutic equivalence. DailyMed listing does not imply FDA approval.'))

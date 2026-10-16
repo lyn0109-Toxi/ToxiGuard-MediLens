@@ -1904,11 +1904,7 @@ def sentences(value: str, limit: int = 3) -> list[str]:
     return pieces
 
 
-def daily_med_url(label: dict[str, Any], openfda: dict[str, Any]) -> str:
-    set_id = first(openfda.get("spl_set_id")) or str(label.get("set_id") or "")
-    if set_id:
-        return f"https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid={urllib.parse.quote(set_id)}"
-    return SOURCE_LINKS["dailymed"]
+from label_sources import daily_med_url
 
 
 def rxnorm_url(openfda: dict[str, Any]) -> str:
