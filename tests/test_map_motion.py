@@ -25,6 +25,7 @@ class MotionTests(unittest.TestCase):
         self.assertIn('observer?.disconnect()',js)
         self.assertIn("if(reduced())clearReveal()",js)
         self.assertNotIn('animation:node-arrive',css)
-        safety=(ROOT/'label_safety_ui.py').read_text()
+        from label_safety_ui import STYLE
+        safety=STYLE
         self.assertIn('animation:none!important;transition:none!important;opacity:1!important',safety)
 if __name__=='__main__':unittest.main()

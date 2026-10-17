@@ -1,0 +1,47 @@
+MediLens safety graphics review — 2026-10-17
+
+BASE AND SCOPE
+Fetched origin/main: 54a5f32f522df84fb31363b2fc8ff9febd6dec22.
+Local branch: feature/safety-graphics-review. No push, deployment or main merge.
+No AGENTS.md or .agents/skills instructions were present in this checkout/workspace.
+Mac-only c35cbc5 was not available and was not assumed to exist here.
+Production change is confined to label_safety_ui.py, safety_graphics.css and assets/safety/.
+No changes to app.py, composition*, ingredient_map*, molecular assets, label parsing or clinical classification.
+
+IMPLEMENTATION
+Seven distinct original CC0 SVGs: adverse reactions, food/drink, contraindications, drug interactions, precautions, stop-use and directions.
+Category meaning uses headings and distinct shapes, not color alone. No numeric risk scores or invented advice.
+One 650 ms decorative icon movement; no opacity/visibility delay on text. OS reduced motion disables it.
+All seven categories remain visible, including explicit unavailable-information wording.
+Existing bilingual summaries and exact English source text, label identity and provenance are preserved.
+Duplicate summaries are removed within a category; all source entries remain.
+Warnings and applicability evidence default open (including urgent cards), with native keyboard-operable disclosure. Adverse reaction details can be expanded.
+Long original sections intentionally remain long: exact applicability takes precedence over a compact card.
+
+INTEGRATION
+Existing composition_ui.py already imports STYLE, urgent_html and safety_html at line 9; injects style at line 22; renders urgent before the ingredient animation at line 81 and safety after it at line 85. The API signatures remain unchanged.
+On Mac, apply only this safety diff after inspecting c35cbc5. Do not overwrite composition_ui.py or ingredient assets from this checkout. Retain the three existing hooks if the Mac composition screen has moved them.
+Ship safety_graphics.css and all assets/safety/*.svg alongside the Python module; the CSS and SVGs are read from module-relative paths.
+The separate legacy “Safety overview” route in app.py has a different data model and is NOT modernized by this patch. This deliverable updates the selected-product SPL safety module already integrated into the composition route. Adapting the legacy route requires a separate evidence-preserving integration review; do not pass unverified ingredient-level data as a selected SPL product.
+
+VALIDATION
+81 unittest tests passed, including existing product switches, source failure clearing, multiple strengths, exact population/frequency conditions, no invented food bans, and source preservation.
+30 standalone Chromium cases: en/ko × 1440/390/320 px × Mucinex/fexofenadine/eye drops/metoprolol/missing source; no horizontal overflow, all seven categories, icons load.
+Keyboard Enter and Space toggle disclosures; visible focus checked. Reduced motion and immediate urgent visibility checked via computed styles.
+Real Streamlit fixture app: Korean fexofenadine desktop/mobile, seven categories, no exception, no horizontal overflow, reduced motion passed.
+Screenshots visually reviewed: standalone Korean desktop and actual Streamlit mobile. Streamlit element-length capture was replaced by viewport captures because offscreen content is not all painted by the app.
+Initial dependency installation failed on read-only user site; resolved using /tmp/medilens-venv. file:// browser access was blocked; standalone renderer tested via set_content and app via localhost. No unresolved installation or execution blocker.
+
+REPRODUCE
+python -m venv --system-site-packages /tmp/medilens-venv
+/tmp/medilens-venv/bin/pip install -r requirements.txt
+/tmp/medilens-venv/bin/python -m unittest discover -s tests -q
+python review/safety_graphics_qa.py
+python review/check_safety_browser.py  (requires Playwright and /usr/bin/chromium)
+/tmp/medilens-venv/bin/python -m streamlit run review/visual_qa.py --server.port 8532
+python review/check_safety_streamlit.py
+Local URL: http://127.0.0.1:8532/?example=fexofenadine&lang=ko
+Self-contained offline HTML: fexofenadine-ko.html (other fixtures and English alongside).
+
+LIMITATIONS
+No Mac c35cbc5 integration, Safari/Firefox, screen-reader session or fresh live DailyMed fetch verified. Fixture sources are explicitly marked as retained, not live data. No clinical revalidation of pre-existing classifiers/summaries. No hosted/public preview or deployment. Long warning sections remain text-heavy to keep exact conditions visible. Legacy Safety overview remains a follow-up as described above.
