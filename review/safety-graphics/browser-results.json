@@ -1,0 +1,187 @@
+{
+  "cases": [
+    {
+      "fixture": "mucinex-solution",
+      "lang": "en",
+      "width": 1440,
+      "overflow": false
+    },
+    {
+      "fixture": "fexofenadine",
+      "lang": "en",
+      "width": 1440,
+      "overflow": false
+    },
+    {
+      "fixture": "artificial-tears",
+      "lang": "en",
+      "width": 1440,
+      "overflow": false
+    },
+    {
+      "fixture": "metoprolol-er",
+      "lang": "en",
+      "width": 1440,
+      "overflow": false
+    },
+    {
+      "fixture": "empty",
+      "lang": "en",
+      "width": 1440,
+      "overflow": false
+    },
+    {
+      "fixture": "mucinex-solution",
+      "lang": "en",
+      "width": 390,
+      "overflow": false
+    },
+    {
+      "fixture": "fexofenadine",
+      "lang": "en",
+      "width": 390,
+      "overflow": false
+    },
+    {
+      "fixture": "artificial-tears",
+      "lang": "en",
+      "width": 390,
+      "overflow": false
+    },
+    {
+      "fixture": "metoprolol-er",
+      "lang": "en",
+      "width": 390,
+      "overflow": false
+    },
+    {
+      "fixture": "empty",
+      "lang": "en",
+      "width": 390,
+      "overflow": false
+    },
+    {
+      "fixture": "mucinex-solution",
+      "lang": "en",
+      "width": 320,
+      "overflow": false
+    },
+    {
+      "fixture": "fexofenadine",
+      "lang": "en",
+      "width": 320,
+      "overflow": false
+    },
+    {
+      "fixture": "artificial-tears",
+      "lang": "en",
+      "width": 320,
+      "overflow": false
+    },
+    {
+      "fixture": "metoprolol-er",
+      "lang": "en",
+      "width": 320,
+      "overflow": false
+    },
+    {
+      "fixture": "empty",
+      "lang": "en",
+      "width": 320,
+      "overflow": false
+    },
+    {
+      "fixture": "mucinex-solution",
+      "lang": "ko",
+      "width": 1440,
+      "overflow": false
+    },
+    {
+      "fixture": "fexofenadine",
+      "lang": "ko",
+      "width": 1440,
+      "overflow": false
+    },
+    {
+      "fixture": "artificial-tears",
+      "lang": "ko",
+      "width": 1440,
+      "overflow": false
+    },
+    {
+      "fixture": "metoprolol-er",
+      "lang": "ko",
+      "width": 1440,
+      "overflow": false
+    },
+    {
+      "fixture": "empty",
+      "lang": "ko",
+      "width": 1440,
+      "overflow": false
+    },
+    {
+      "fixture": "mucinex-solution",
+      "lang": "ko",
+      "width": 390,
+      "overflow": false
+    },
+    {
+      "fixture": "fexofenadine",
+      "lang": "ko",
+      "width": 390,
+      "overflow": false
+    },
+    {
+      "fixture": "artificial-tears",
+      "lang": "ko",
+      "width": 390,
+      "overflow": false
+    },
+    {
+      "fixture": "metoprolol-er",
+      "lang": "ko",
+      "width": 390,
+      "overflow": false
+    },
+    {
+      "fixture": "empty",
+      "lang": "ko",
+      "width": 390,
+      "overflow": false
+    },
+    {
+      "fixture": "mucinex-solution",
+      "lang": "ko",
+      "width": 320,
+      "overflow": false
+    },
+    {
+      "fixture": "fexofenadine",
+      "lang": "ko",
+      "width": 320,
+      "overflow": false
+    },
+    {
+      "fixture": "artificial-tears",
+      "lang": "ko",
+      "width": 320,
+      "overflow": false
+    },
+    {
+      "fixture": "metoprolol-er",
+      "lang": "ko",
+      "width": 320,
+      "overflow": false
+    },
+    {
+      "fixture": "empty",
+      "lang": "ko",
+      "width": 320,
+      "overflow": false
+    }
+  ],
+  "keyboard": "Enter/Space and visible focus passed",
+  "reduced_motion": "passed",
+  "urgent_immediate_visibility": "passed"
+}

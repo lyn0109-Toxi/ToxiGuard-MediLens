@@ -1,0 +1,20 @@
+/* Strictly scoped to the legacy safety route's keyed container. */
+.st-key-legacy-safety{color:#183746}
+.st-key-legacy-safety [data-testid="stVerticalBlockBorderWrapper"],
+.st-key-legacy-safety [data-testid="stVerticalBlock"]>[data-testid="stLayoutWrapper"]>[data-testid="stVerticalBlockBorderWrapper"]{border-radius:22px;border-color:#cbdce4;background:#fff;box-shadow:0 4px 16px #18374606}
+.st-key-legacy-safety [data-testid="stVerticalBlock"] [data-testid="stVerticalBlockBorderWrapper"]{padding:20px}
+.st-key-legacy-safety h1,.st-key-legacy-safety h2,.st-key-legacy-safety h3{letter-spacing:-.025em;color:#183746}
+.st-key-legacy-safety p{line-height:1.75;overflow-wrap:anywhere}
+.st-key-legacy-safety .legacy-safety-icon{display:grid;place-items:center;width:64px;height:64px;border-radius:19px;background:#fcf1dd;margin:0 0 12px}
+.st-key-legacy-safety .legacy-icon-food{background:#e7f4ee}.st-key-legacy-safety .legacy-icon-adverse{background:#f4ecfa}.st-key-legacy-safety .legacy-icon-interactions{background:#eaf0fd}.st-key-legacy-safety .legacy-icon-directions{background:#edf3f7}
+.st-key-legacy-safety .legacy-safety-icon img{width:42px;height:42px;border:0;box-shadow:none;padding:0;background:transparent;animation:legacy-safety-settle 650ms ease-out 1}
+@keyframes legacy-safety-settle{from{transform:translateY(-3px) rotate(-5deg)}to{transform:translateY(0) rotate(0)}}
+.st-key-legacy-safety [data-testid="stExpander"]{border:1px solid #cbdce4;border-radius:16px;background:#fff}
+.st-key-legacy-safety a:focus-visible,.st-key-legacy-safety summary:focus-visible,.st-key-legacy-safety button:focus-visible{outline:3px solid #245dc1;outline-offset:3px}
+.st-key-legacy-safety summary{min-height:44px}
+@media(max-width:680px){.st-key-legacy-safety [data-testid="stHorizontalBlock"]{flex-direction:column}.st-key-legacy-safety [data-testid="stColumn"]{width:100%!important;flex:1 1 100%!important;min-width:0!important}.st-key-legacy-safety h3{font-size:1.2rem}}
+@media(prefers-reduced-motion:reduce){.st-key-legacy-safety .legacy-safety-icon img{animation:none!important;transform:none!important}}
+@media(forced-colors:active){.st-key-legacy-safety .legacy-safety-icon{border:1px solid CanvasText}}
+/* Streamlit 1.66 uses a vertical block for bordered cards. Match the icon-owning
+   block rather than generated Emotion class names or unrelated app containers. */
+.st-key-legacy-safety [data-testid="stVerticalBlock"]:has(> [data-testid="stElementContainer"] .legacy-safety-icon):has(> [data-testid="stElementContainer"] p){background:#fff;border:1px solid #cbdce4;border-radius:22px;padding:20px;box-shadow:0 4px 16px #18374606}
