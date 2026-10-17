@@ -9,6 +9,7 @@ from typing import Any
 
 import certifi
 import streamlit as st
+from legacy_safety_ui import install_legacy_style, render_legacy_icon
 
 
 ASSET_DIR = Path(__file__).parent / "assets"
@@ -1344,10 +1345,10 @@ def card(
     image_path = visual_image_path({"title": title, "body": body, "severity": severity, "tags": tags or [], "image": image})
 
     with st.container(border=True):
-        image_col, text_col = st.columns([0.44, 0.56], gap="medium", vertical_alignment="center")
+        image_col, text_col = st.columns([0.16, 0.84], gap="medium", vertical_alignment="top")
         with image_col:
             if image_path.exists():
-                st.image(str(image_path), width="stretch")
+                render_legacy_icon(image_path)
             else:
                 st.badge(l(sev, lang), icon=SEVERITY_ICONS.get(severity), color=badge_color)
         with text_col:
@@ -1368,7 +1369,7 @@ def avoid_card(item: dict[str, Any], lang: str) -> None:
 
     with st.container(border=True):
         if image_path.exists():
-            st.image(str(image_path), width="stretch")
+            render_legacy_icon(image_path)
         st.badge(l(sev, lang), icon=SEVERITY_ICONS.get(severity), color=SEVERITY_COLORS.get(severity, "gray"))
         st.markdown(f"**{l(item['title'], lang)}**")
         st.caption(l(item["body"], lang))
@@ -1401,7 +1402,7 @@ def render_image_check_map(drug: dict[str, Any], cards: list[dict[str, Any]], la
                 with col.container(border=True):
                     image_path = visual_image_path(item)
                     if image_path.exists():
-                        st.image(str(image_path), width="stretch")
+                        render_legacy_icon(image_path)
                     st.badge(
                         l(SEVERITY[severity], lang),
                         icon=SEVERITY_ICONS.get(severity),
@@ -1452,7 +1453,7 @@ def render_side_effect_gallery(drug: dict[str, Any], lang: str) -> None:
                 with col.container(border=True):
                     image_path = visual_image_path(item)
                     if image_path.exists():
-                        st.image(str(image_path), width="stretch")
+                        render_legacy_icon(image_path)
                     st.badge(
                         l(SEVERITY[severity], lang),
                         icon=SEVERITY_ICONS.get(severity),
@@ -1500,7 +1501,7 @@ def render_action_board(drug: dict[str, Any], cards: list[dict[str, Any]], lang:
             with col.container(border=True):
                 image_path = visual_image_path(item)
                 if image_path.exists():
-                    st.image(str(image_path), width="stretch")
+                    render_legacy_icon(image_path)
                 st.badge(
                     t(lang, action["label_key"]),
                     icon=SEVERITY_ICONS.get(severity),
@@ -1530,7 +1531,7 @@ def render_personal_match_panel(drug: dict[str, Any], cards: list[dict[str, Any]
                 with col.container(border=True):
                     image_path = visual_image_path(item)
                     if image_path.exists():
-                        st.image(str(image_path), width="stretch")
+                        render_legacy_icon(image_path)
                     st.badge(
                         l(SEVERITY[severity], lang),
                         icon=SEVERITY_ICONS.get(severity),
@@ -1646,7 +1647,7 @@ def render_dur_review_panel(
                 with col.container(border=True):
                     image_path = visual_image_path({"image": item["image"]})
                     if image_path.exists():
-                        st.image(str(image_path), width="stretch")
+                        render_legacy_icon(image_path)
                     st.badge(label, icon=icon, color=color)
                     st.markdown(f"**{item['title']}**")
                     st.caption(item["body"])
@@ -1711,7 +1712,7 @@ def render_prescription_lens_panel(
                 if image_name != "source":
                     image_path = visual_image_path({"image": image_name})
                     if image_path.exists():
-                        st.image(str(image_path), width="stretch")
+                        render_legacy_icon(image_path)
                 st.badge(label, icon=icon, color="blue")
 
         if intake_items:
@@ -1722,7 +1723,7 @@ def render_prescription_lens_panel(
                     with col.container(border=True):
                         image_path = visual_image_path({"image": item["image"]})
                         if image_path.exists():
-                            st.image(str(image_path), width="stretch")
+                            render_legacy_icon(image_path)
                         st.markdown(f"**{item['label']}**")
                         if item.get("classes"):
                             st.caption(" · ".join(sorted(item["classes"])[:3]))
@@ -1737,7 +1738,7 @@ def render_prescription_lens_panel(
                 with col.container(border=True):
                     image_path = visual_image_path({"image": item["image"]})
                     if image_path.exists():
-                        st.image(str(image_path), width="stretch")
+                        render_legacy_icon(image_path)
                     st.badge(label, icon=icon, color=color)
                     st.markdown(f"**{l(item['title'], lang)}**")
                     st.caption(l(item["body"], lang))
@@ -2107,7 +2108,7 @@ def main() -> None:
         format_func=lambda value: "한국어" if value == "ko" else "English",
     )
     render_brand(lang)
-    workspace = st.sidebar.radio("보기 / Workspace", ["composition", "safety"], format_func=lambda x: ("성분 보기" if lang == "ko" else "Composition") if x == "composition" else ("기존 안전성 보기" if lang == "ko" else "Safety overview"))
+    workspace = st.sidebar.radio("보기 / Workspace", ["composition", "safety"], key="medilens_workspace", format_func=lambda x: ("성분 보기" if lang == "ko" else "Composition") if x == "composition" else ("기존 안전성 보기" if lang == "ko" else "Safety overview"))
     if workspace == "composition":
         from composition_ui import render_composition
         render_composition(lang)
@@ -2217,77 +2218,81 @@ def main() -> None:
     st.sidebar.link_button("DailyMed SPL", SOURCE_LINKS["dailymed"], icon=":material/source:", use_container_width=True)
     st.sidebar.caption(t(lang, "source_note"))
 
-    with st.container(border=True):
-        st.caption(t(lang, "top_eyebrow"))
-        st.markdown(f"## {t(lang, 'top_title')}")
-        st.write(t(lang, "top_copy"))
-
-    render_drug_header(selected, lang)
-
-    cards = ranked_prechecks(selected, active_contexts)
-    risk_class, risk_text = risk_label(lang, cards)
-    render_visual_overview(selected, cards, risk_class, risk_text, active_contexts, lang)
-    render_prescription_lens_panel(
-        selected,
-        cards,
-        active_contexts,
-        personal_items_text,
-        rx_items_text,
-        age_group,
-        duration_days,
-        lang,
-    )
-    render_dur_review_panel(selected, cards, active_contexts, personal_items_text, age_group, duration_days, lang)
-    render_action_board(selected, cards, lang)
-    render_personal_match_panel(selected, cards, personal_items_text, lang)
-    render_image_check_map(selected, cards, lang)
-    render_side_effect_gallery(selected, lang)
-
-    left, right = st.columns([1.08, 0.92], gap="large")
-    with left:
+    install_legacy_style()
+    with st.container(key="legacy-safety"):
         with st.container(border=True):
-            title_col, risk_col = st.columns([0.72, 0.28], vertical_alignment="center")
-            title_col.markdown(f"### {t(lang, 'precheck')}")
-            risk_col.badge(
-                risk_text,
-                icon=SEVERITY_ICONS.get(risk_class),
-                color=SEVERITY_COLORS.get(risk_class, "gray"),
-            )
-        for item in cards:
-            evidence = evidence_by_id(selected, item.get("source"))
-            card(l(item["title"], lang), l(item["body"], lang), item["severity"], lang, evidence.get("source"), image=item.get("image"))
+            st.caption(t(lang, "top_eyebrow"))
+            st.markdown(f"## {t(lang, 'top_title')}")
+            st.write(t(lang, "top_copy"))
 
-    with right:
-        render_evidence_flow(selected, cards, lang)
+        render_drug_header(selected, lang)
 
-    side_col, avoid_col = st.columns([1, 1], gap="large")
-    with side_col:
-        st.markdown(f"### {t(lang, 'side_effects')}")
-        tab_common, tab_caution, tab_urgent = st.tabs([t(lang, "common"), t(lang, "caution_tab"), t(lang, "urgent_tab")])
-        for tab, key, severity in [
-            (tab_common, "common", "info"),
-            (tab_caution, "caution", "caution"),
-            (tab_urgent, "urgent", "urgent"),
-        ]:
-            with tab:
-                for entry in selected.get("side_effects", {}).get(key, []):
-                    title, body, image_name, tags = side_effect_entry(entry)
-                    card(l(title, lang), l(body, lang), severity, lang, tags=tags, image=image_name)
+        cards = ranked_prechecks(selected, active_contexts)
+        risk_class, risk_text = risk_label(lang, cards)
+        render_visual_overview(selected, cards, risk_class, risk_text, active_contexts, lang)
+        render_prescription_lens_panel(
+            selected,
+            cards,
+            active_contexts,
+            personal_items_text,
+            rx_items_text,
+            age_group,
+            duration_days,
+            lang,
+        )
+        render_dur_review_panel(selected, cards, active_contexts, personal_items_text, age_group, duration_days, lang)
+        render_action_board(selected, cards, lang)
+        render_personal_match_panel(selected, cards, personal_items_text, lang)
+        render_image_check_map(selected, cards, lang)
+        render_side_effect_gallery(selected, lang)
 
-    with avoid_col:
-        st.markdown(f"### {t(lang, 'avoid')}")
-        for item in selected.get("avoid", []):
-            avoid_card(item, lang)
+        left, right = st.columns([1.08, 0.92], gap="large")
+        with left:
+            with st.container(border=True):
+                title_col, risk_col = st.columns([0.72, 0.28], vertical_alignment="center")
+                title_col.markdown(f"### {t(lang, 'precheck')}")
+                risk_col.badge(
+                    risk_text,
+                    icon=SEVERITY_ICONS.get(risk_class),
+                    color=SEVERITY_COLORS.get(risk_class, "gray"),
+                )
+            for item in cards:
+                evidence = evidence_by_id(selected, item.get("source"))
+                card(l(item["title"], lang), l(item["body"], lang), item["severity"], lang, evidence.get("source"), image=item.get("image"))
 
-    st.markdown(f"### {t(lang, 'evidence')}")
-    for item in selected.get("evidence", []):
-        with st.container(border=True):
-            st.markdown(f"**{l(item['title'], lang)}**")
-            st.write(l(item["quote"], lang))
-            st.caption(f"{t(lang, 'source')}: {item['source']}")
-            st.link_button(t(lang, "view_source"), item["url"], icon=":material/open_in_new:")
+        with right:
+            render_evidence_flow(selected, cards, lang)
 
-    st.info(t(lang, "disclaimer"))
+        side_col, avoid_col = st.columns([1, 1], gap="large")
+        with side_col:
+            st.markdown(f"### {t(lang, 'side_effects')}")
+            tab_common = st.expander(t(lang, "common"), expanded=True)
+            tab_caution = st.expander(t(lang, "caution_tab"), expanded=True)
+            tab_urgent = st.expander(t(lang, "urgent_tab"), expanded=True)
+            for tab, key, severity in [
+                (tab_common, "common", "info"),
+                (tab_caution, "caution", "caution"),
+                (tab_urgent, "urgent", "urgent"),
+            ]:
+                with tab:
+                    for entry in selected.get("side_effects", {}).get(key, []):
+                        title, body, image_name, tags = side_effect_entry(entry)
+                        card(l(title, lang), l(body, lang), severity, lang, tags=tags, image=image_name)
+
+        with avoid_col:
+            st.markdown(f"### {t(lang, 'avoid')}")
+            for item in selected.get("avoid", []):
+                avoid_card(item, lang)
+
+        st.markdown(f"### {t(lang, 'evidence')}")
+        for item in selected.get("evidence", []):
+            with st.expander(l(item["title"], lang), expanded=False):
+                st.markdown(f"**{l(item['title'], lang)}**")
+                st.write(l(item["quote"], lang))
+                st.caption(f"{t(lang, 'source')}: {item['source']}")
+                st.link_button(t(lang, "view_source"), item["url"], icon=":material/open_in_new:")
+
+        st.info(t(lang, "disclaimer"))
 
 
 if __name__ == "__main__":

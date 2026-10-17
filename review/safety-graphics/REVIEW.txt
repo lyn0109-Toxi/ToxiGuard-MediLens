@@ -45,3 +45,15 @@ Self-contained offline HTML: fexofenadine-ko.html (other fixtures and English al
 
 LIMITATIONS
 No Mac c35cbc5 integration, Safari/Firefox, screen-reader session or fresh live DailyMed fetch verified. Fixture sources are explicitly marked as retained, not live data. No clinical revalidation of pre-existing classifiers/summaries. No hosted/public preview or deployment. Long warning sections remain text-heavy to keep exact conditions visible. Legacy Safety overview remains a follow-up as described above.
+
+FOLLOW-UP COMPLETED — LEGACY SAFETY OVERVIEW
+The previous legacy-route exclusion above is superseded by this follow-up.
+app.py now imports legacy_safety_ui.py and uses its icon renderer at every legacy image hook. The entire legacy content is inside keyed container legacy-safety; legacy_safety.css affects only that container. Original image-selection rules, clinical functions, datasets, counters, ratios, risk labels and evidence wording are unchanged (AST regression check). Previously existing risk scores/statuses remain as requested; this change does not validate their medical basis or create new scores.
+All former side-effect tabs are now native expanders open by default, keeping urgent and conditional text visible. Detailed source quotes use separate closed expanders; warning bodies remain visible. Stable workspace widget key fixes language-switch reset.
+84 unit tests passed. Real Chromium legacy route: Korean/English, 1440/390/320 px, no horizontal overflow, loaded icons, reduced motion, keyboard Enter/Space disclosure operation, initially open warning sections; no app exceptions. Empty panels and product/language changes covered by AppTest. Actual legacy screenshots reviewed.
+
+SELECTIVE MAC INTEGRATION FILE LIST
+Production: label_safety_ui.py; safety_graphics.css; assets/safety/LICENSE.txt and seven SVGs; legacy_safety_ui.py; legacy_safety.css; only the safety presentation hunks in app.py.
+app.py changes: one presentation import; ten image-render calls; compact card column widths; fixed workspace radio key; install_legacy_style and keyed legacy container; tabs -> open expanders; evidence containers -> expanders. Do NOT replace app.py wholesale over c35cbc5. No composition/ingredient/molecular file is modified.
+Verification files: tests/test_safety_graphics.py, tests/test_legacy_safety.py, tests/test_map_motion.py; review/check_* safety/legacy scripts, review/safety_graphics_qa.py, review/safety-graphics outputs.
+No push, deployment or main merge. Mac c35cbc5, Safari, Firefox and screen-reader use remain unverified.
