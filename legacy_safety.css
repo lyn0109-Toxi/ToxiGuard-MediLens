@@ -17,4 +17,4 @@
 @media(forced-colors:active){.st-key-legacy-safety .legacy-safety-icon{border:1px solid CanvasText}}
 /* Streamlit 1.66 uses a vertical block for bordered cards. Match the icon-owning
    block rather than generated Emotion class names or unrelated app containers. */
-.st-key-legacy-safety [data-testid="stVerticalBlock"]:has(> [data-testid="stElementContainer"] .legacy-safety-icon){background:#fff;border:1px solid #cbdce4;border-radius:22px;padding:20px;box-shadow:0 4px 16px #18374606}
+.st-key-legacy-safety [data-testid="stVerticalBlock"]:has(> [data-testid="stElementContainer"] .legacy-safety-icon):has(> [data-testid="stElementContainer"] p){background:#fff;border:1px solid #cbdce4;border-radius:22px;padding:20px;box-shadow:0 4px 16px #18374606}
